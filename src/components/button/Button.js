@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, MaskedViewIOS, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class Button extends PureComponent {
@@ -14,17 +14,32 @@ export default class Button extends PureComponent {
     onPress: undefined,
   };
 
+  state = {
+    loading: false,
+  };
+
+  onPress() {
+    this.setState({
+      loading: !this.state.loading,
+    });
+    this.props.onPress();
+  }
+
   render() {
     const { children, onPress } = this.props;
     return (
       <TouchableOpacity
-        onPress={onPress}
+        onPress={this.onPress}
         disabled={!onPress}
         style={styles.host}
       >
-        <View style={styles.container}>
-          <Text style={styles.text}>{children}</Text>
-        </View>
+        {/* Loading */}
+        <MaskedViewIOS
+          maskedElement={<View />}
+        >
+          <View />
+        </MaskedViewIOS>
+        {/* <Text style={styles.text}>{children}</Text> */}
       </TouchableOpacity>
     );
   }
@@ -32,23 +47,20 @@ export default class Button extends PureComponent {
 
 const styles = StyleSheet.create({
   host: {
-    height: 52,
-    backgroundColor: '#E0E3E6',
-    borderRadius: 4,
+    width: 80,
+    height: 30,
+    backgroundColor: '#F1F0F7',
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
-  },
-
-  container: {
-    flex: 1,
-    paddingHorizontal: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
+    borderColor: '#000',
+    borderWidth: 2,
   },
 
   text: {
-    textAlign: 'center',
+    fontWeight: '600',
+    fontSize: 16,
+    color: '#0077FD',
+    letterSpacing: -0.4,
   },
 });

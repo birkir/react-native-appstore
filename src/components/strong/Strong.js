@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class Strong extends PureComponent {
@@ -13,9 +13,9 @@ export default class Strong extends PureComponent {
 
   render() {
     return (
-      <View style={styles.host}>
+      <Text style={styles.host}>
         {this.props.children}
-      </View>
+      </Text>
 
     );
   }

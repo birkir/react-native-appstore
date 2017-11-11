@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
-import SectionHeader from './components/section-header';
-import Card from './components/card';
+import SectionHeader from 'components/section-header';
+import Card from 'components/card';
 
 export default class Today extends Component {
   static navigatorStyle = {
