@@ -3,6 +3,7 @@ import { StyleSheet, Animated, View, Text, Dimensions, LayoutAnimation, Touchabl
 import { autobind } from 'core-decorators';
 import Strong from 'components/strong';
 import PropTypes from 'prop-types';
+import AppItemRow from 'components/app-item-row';
 
 // Transition helper method
 const transition = (property, toValue, useNativeDriver = true) =>
@@ -277,10 +278,10 @@ const styles = StyleSheet.create({
 
     borderRadius: 16,
 
-    shadowOffset: { width: 0, height: 12 },
+    shadowOffset: { width: 0, height: 10 },
     shadowColor: '#000',
-    shadowRadius: 10,
-    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    shadowOpacity: 0.25,
   },
 
   content: {

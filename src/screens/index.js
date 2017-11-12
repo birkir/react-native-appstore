@@ -2,6 +2,7 @@ import { Navigation } from 'react-native-navigation';
 import SplashScreen from './splash';
 import TodayScreen from './today';
 import GamesScreen from './games';
+import Navbar from '../components/navbar';
 
 export const Screens = new Map();
 
@@ -13,6 +14,7 @@ export const GAMES_SCREEN = 'appStoreClone.GamesScreen';
 Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(TODAY_SCREEN, () => TodayScreen);
 Screens.set(GAMES_SCREEN, () => GamesScreen);
+Screens.set('navbar', () => Navbar);
 
 export const startApp = () => {
   Navigation.startTabBasedApp({
@@ -22,6 +24,7 @@ export const startApp = () => {
       icon: require('images/TodayIcon.png'),
     }, {
       label: 'Games',
+      title: 'Games',
       screen: GAMES_SCREEN,
       icon: require('images/GamesIcon.png'),
     }, {

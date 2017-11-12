@@ -6,7 +6,7 @@ target 'UenoNativeStarter' do
 
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
 
-  pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'Core',

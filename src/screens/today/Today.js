@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, StatusBar } from 'react-native';
+import { StyleSheet, ScrollView, SafeAreaView, StatusBar, Animated, Dimensions, View } from 'react-native';
+import { SPLASH_SCREEN } from 'screens';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 import SectionHeader from 'components/section-header';
 import Card from 'components/card';
+import Button from 'components/button';
 
 export default class Today extends Component {
+  
   static navigatorStyle = {
-    navBarHidden: true,
     drawUnderTabBar: true,
+    navBarHidden: true,
   }
 
   static propTypes = {
@@ -20,6 +23,7 @@ export default class Today extends Component {
 
   state = {
     isScrollEnabled: true,
+    top: 20,
     cards: [{
       id: '1',
       legend: 'What we\'re playing',
@@ -53,27 +57,80 @@ export default class Today extends Component {
     // AppStore hides the status bar and bottom tabs.
     StatusBar.setHidden(isOpen, 'slide');
     this.props.navigator.toggleTabs({ to: isOpen ? 'hidden' : 'shown', animated: true });
+    // Remove Safe area
+    Animated.timing(this.top, { toValue: isOpen ? -this.state.top : 0, duration: 330 }).start();
   }
 
+  @autobind
+  onTestPress() {
+    this.props.navigator.push({
+      screen: SPLASH_SCREEN,
+      title: 'Best New Updates'
+    });
+  }
+
+  @autobind
+  onLayout(e) {
+    this.setState({
+      top: e.nativeEvent.layout.y,
+    });
+  }
+
+  top = new Animated.Value(0);
+
   render() {
+    const { top, cards, isScrollEnabled } = this.state;
     return (
-      <ScrollView style={styles.host} scrollEnabled={this.state.isScrollEnabled}>
-        <SectionHeader title="Today" label="Thursday, November 9" />
-        {this.state.cards.map(card => (
-          <Card
-            {...card}
-            key={card.id}
-            onOpenChange={this.onCardOpenChange}
-          />
-        ))}
-      </ScrollView>
+      <View style={styles.flex}>
+        <SafeAreaView style={StyleSheet.absoluteFill}>
+          <View onLayout={this.onLayout} />
+        </SafeAreaView>
+
+        <ScrollView
+          style={styles.host}
+          scrollEnabled={isScrollEnabled}
+          contentContainerStyle={[styles.content, { paddingTop: top }]}
+        >
+          <SectionHeader title="Today" label="Thursday, November 9" />
+          {cards.map(card => (
+            <Card
+              {...card}
+              key={card.id}
+              onOpenChange={this.onCardOpenChange}
+            />
+          ))}
+          <View style={styles.gutter} />
+        </ScrollView>
+
+        <Animated.View
+          style={[styles.top, { height: top, transform: [{ translateY: this.top }] }]}
+          pointerEvents="none"
+        />
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
+
   host: {
     flex: 1,
     padding: 20,
+    marginBottom: -100,
   },
+
+  gutter: {
+    height: 100,
+  },
+
+  top: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'white',
+  }
 });

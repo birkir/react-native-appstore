@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import Button from 'components/button';
 
 export default class AppItemRow extends PureComponent {
+
   static propTypes = {
     imageUrl: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
+    border: PropTypes.bool,
     action: PropTypes.string,
     onActionPress: PropTypes.func,
     isActionLoading: PropTypes.bool,
@@ -18,6 +20,7 @@ export default class AppItemRow extends PureComponent {
     imageUrl: undefined,
     title: undefined,
     subtitle: undefined,
+    border: true,
     action: undefined,
     isActionLoading: false,
     onActionPress: undefined,
@@ -25,16 +28,26 @@ export default class AppItemRow extends PureComponent {
   }
 
   render() {
-    const { imageUrl, title, subtitle, action, isActionLoading, onActionPress, onPress } = this.props;
+    const {
+      imageUrl,
+      title,
+      subtitle,
+      border,
+      action,
+      isActionLoading,
+      onActionPress,
+      onPress,
+    } = this.props;
     return (
       <TouchableWithoutFeedback onPress={onPress}>
-        <View style={styles.host}>
+        <View style={[styles.host, border && styles.host__border]}>
           <Image source={{ uri: imageUrl }} style={styles.image} />
           <View style={styles.content}>
             <Text style={styles.content__title}>{title}</Text>
             <Text style={styles.content__subtitle}>{subtitle}</Text>
           </View>
           <Button onPress={onActionPress} loading={isActionLoading}>{action}</Button>
+          {border && <View style={styles.border} />}
         </View>
       </TouchableWithoutFeedback>
     );
@@ -45,6 +58,10 @@ const styles = StyleSheet.create({
   host: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+
+  host__border: {
+    marginBottom: 16,
   },
 
   image: {
@@ -71,5 +88,14 @@ const styles = StyleSheet.create({
     color: '#999999',
     letterSpacing: -0.2,
     lineHeight: 17,
+  },
+
+  border: {
+    position: 'absolute',
+    bottom: -8,
+    left: 77,
+    right: 0,
+    backgroundColor: '#CDCDCD',
+    height: StyleSheet.hairlineWidth,
   },
 });
