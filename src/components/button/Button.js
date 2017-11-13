@@ -11,13 +11,21 @@ export default class Button extends PureComponent {
   static propTypes = {
     children: PropTypes.node,
     onPress: PropTypes.func,
+    subtitle: PropTypes.string,
     loading: PropTypes.bool,
+    blue: PropTypes.bool,
+    horizontal: PropTypes.bool,
+    align: PropTypes.oneOf(['left', 'center', 'right']),
   };
 
   static defaultProps = {
     children: undefined,
     onPress: undefined,
+    subtitle: undefined,
     loading: false,
+    blue: false,
+    horizontal: false,
+    align: 'center',
   };
 
   componentWillReceiveProps(props) {
@@ -34,8 +42,31 @@ export default class Button extends PureComponent {
     // Update iteration counter
     this.rotationIteration += 1;
     // Animate spinner rotation
-    Animated.timing(this.rotation, { toValue: this.rotationIteration, duration: 500, easing: Easing.linear })
-      .start(this.onRotationEnd);
+    Animated.timing(this.rotation, {
+      toValue: this.rotationIteration,
+      duration: 500,
+      easing: Easing.linear,
+    }).start(this.onRotationEnd);
+  }
+
+  get containerTranslateX() {
+    const { align } = this.props;
+    if (align === 'center') {
+      return 25;
+    } else if (align === 'right') {
+      return 50;
+    }
+    return 0;
+  }
+
+  get contentTranslateX() {
+    const { align } = this.props;
+    if (align === 'right') {
+      return 25;
+    } else if (align === 'left') {
+      return -25;
+    }
+    return 0;
   }
 
   @autobind
@@ -70,7 +101,15 @@ export default class Button extends PureComponent {
   rotationIteration = 0;
 
   render() {
-    const { children } = this.props;
+    const {
+      children,
+      blue,
+      subtitle,
+      horizontal,
+    } = this.props;
+
+    const circle = (typeof children === 'string' && children === '...');
+
     const animated = {
       spinner: {
         transform: [{
@@ -103,12 +142,12 @@ export default class Button extends PureComponent {
         transform: [{
           translateX: this.cursor.interpolate({
             inputRange: [0, 1],
-            outputRange: [0, 25],
+            outputRange: [0, this.containerTranslateX],
           }),
         }],
         width: this.cursor.interpolate({
           inputRange: [0, 1],
-          outputRange: [WIDTH, HEIGHT],
+          outputRange: [circle ? HEIGHT : WIDTH, HEIGHT],
         }),
       },
       background: {
@@ -122,6 +161,12 @@ export default class Button extends PureComponent {
           inputRange: [0.5, 1],
           outputRange: [1, 0],
         }),
+        transform: [{
+          translateX: this.cursor.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, this.contentTranslateX],
+          }),
+        }],
       },
     };
 
@@ -137,9 +182,15 @@ export default class Button extends PureComponent {
 
     return (
       <TouchableWithoutFeedback onPress={this.props.onPress}>
-        <View style={styles.host}>
+        <View style={[styles.host, circle && styles.host__circle]}>
           <Animated.View style={[styles.container, animated.container]}>
-            <Animated.View style={[StyleSheet.absoluteFill, styles.background, animated.background]} />
+            <Animated.View
+              style={[
+                StyleSheet.absoluteFill,
+                styles.background, blue && styles.background__blue,
+                animated.background,
+              ]}
+            />
             <Animated.View style={[styles.flex, animated.rotate]}>
               <MaskedViewIOS style={styles.flex} maskElement={spinnerMask}>
                 <View style={styles.spinner} />
@@ -147,7 +198,25 @@ export default class Button extends PureComponent {
             </Animated.View>
           </Animated.View>
           <Animated.View style={[StyleSheet.absoluteFill, styles.content, animated.content]}>
-            <Text style={[styles.content__text, animated.text]}>{children}</Text>
+            <Text
+              style={[
+                styles.content__text,
+                blue && styles.content__text__blue,
+                animated.text,
+              ]}
+            >
+              {children}
+            </Text>
+            {subtitle && (
+              <Text
+                style={[
+                  styles.content__subtitle,
+                  horizontal && styles.content__subtitle__horizontal,
+                ]}
+              >
+                {subtitle}
+              </Text>
+            )}
           </Animated.View>
         </View>
       </TouchableWithoutFeedback>
@@ -158,7 +227,11 @@ export default class Button extends PureComponent {
 const styles = StyleSheet.create({
   host: {
     width: WIDTH,
-    height: 30,
+    height: HEIGHT,
+  },
+
+  host__circle: {
+    width: HEIGHT,
   },
 
   flex: {
@@ -224,6 +297,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F1F0F7',
   },
 
+  background__blue: {
+    backgroundColor: '#0077FD',
+  },
+
   content: {
     flex: 1,
     justifyContent: 'center',
@@ -236,5 +313,27 @@ const styles = StyleSheet.create({
     color: '#0077FD',
     letterSpacing: -0.4,
     backgroundColor: 'transparent',
+  },
+
+  content__text__blue: {
+    color: '#FFFFFF',
+  },
+
+  // Arbitary numbers... sorry
+  content__subtitle: {
+    position: 'absolute',
+    top: 34,
+    fontSize: 9,
+    color: 'rgba(0, 0, 0, 0.4)',
+    letterSpacing: 0,
+    lineHeight: 10,
+    backgroundColor: 'transparent',
+  },
+
+  // Arbitary numbers... sorry
+  content__subtitle__horizontal: {
+    left: 86,
+    top: 4,
+    width: 50,
   },
 });

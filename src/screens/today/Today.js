@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, SafeAreaView, StatusBar, Animated, Dimensions, View } from 'react-native';
-import { SPLASH_SCREEN } from 'screens';
+import { StyleSheet, ScrollView, SafeAreaView, StatusBar, Animated, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 import SectionHeader from 'components/section-header';
 import Card from 'components/card';
-import Button from 'components/button';
 
 export default class Today extends Component {
-  
+
   static navigatorStyle = {
     drawUnderTabBar: true,
     navBarHidden: true,
@@ -59,14 +57,6 @@ export default class Today extends Component {
     this.props.navigator.toggleTabs({ to: isOpen ? 'hidden' : 'shown', animated: true });
     // Remove Safe area
     Animated.timing(this.top, { toValue: isOpen ? -this.state.top : 0, duration: 330 }).start();
-  }
-
-  @autobind
-  onTestPress() {
-    this.props.navigator.push({
-      screen: SPLASH_SCREEN,
-      title: 'Best New Updates'
-    });
   }
 
   @autobind
@@ -132,5 +122,5 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: 'white',
-  }
+  },
 });

@@ -32,6 +32,14 @@ export default class AppItemRow extends PureComponent {
     isActionLoading: false,
   }
 
+  componentWillReceiveProps(props) {
+    if (props.isActionLoading !== this.props.isActionLoading) {
+      this.setState({
+        isActionLoading: props.isActionLoading,
+      });
+    }
+  }
+
   @autobind
   onActionPress() {
     if (this.props.onActionPress) {

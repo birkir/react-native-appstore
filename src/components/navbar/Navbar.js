@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Animated, View, Text } from 'react-native';
+import { StyleSheet, Animated } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { autorun } from 'mobx';
 import PropTypes from 'prop-types';
@@ -8,12 +8,11 @@ import PropTypes from 'prop-types';
 @observer
 export default class Navbar extends Component {
   static propTypes = {
-    id: PropTypes.string,
     ui: PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
-    id: undefined,
   }
 
   componentDidMount() {
@@ -21,7 +20,7 @@ export default class Navbar extends Component {
     autorun(() => {
       const toValue = Number(this.props.ui.navBarVisible);
       Animated.spring(this.opacity, { toValue }).start();
-    })
+    });
   }
 
   componentWillUnmount() {

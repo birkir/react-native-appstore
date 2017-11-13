@@ -3,7 +3,6 @@ import { StyleSheet, Animated, View, Text, Dimensions, LayoutAnimation, Touchabl
 import { autobind } from 'core-decorators';
 import Strong from 'components/strong';
 import PropTypes from 'prop-types';
-import AppItemRow from 'components/app-item-row';
 
 // Transition helper method
 const transition = (property, toValue, useNativeDriver = true) =>
@@ -81,7 +80,9 @@ export default class Card extends PureComponent {
     this.hostRef.measureInWindow((x, y) => { // eslint-disable-line no-underscore-dangle
       const { width, height } = Dimensions.get('window');
       this.setState({
-        host: { x, y, width, height },
+        host: {
+          x, y, width, height,
+        },
       });
     });
 
@@ -126,8 +127,12 @@ export default class Card extends PureComponent {
 
   render() {
     // Extract needed properties from the class
-    const { cursorNative, scale, state, props, layout } = this;
-    const { imageUrl, legend, title, zIndex } = props;
+    const {
+      cursorNative, scale, state, layout,
+    } = this;
+    const {
+      imageUrl, legend, title, zIndex,
+    } = this.props;
     const { isOpen, host } = state;
 
     const animated = {
@@ -222,10 +227,39 @@ export default class Card extends PureComponent {
             style={StyleSheet.absoluteFill}
           >
             <Animated.View style={[styles.content, animated.content]}>
-              <Text style={styles.content__text}><Strong>Lorem ipsum dolor sit amet</Strong>, consectetur adipiscing elit. Praesent pretium mattis massa, non dictum leo imperdiet sed. Morbi vitae dolor luctus, dapibus dui a, elementum mi. Vivamus in commodo erat.</Text>
-              <Text style={styles.content__text}>Praesent et volutpat erat, ac fermentum tortor. Sed id tristique enim. Ut eu odio lobortis, gravida justo in, pulvinar dolor. In eu ullamcorper leo. Phasellus faucibus lorem quis tristique gravida. Nulla efficitur libero at imperdiet iaculis. Morbi efficitur volutpat iaculis. Suspendisse laoreet condimentum lacinia. Maecenas eu justo euismod, porta turpis vitae, elementum est.</Text>
-              <Text style={styles.content__text}>Nulla dignissim viverra lobortis. Nulla sollicitudin, justo et faucibus elementum, lectus nibh tristique ante, vel dapibus dui enim sit amet orci. Sed molestie ultricies varius. Proin risus justo, lacinia at suscipit in, commodo sed metus. Ut iaculis mi in ante accumsan, quis ultrices est tempor. Mauris eget iaculis augue, et iaculis magna. Sed congue neque consequat egestas imperdiet. Integer dictum tristique ante, eget volutpat odio gravida euismod. Nullam vel blandit nulla. Etiam imperdiet ut magna et varius. Duis porttitor consequat finibus. Vestibulum quis est at lacus venenatis ornare. Quisque nunc velit, pulvinar et eros elementum, ullamcorper viverra nulla. Nam efficitur ante purus, eget cursus magna dignissim sit amet. Morbi blandit dui pharetra magna tempor, et blandit libero interdum.</Text>
-              <Text style={styles.content__text}>Etiam eleifend feugiat tortor, vel luctus massa. Aliquam lorem risus, dapibus ut luctus non, condimentum eget odio. Aenean venenatis arcu dapibus, blandit nunc eu, fringilla purus. Quisque dictum felis et orci eleifend, et ultricies diam ornare. Sed suscipit, neque quis semper malesuada, diam ex consectetur metus, vel hendrerit ex sapien eu justo. Nullam vehicula ex vel ipsum faucibus efficitur. Aenean magna metus, volutpat in laoreet et, ornare vestibulum neque. Nunc congue elit sed sapien dictum feugiat.</Text>
+              <Text style={styles.content__text}>
+                <Strong>Lorem ipsum dolor sit amet</Strong>, consectetur adipiscing elit.
+                Praesent pretium mattis massa, non dictum leo imperdiet sed. Morbi vitae dolor
+                luctus, dapibus dui a, elementum mi. Vivamus in commodo erat.
+              </Text>
+              <Text style={styles.content__text}>
+                Praesent et volutpat erat, ac fermentum tortor. Sed id tristique enim.
+                Ut eu odio lobortis, gravida justo in, pulvinar dolor. In eu ullamcorper leo.
+                Phasellus faucibus lorem quis tristique gravida. Nulla efficitur libero at imperdiet
+                iaculis. Morbi efficitur volutpat iaculis. Suspendisse laoreet condimentum lacinia.
+                Maecenas eu justo euismod, porta turpis vitae, elementum est.
+              </Text>
+              <Text style={styles.content__text}>
+                Nulla dignissim viverra lobortis. Nulla sollicitudin, justo et faucibus elementum,
+                lectus nibh tristique ante, vel dapibus dui enim sit amet orci. Sed molestie
+                ultricies varius. Proin risus justo, lacinia at suscipit in, commodo sed metus.
+                Ut iaculis mi in ante accumsan, quis ultrices est tempor. Mauris eget iaculis augue,
+                t iaculis magna. Sed congue neque consequat egestas imperdiet. Integer dictum
+                tristique ante, eget volutpat odio gravida euismod. Nullam vel blandit nulla.
+                Etiam imperdiet ut magna et varius. Duis porttitor consequat finibus. Vestibulum
+                quis est at lacus venenatis ornare. Quisque nunc velit, pulvinar et eros elementum,
+                ullamcorper viverra nulla. Nam efficitur ante purus, eget cursus magna dignissim
+                sit amet. Morbi blandit dui pharetra magna tempor, et blandit libero interdum.
+              </Text>
+              <Text style={styles.content__text}>
+                Etiam eleifend feugiat tortor, vel luctus massa. Aliquam lorem risus, dapibus ut
+                luctus non, condimentum eget odio. Aenean venenatis arcu dapibus, blandit nunc eu,
+                fringilla purus. Quisque dictum felis et orci eleifend, et ultricies diam ornare.
+                Sed suscipit, neque quis semper malesuada, diam ex consectetur metus, vel hendrerit
+                ex sapien eu justo. Nullam vehicula ex vel ipsum faucibus efficitur. Aenean
+                magna metus, volutpat in laoreet et, ornare vestibulum neque. Nunc congue elit
+                sed sapien dictum feugiat.
+              </Text>
             </Animated.View>
           </Animated.ScrollView>
           <TouchableWithoutFeedback

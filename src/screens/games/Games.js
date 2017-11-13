@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Animated, View } from 'react-native';
-import { SPLASH_SCREEN } from 'screens';
+import { StyleSheet, Animated, View } from 'react-native';
+import { SPLASH_SCREEN, APP_SCREEN } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
 import SectionHeader from 'components/section-header';
 import Heading from 'components/heading';
 import { inject, observer } from 'mobx-react/native';
-import { observable } from 'mobx';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
 
@@ -27,10 +26,6 @@ export default class Games extends Component {
     drawUnderTabBar: true,
   }
 
-  state = {
-    loading: true,
-  };
-
   componentWillMount() {
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
@@ -46,8 +41,7 @@ export default class Games extends Component {
 
   @autobind
   onNavigatorEvent(e) {
-    const { navigator } = this.props;
-    const { type, id } = e;
+    const { id } = e;
 
     if (id === 'willDisappear') {
       if (this.props.ui.navBar) {
@@ -66,10 +60,17 @@ export default class Games extends Component {
   }
 
   @autobind
-  onTestPress() {
+  onAppGroupPress() {
     this.props.navigator.push({
       screen: SPLASH_SCREEN,
-      title: 'Best New Updates'
+      title: 'Best New Updates',
+    });
+  }
+
+  @autobind
+  onAppPress() {
+    this.props.navigator.push({
+      screen: APP_SCREEN,
     });
   }
 
@@ -86,7 +87,7 @@ export default class Games extends Component {
         scrollEventThrottle={16}
       >
         <SectionHeader title="Games" />
-        <Heading action="See All" onActionPress={this.onTestPress}>
+        <Heading action="See All" onActionPress={this.onAppGroupPress}>
           Best New Updates
         </Heading>
         <AppItemSlider>
@@ -97,6 +98,7 @@ export default class Games extends Component {
               title="Spark Email"
               subtitle="New exciting tournament game mode!"
               action="FREE"
+              onPress={this.onAppPress}
             />
           ))}
         </AppItemSlider>

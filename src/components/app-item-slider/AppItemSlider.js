@@ -1,13 +1,13 @@
 import React, { Children, PureComponent } from 'react';
-import { StyleSheet, ScrollView, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 
-const { width, height } = Dimensions.get('window');
-const itemWidth = width - 30;
+const { width: initialWidth } = Dimensions.get('window');
 
 export default class AppItemSlider extends PureComponent {
+
   static propTypes = {
     itemsPerPage: PropTypes.number,
     children: PropTypes.node,
@@ -19,33 +19,28 @@ export default class AppItemSlider extends PureComponent {
   }
 
   state = {
-    width: 0,
-    minHeight: 0,
+    width: initialWidth,
   }
 
   @autobind
-  onLayout(e) {
-    const { width } = e.nativeEvent.layout;
-    this.setState({ width });
-  }
-
-  @autobind
-  onPageLayout(e) {
-    const { height } = e.nativeEvent.layout;
+  onLayout() {
+    const { width } = Dimensions.get('window');
     this.setState({
-      minHeight: Math.min(this.state.minHeight, height),
+      width,
     });
   }
 
-  renderItem({ item, index }) {
+  @autobind
+  renderItem({ item }) {
     return (
-      <View style={styles.item}>
+      <View style={[styles.item, { width: this.state.width - 30 }]}>
         {Children.toArray(item)}
       </View>
     );
   }
 
   render() {
+    const { width } = this.state;
     const { itemsPerPage, children } = this.props;
     const childs = Children.toArray(children);
     const groups = [];
@@ -55,7 +50,7 @@ export default class AppItemSlider extends PureComponent {
     }
 
     return (
-      <View style={styles.host}>
+      <View style={styles.host} onLayout={this.onLayout}>
         <Carousel
           data={groups}
           renderItem={this.renderItem}
@@ -77,7 +72,6 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    width: width - 30,
     paddingHorizontal: 5,
     marginBottom: -16,
   },
