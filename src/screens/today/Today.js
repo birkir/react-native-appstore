@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
 
   gutter: {
-    height: 100,
+    height: 200,
   },
 
   top: {

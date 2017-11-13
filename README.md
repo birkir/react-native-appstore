@@ -16,6 +16,14 @@ This sample project was intended to demonstrate the possibilities with react-nat
  - [ ] Categories view
  - [ ] Updates list of apps
 
+## Hard Problems
+
+ - Navbar title fade away when scrolled.
+ - Allow shared elements to transition outside Safe Area constraints.
+ - Animate width and height properally in an controlled animated environment.
+ - Horizontal scroll view with next and previous slides peeking through.
+ - Animated spinner
+
 ## Why
 
 It's fun.

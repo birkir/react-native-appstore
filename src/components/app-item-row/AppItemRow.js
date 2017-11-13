@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, View, Image, Text, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
+import { autobind } from 'core-decorators';
 
 export default class AppItemRow extends PureComponent {
 
@@ -27,6 +28,21 @@ export default class AppItemRow extends PureComponent {
     onPress: undefined,
   }
 
+  state = {
+    isActionLoading: false,
+  }
+
+  @autobind
+  onActionPress() {
+    if (this.props.onActionPress) {
+      this.props.onActionPress();
+    } else {
+      this.setState({
+        isActionLoading: !this.state.isActionLoading,
+      });
+    }
+  }
+
   render() {
     const {
       imageUrl,
@@ -34,10 +50,9 @@ export default class AppItemRow extends PureComponent {
       subtitle,
       border,
       action,
-      isActionLoading,
-      onActionPress,
       onPress,
     } = this.props;
+    const { isActionLoading } = this.state;
     return (
       <TouchableWithoutFeedback onPress={onPress}>
         <View style={[styles.host, border && styles.host__border]}>
@@ -46,7 +61,7 @@ export default class AppItemRow extends PureComponent {
             <Text style={styles.content__title}>{title}</Text>
             <Text style={styles.content__subtitle}>{subtitle}</Text>
           </View>
-          <Button onPress={onActionPress} loading={isActionLoading}>{action}</Button>
+          <Button onPress={this.onActionPress} loading={isActionLoading}>{action}</Button>
           {border && <View style={styles.border} />}
         </View>
       </TouchableWithoutFeedback>

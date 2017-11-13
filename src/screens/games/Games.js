@@ -36,7 +36,7 @@ export default class Games extends Component {
   }
 
   componentDidMount() {
-    this.props.navigator.showLightBox({ screen: 'navbar' });
+    this.props.ui.navBarVisible = true;
     this.scrollY.addListener(this.onScroll);
   }
 
@@ -93,7 +93,7 @@ export default class Games extends Component {
           {Array.from({ length: 10 }).map((_, i) => (
             <AppItemRow
               key={`x-${i + 0}`}
-              imageUrl="https://cdn.dribbble.com/users/40433/screenshots/3709382/untitled-1.png"
+              imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
               title="Spark Email"
               subtitle="New exciting tournament game mode!"
               action="FREE"
@@ -106,7 +106,7 @@ export default class Games extends Component {
           {Array.from({ length: 10 }).map((_, i) => (
             <AppItemRow
               key={`x-${i + 0}`}
-              imageUrl="https://cdn.dribbble.com/users/40433/screenshots/3709382/untitled-1.png"
+              imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
               title="Spark Email"
               subtitle="New exciting tournament game mode!"
               action="FREE"
@@ -119,7 +119,7 @@ export default class Games extends Component {
           {Array.from({ length: 10 }).map((_, i) => (
             <AppItemRow
               key={`x-${i + 0}`}
-              imageUrl="https://cdn.dribbble.com/users/40433/screenshots/3709382/untitled-1.png"
+              imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
               title="Spark Email"
               subtitle="New exciting tournament game mode!"
               action="FREE"

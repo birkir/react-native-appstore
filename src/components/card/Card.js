@@ -54,13 +54,13 @@ export default class Card extends PureComponent {
   @autobind
   onLayout() {
     if (!this.layout) {
-      // Get initial width and height of card
-      this.hostRef.measure((x, y, width, height) => {
-        this.layout = {
-          width,
-          height,
-        };
-      });
+      // TODO: Find out why onLayout doesn't give us any width or height
+      // Hardcoded width for now.
+      const { width } = Dimensions.get('window');
+      this.layout = {
+        width: width - 40,
+        height: CARD_COLLAPSED_HEIGHT,
+      };
 
       // Bug in React Native causes a scrollview to not
       // begin in it's Y position if contentInset.top is set.
@@ -235,7 +235,7 @@ export default class Card extends PureComponent {
             style={StyleSheet.absoluteFill}
           >
             <View pointerEvents={isOpen ? 'box-none' : 'auto'}>
-              <Animated.View style={animated.card} pointerEvents="none">
+              <Animated.View style={[styles.card, animated.card]} pointerEvents="none">
                 <Animated.Image
                   source={{ uri: imageUrl }}
                   resizeMode="cover"
@@ -306,6 +306,11 @@ const styles = StyleSheet.create({
     height: 30,
 
     opacity: 0.6,
+  },
+
+  card: {
+    backgroundColor: '#eee',
+    borderRadius: 16,
   },
 
   image: {
