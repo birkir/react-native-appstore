@@ -308,12 +308,8 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
 
-  card: {
-    backgroundColor: '#eee',
-    borderRadius: 16,
-  },
-
   image: {
+    backgroundColor: '#eee',
     width: '100%',
     height: CARD_COLLAPSED_HEIGHT,
   },
