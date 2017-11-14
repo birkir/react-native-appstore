@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 // Transition helper method
 const transition = (property, toValue, useNativeDriver = true) =>
-  Animated.spring(property, { toValue, useNativeDriver });
+  Animated.spring(property, { toValue, useNativeDriver, bounciness: 0 });
 
 // Layout animation config for width/height
 const config = {
@@ -14,7 +14,7 @@ const config = {
   duration: 700,
   update: {
     type: LayoutAnimation.Types.spring,
-    springDamping: 0.4,
+    springDamping: 0.8,
   },
 };
 
