@@ -56,7 +56,7 @@ export default class Games extends Component {
 
   @autobind
   onScroll({ value }) {
-    this.props.ui.navBarVisible = (value <= 55);
+    this.props.ui.navBarVisible = (value <= 30);
   }
 
   @autobind
@@ -86,7 +86,7 @@ export default class Games extends Component {
         )}
         scrollEventThrottle={16}
       >
-        <SectionHeader title="Games" />
+        <SectionHeader title="Games" border />
         <Heading action="See All" onActionPress={this.onAppGroupPress}>
           Best New Updates
         </Heading>
@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
   host: {
     flex: 1,
     padding: 20,
+    paddingTop: 0,
   },
 
   gutter: {

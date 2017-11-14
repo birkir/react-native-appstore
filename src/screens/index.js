@@ -3,6 +3,7 @@ import SplashScreen from './splash';
 import TodayScreen from './today';
 import GamesScreen from './games';
 import AppScreen from './app';
+import UpdatesScreen from './updates';
 import Navbar from '../components/navbar';
 
 export const Screens = new Map();
@@ -11,11 +12,13 @@ export const SPLASH_SCREEN = 'appStoreClone.SplashScreen';
 export const TODAY_SCREEN = 'appStoreClone.TodayScreen';
 export const GAMES_SCREEN = 'appStoreClone.GamesScreen';
 export const APP_SCREEN = 'appStoreClone.AppScreen';
+export const UPDATES_SCREEN = 'appStoreClone.UpdatesScreen';
 
 Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(TODAY_SCREEN, () => TodayScreen);
 Screens.set(GAMES_SCREEN, () => GamesScreen);
 Screens.set(APP_SCREEN, () => AppScreen);
+Screens.set(UPDATES_SCREEN, () => UpdatesScreen);
 Screens.set('navbar', () => Navbar);
 
 export const startApp = () => {
@@ -35,7 +38,7 @@ export const startApp = () => {
       icon: require('images/AppsIcon.png'),
     }, {
       label: 'Updates',
-      screen: SPLASH_SCREEN,
+      screen: UPDATES_SCREEN,
       icon: require('images/UpdatesIcon.png'),
     }, {
       label: 'Search',
