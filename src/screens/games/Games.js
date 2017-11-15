@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Animated, View, ScrollView, Image } from 'react-native';
-import { SPLASH_SCREEN, APP_SCREEN } from 'screens';
+import { StyleSheet, View, ScrollView, Image } from 'react-native';
+import { SPLASH_SCREEN, pushAppScreen } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
 import Heading from 'components/heading';
@@ -33,16 +33,18 @@ export default class Games extends Component {
 
   @autobind
   onAppPress() {
-    this.props.navigator.push({
-      screen: APP_SCREEN,
+    pushAppScreen(this.props.navigator, {
+      backTitle: 'Games',
+      iconUrl: 'https://placeimg.com/198/198/any?1=2',
+      action: 'FREE',
+      onActionPress() {},
+      isActionLoading: false,
     });
   }
 
-  scrollY = new Animated.Value(0);
-
   render() {
     return (
-      <ScrollView style={styles.host} removeClippedSubviews={false}>
+      <ScrollView style={styles.host}>
         <View style={styles.border} />
         <Heading action="See All" onActionPress={this.onAppGroupPress}>
           Best New Updates

@@ -1,8 +1,7 @@
-import { observable } from 'mobx';
+import { Animated } from 'react-native';
 
 export default class UI {
 
-  @observable
-  navBarVisible = false;
+  appScreenHeaderOpacity = new Animated.Value(0);
 
 }

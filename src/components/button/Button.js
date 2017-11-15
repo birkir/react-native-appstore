@@ -106,6 +106,7 @@ export default class Button extends PureComponent {
       blue,
       subtitle,
       horizontal,
+      align,
     } = this.props;
 
     const circle = (typeof children === 'string' && children === '...');
@@ -212,6 +213,7 @@ export default class Button extends PureComponent {
                 style={[
                   styles.content__subtitle,
                   horizontal && styles.content__subtitle__horizontal,
+                  align === 'right' && styles.content__subtitle__right,
                 ]}
               >
                 {subtitle}
@@ -335,5 +337,11 @@ const styles = StyleSheet.create({
     left: 86,
     top: 4,
     width: 50,
+  },
+
+  content__subtitle__right: {
+    textAlign: 'right',
+    left: 'auto',
+    right: 86,
   },
 });

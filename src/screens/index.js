@@ -3,8 +3,9 @@ import SplashScreen from './splash';
 import TodayScreen from './today';
 import GamesScreen from './games';
 import AppScreen from './app';
-import UpdatesScreen from './updates';
 import AppToolbar from './app/components/toolbar';
+import AppButton from './app/components/button';
+import UpdatesScreen from './updates';
 
 export const Screens = new Map();
 
@@ -13,6 +14,7 @@ export const TODAY_SCREEN = 'appStoreClone.TodayScreen';
 export const GAMES_SCREEN = 'appStoreClone.GamesScreen';
 export const APP_SCREEN = 'appStoreClone.AppScreen';
 export const APP_TOOLBAR = 'appStoreClone.AppToolbar';
+export const APP_BUTTON = 'appStoreClone.AppButton';
 export const UPDATES_SCREEN = 'appStoreClone.UpdatesScreen';
 
 Screens.set(SPLASH_SCREEN, () => SplashScreen);
@@ -20,6 +22,7 @@ Screens.set(TODAY_SCREEN, () => TodayScreen);
 Screens.set(GAMES_SCREEN, () => GamesScreen);
 Screens.set(APP_SCREEN, () => AppScreen);
 Screens.set(APP_TOOLBAR, () => AppToolbar);
+Screens.set(APP_BUTTON, () => AppButton);
 Screens.set(UPDATES_SCREEN, () => UpdatesScreen);
 
 export const startApp = () => {
@@ -53,3 +56,25 @@ export const startApp = () => {
     },
   });
 };
+
+export const pushAppScreen = (navigator, app) => navigator.push({
+  screen: APP_SCREEN,
+  backButtonTitle: app.backTitle,
+  backButtonHidden: false,
+  navigatorStyle: {
+    navBarCustomView: APP_TOOLBAR,
+    navBarComponentAlignment: 'fill',
+    navBarCustomViewInitialProps: {
+      iconUrl: app.iconUrl,
+    },
+  },
+  navigatorButtons: {
+    rightButtons: [{
+      id: 'action',
+      component: APP_BUTTON,
+      passProps: {
+        action: app.action,
+      },
+    }],
+  },
+});

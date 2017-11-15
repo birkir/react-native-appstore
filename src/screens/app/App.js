@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Dimensions, View, Image, Text } from 'react-native';
-import { APP_TOOLBAR } from 'screens';
-import Button from 'components/button';
+import { StyleSheet, Animated, View, Text } from 'react-native';
+import { inject, observer } from 'mobx-react/native';
+import { autobind } from 'core-decorators';
+import PropTypes from 'prop-types';
 import Heading from 'components/heading';
-import Carousel from 'react-native-snap-carousel';
-// import PropTypes from 'prop-types';
+import Header from './components/header';
+import StatsRow from './components/stats-row';
+import Screenshots from './components/screenshots';
 
 const DATA = {
   iconUrl: `https://placeimg.com/198/198/any?${Math.random()}`,
@@ -27,9 +29,13 @@ const DATA = {
 /**
  * App detail screen
  */
+
+@inject('ui')
+@observer
 export default class App extends Component {
 
   static propTypes = {
+    ui: PropTypes.object.isRequired,
     // children: PropTypes.node,
   }
 
@@ -38,79 +44,70 @@ export default class App extends Component {
   }
 
   static navigatorStyle = {
-    navBarCustomView: APP_TOOLBAR,
-    // navBarComponentAlignment: 'center',
     prefersLargeTitles: false,
+    // Make sure those are set from the previous screen
+  }
+
+  static navigatorButtons = {
+    // Make sure those are set from the previous screen
   }
 
   state = {
     loading: true,
-    width: Dimensions.get('window').width,
   }
 
-  renderScreenshot({ index }) {
-    const cardStyles = {
-      paddingHorizontal: 5,
-      paddingLeft: index === 0 ? 20 : 5,
-    };
-    return (
-      <View style={cardStyles}>
-        <View style={styles.screenshot} />
-      </View>
-    );
+  @autobind
+  onActionPress() {
+    this.setState({ loading: !this.state.loading });
+  }
+
+  @autobind
+  onScroll(e) {
+    const isHeaderVisible = e.nativeEvent.contentOffset.y < 110;
+    if (isHeaderVisible !== this.isHeaderVisible) {
+      Animated.spring(this.props.ui.appScreenHeaderOpacity, {
+        toValue: Number(!isHeaderVisible),
+        bounciness: 0,
+      }).start();
+      this.isHeaderVisible = isHeaderVisible;
+    }
   }
 
   render() {
-    const { width } = this.state;
+    const opacity = this.props.ui.appScreenHeaderOpacity.interpolate({
+      inputRange: [0, 1],
+      outputRange: [1, 0],
+    });
     return (
-      <ScrollView style={styles.host}>
-        <View style={styles.header}>
-          <Image source={{ uri: DATA.iconUrl }} style={styles.header__icon} />
-          <View style={styles.header__content}>
-            <Text style={styles.header__title} numberOfLines={2}>{DATA.title}</Text>
-            <Text style={styles.header__subtitle} numberOfLines={1}>{DATA.subtitle}</Text>
-            <View style={styles.header__actions}>
-              <Button
-                blue
-                subtitle="In-App Purchases"
-                horizontal
-                align="left"
-                loading={this.state.loading}
-                onPress={() => this.setState({ loading: !this.state.loading })}
-              >
-                GET
-              </Button>
-              <View style={styles.flex} />
-              <Button blue>...</Button>
-            </View>
-          </View>
-        </View>
-        <View style={styles.inforow}>
-          <View style={[styles.inforow__item, styles.flex]}>
-            <Text style={styles.inforow__title}>4.5 ****</Text>
-            <Text style={styles.inforow__subtitle}>8.36K Ratings</Text>
-          </View>
-          <View style={styles.inforow__item}>
-            <Text style={styles.inforow__title}>4+</Text>
-            <Text style={styles.inforow__subtitle}>Age</Text>
-          </View>
-        </View>
-        <View style={styles.carousel}>
-          <Carousel
-            data={[1, 2, 3]}
-            renderItem={this.renderScreenshot}
-            sliderWidth={width}
-            itemWidth={234}
-            activeSlideAlignment="start"
-            inactiveSlideScale={1}
-            inactiveSlideOpacity={1}
+      <Animated.ScrollView
+        style={styles.host}
+        scrollEventThrottle={16}
+        onScroll={this.onScroll}
+      >
+        <Animated.View style={{ opacity }}>
+          <Header
+            iconUrl={DATA.iconUrl}
+            title={DATA.title}
+            subtitle={DATA.subtitle}
+            action="FREE"
+            actionSubtitle="In-App Purchases"
+            isActionLoading={this.state.loading}
+            onActionPress={this.onActionPress}
           />
-        </View>
-        <View>
-          <Text>[] iPhone</Text>
-          <Text>Summary here</Text>
-          <View style={styles.border} />
-        </View>
+        </Animated.View>
+        <StatsRow>
+          <StatsRow.Item title="4.5" value="8.36K Ratings" />
+          <StatsRow.Item title="4+" value="Age" />
+        </StatsRow>
+        <Screenshots
+          data={[{
+            title: 'iPhone',
+            screenshots: [1, 2, 3, 4, 5],
+          }, {
+            title: 'Apple Watch',
+            screenshots: [1, 2, 3, 4, 5],
+          }]}
+        />
         <View>
           <Heading action="See All">Ratings & Reviews</Heading>
         </View>
@@ -148,7 +145,7 @@ export default class App extends Component {
           <Text>© Some seller name</Text>
         </View>
         <View style={styles.gutter} />
-      </ScrollView>
+      </Animated.ScrollView>
     );
   }
 }
@@ -159,82 +156,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 
-  flex: {
-    flex: 1,
-  },
-
   gutter: {
     height: 100,
   },
-
-  header: {
-    flexDirection: 'row',
-    marginBottom: 34,
-  },
-
-  header__content: {
-    flex: 1,
-  },
-
-  header__icon: {
-    width: 125,
-    height: 125,
-    borderRadius: 28,
-    marginRight: 16,
-  },
-
-  header__title: {
-    fontWeight: '500',
-    fontSize: 24,
-    color: '#000000',
-    letterSpacing: -1.1,
-  },
-
-  header__subtitle: {
-    fontSize: 16,
-    color: 'rgba(0, 0, 0, 0.45)',
-    letterSpacing: -0.33,
-  },
-
-  header__actions: {
-    position: 'absolute',
-    bottom: 1,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-  },
-
-  inforow: {
-    flexDirection: 'row',
-    marginBottom: 15,
-  },
-
-  inforow__item: {
-    flexDirection: 'column',
-  },
-
-  inforow__title: {
-    fontWeight: '600',
-    fontSize: 23,
-    color: 'rgba(0, 0, 0, 0.45)',
-    letterSpacing: -0.08,
-  },
-
-  inforow__subtitle: {
-    fontSize: 13,
-    color: 'rgba(0, 0, 0, 0.25)',
-    letterSpacing: -0.08,
-  },
-
-  carousel: {
-    marginHorizontal: -20,
-  },
-
-  screenshot: {
-    height: 415,
-    width: 225,
-    borderRadius: 15,
-    backgroundColor: '#EEE',
-  },
-
 });
