@@ -113,7 +113,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   host: {
     flex: 1,
-    padding: 20,
+    padding: 16,
   },
 
   flex: {

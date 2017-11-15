@@ -1,0 +1,45 @@
+From bacb9934ad24c6678be261467bfb8a6264cef00c Mon Sep 17 00:00:00 2001
+From: Birkir Gudjonsson <birkir.gudjonsson@gmail.com>
+Date: Wed, 15 Nov 2017 11:13:43 -0500
+Subject: [PATCH] Allow large titles
+
+---
+ ios/RCCViewController.m | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/ios/RCCViewController.m b/ios/RCCViewController.m
+index 145be55..eda639c 100755
+--- a/ios/RCCViewController.m
++++ b/ios/RCCViewController.m
+@@ -380,7 +380,14 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+   
+   NSMutableDictionary *titleTextAttributes = [RCTHelpers textAttributesFromDictionary:self.navigatorStyle withPrefix:@"navBarText" baseFont:[UIFont boldSystemFontOfSize:17]];
+   [self.navigationController.navigationBar setTitleTextAttributes:titleTextAttributes];
+-  
++
++  if ([self.navigationController.navigationBar respondsToSelector:@selector(setLargeTitleTextAttributes:)]) {
++    // As defined in Apple's UI Design Resources: https://developer.apple.com/design/resources/
++    UIFont *largeBaseFont = [UIFont boldSystemFontOfSize:34];
++    NSMutableDictionary *largeTitleTextAttributes = [RCTHelpers textAttributesFromDictionary:self.navigatorStyle withPrefix:@"navBarLargeText" baseFont:largeBaseFont];
++    [self.navigationController.navigationBar setLargeTitleTextAttributes:largeTitleTextAttributes];
++  }
++    
+   if (self.navigationItem.titleView && [self.navigationItem.titleView isKindOfClass:[RCCTitleView class]]) {
+     
+     RCCTitleView *titleView = (RCCTitleView *)self.navigationItem.titleView;
+@@ -644,6 +651,12 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+       self.navigationItem.titleView.clipsToBounds = YES;
+     }
+   }
++    
++  if ([self.navigationController.navigationBar respondsToSelector:@selector(setPrefersLargeTitles:)]) {
++    NSNumber *prefersLargeTitles = self.navigatorStyle[@"prefersLargeTitles"];
++    BOOL prefersLargeTitlesBool = prefersLargeTitles ? [prefersLargeTitles boolValue] : NO;
++    self.navigationController.navigationBar.prefersLargeTitles = prefersLargeTitlesBool;
++  }
+ }
+ 
+ 
+-- 
+2.6.1
+

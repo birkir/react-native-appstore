@@ -38,6 +38,7 @@ export const startApp = () => {
       icon: require('images/AppsIcon.png'),
     }, {
       label: 'Updates',
+      title: 'Updates',
       screen: UPDATES_SCREEN,
       icon: require('images/UpdatesIcon.png'),
     }, {

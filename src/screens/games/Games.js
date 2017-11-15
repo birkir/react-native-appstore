@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, Animated, View } from 'react-native';
+import { StyleSheet, Animated, View, ScrollView, Image } from 'react-native';
 import { SPLASH_SCREEN, APP_SCREEN } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
-import SectionHeader from 'components/section-header';
 import Heading from 'components/heading';
-import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
 
-@inject('ui')
-@observer
 export default class Games extends Component {
 
   static propTypes = {
     navigator: PropTypes.object.isRequired,
-    ui: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -23,40 +18,9 @@ export default class Games extends Component {
 
   static navigatorStyle = {
     navBarNoBorder: true,
+    navBarTransparent: true,
     drawUnderTabBar: true,
-  }
-
-  componentWillMount() {
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
-  }
-
-  componentDidMount() {
-    this.props.ui.navBarVisible = true;
-    this.scrollY.addListener(this.onScroll);
-  }
-
-  componentWillUnmount() {
-    this.scrollY.removeAllListeners();
-  }
-
-  @autobind
-  onNavigatorEvent(e) {
-    const { id } = e;
-
-    if (id === 'willDisappear') {
-      if (this.props.ui.navBar) {
-        this.props.ui.navBar.close();
-      }
-    }
-
-    if (id === 'willAppear') {
-      this.props.navigator.showLightBox({ screen: 'navbar' });
-    }
-  }
-
-  @autobind
-  onScroll({ value }) {
-    this.props.ui.navBarVisible = (value <= 30);
+    prefersLargeTitles: true,
   }
 
   @autobind
@@ -78,15 +42,8 @@ export default class Games extends Component {
 
   render() {
     return (
-      <Animated.ScrollView
-        style={styles.host}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: this.scrollY } } }],
-          { useNativeDriver: true },
-        )}
-        scrollEventThrottle={16}
-      >
-        <SectionHeader title="Games" border />
+      <ScrollView style={styles.host} removeClippedSubviews={false}>
+        <View style={styles.border} />
         <Heading action="See All" onActionPress={this.onAppGroupPress}>
           Best New Updates
         </Heading>
@@ -129,7 +86,10 @@ export default class Games extends Component {
           ))}
         </AppItemSlider>
         <View style={styles.gutter} />
-      </Animated.ScrollView>
+        <View style={styles.user}>
+          <Image source={require('images/UserIcon.png')} style={styles.user__image} />
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -137,11 +97,30 @@ export default class Games extends Component {
 const styles = StyleSheet.create({
   host: {
     flex: 1,
-    padding: 20,
-    paddingTop: 0,
+    padding: 16,
+    marginTop: -50,
+    paddingTop: 50,
+  },
+
+  border: {
+    width: '100%',
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#CDCDCF',
   },
 
   gutter: {
     height: 200,
+  },
+
+  user: {
+    position: 'absolute',
+    top: -50,
+    right: 0,
+    width: 42,
+    height: 42,
+  },
+
+  user__image: {
+    tintColor: '#0077FD',
   },
 });

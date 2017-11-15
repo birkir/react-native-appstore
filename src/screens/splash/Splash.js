@@ -11,6 +11,10 @@ export default class Splash extends Component {
     navigator: PropTypes.object.isRequired,
   }
 
+  static navigatorStyle = {
+    prefersLargeTitles: false,
+  }
+
   @autobind
   onPress() {
     this.props.navigator.push({

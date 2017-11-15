@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import AppItemRow from 'components/app-item-row';
 import Heading from 'components/heading';
-import SectionHeader from 'components/section-header';
 import CollapsedText from 'components/collapsed-text';
 // import PropTypes from 'prop-types';
 
@@ -36,12 +35,12 @@ export default class Updates extends Component {
   static navigatorStyle = {
     navBarNoBorder: true,
     drawUnderTabBar: true,
+    prefersLargeTitles: true,
   }
 
   render() {
     return (
       <ScrollView style={styles.host}>
-        <SectionHeader title="Updates" border />
         <Heading action="Update All">
           Pending
         </Heading>
@@ -74,7 +73,7 @@ export default class Updates extends Component {
 const styles = StyleSheet.create({
   host: {
     flex: 1,
-    padding: 20,
+    padding: 16,
     paddingTop: 0,
   },
 
