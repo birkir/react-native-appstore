@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView, Dimensions, View, Image, Text } from 'react-native';
+import { APP_TOOLBAR } from 'screens';
 import Button from 'components/button';
+import Heading from 'components/heading';
 import Carousel from 'react-native-snap-carousel';
 // import PropTypes from 'prop-types';
-
-const { width: initialWidth } = Dimensions.get('window');
 
 const DATA = {
   iconUrl: `https://placeimg.com/198/198/any?${Math.random()}`,
@@ -37,9 +37,15 @@ export default class App extends Component {
     // children: undefined,
   }
 
+  static navigatorStyle = {
+    navBarCustomView: APP_TOOLBAR,
+    // navBarComponentAlignment: 'center',
+    prefersLargeTitles: false,
+  }
+
   state = {
     loading: true,
-    width: initialWidth,
+    width: Dimensions.get('window').width,
   }
 
   renderScreenshot({ index }) {
@@ -102,7 +108,44 @@ export default class App extends Component {
         </View>
         <View>
           <Text>[] iPhone</Text>
+          <Text>Summary here</Text>
           <View style={styles.border} />
+        </View>
+        <View>
+          <Heading action="See All">Ratings & Reviews</Heading>
+        </View>
+        <View>
+          <Heading action="Version History">What{'\''}s New</Heading>
+        </View>
+        <View>
+          <Heading>Information</Heading>
+          {/* <InfoRow label="Seller" value="Some seller name" />
+          <InfoRow label="Category" value="Games: Puzzle" />
+          <InfoRow label="Compatibility" value="Works on this iPhone" />
+          <InfoRow label="Languages" value="English" />
+          <InfoRow label="Age Rating" value="4+" />
+          <InfoRow label="In-App Purchases" value="Yes">
+            <Row label="No ads" value="$0.99" />
+            <Row label="300 Diamonds" value="$0.99" />
+            <Row label="All levels" value="$1.99" />
+          </InfoRow>
+          <InfoRow label="Developer Website" icon="safari" onPress={() => {}} />
+          <InfoRow label="Privacy Policy" icon="hand" onPress={() => {}} /> */}
+        </View>
+        <View>
+          <Heading>Supports</Heading>
+          {/* <SupportItem
+            icon="cloud-family"
+            title="Family Sharing"
+            description="Up to six family members will be able to use this app with Family Sharing enabled."
+          /> */}
+        </View>
+        <View>
+          <Heading>More by Some seller name</Heading>
+          <Heading>You may also like</Heading>
+        </View>
+        <View>
+          <Text>© Some seller name</Text>
         </View>
         <View style={styles.gutter} />
       </ScrollView>

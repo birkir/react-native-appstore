@@ -4,7 +4,7 @@ import TodayScreen from './today';
 import GamesScreen from './games';
 import AppScreen from './app';
 import UpdatesScreen from './updates';
-import Navbar from '../components/navbar';
+import AppToolbar from './app/components/toolbar';
 
 export const Screens = new Map();
 
@@ -12,14 +12,15 @@ export const SPLASH_SCREEN = 'appStoreClone.SplashScreen';
 export const TODAY_SCREEN = 'appStoreClone.TodayScreen';
 export const GAMES_SCREEN = 'appStoreClone.GamesScreen';
 export const APP_SCREEN = 'appStoreClone.AppScreen';
+export const APP_TOOLBAR = 'appStoreClone.AppToolbar';
 export const UPDATES_SCREEN = 'appStoreClone.UpdatesScreen';
 
 Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(TODAY_SCREEN, () => TodayScreen);
 Screens.set(GAMES_SCREEN, () => GamesScreen);
 Screens.set(APP_SCREEN, () => AppScreen);
+Screens.set(APP_TOOLBAR, () => AppToolbar);
 Screens.set(UPDATES_SCREEN, () => UpdatesScreen);
-Screens.set('navbar', () => Navbar);
 
 export const startApp = () => {
   Navigation.startTabBasedApp({

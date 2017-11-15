@@ -12,12 +12,12 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1B05F3E741B2C2E2AF629B67 /* libPods-UenoNativeStarterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D9CAC761C0BC40C9E6DED5 /* libPods-UenoNativeStarterTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* UenoNativeStarterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* UenoNativeStarterTests.m */; };
-		669683BD280566FD7212F233 /* libPods-UenoNativeStarter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF6B3032214A4831BACEAB38 /* libPods-UenoNativeStarter.a */; };
+		6D4E713C0CE8231C584F03A9 /* libPods-AppStoreCloneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD97C6C3D52BC138450A43E /* libPods-AppStoreCloneTests.a */; };
+		AC242EA5BAD33E490BF2AA1A /* libPods-AppStoreClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDB818D9E51B0E81D50E5F9 /* libPods-AppStoreClone.a */; };
 		E3AAD4301F573DB200B7831D /* BuildDotenvConfig.ruby in Resources */ = {isa = PBXBuildFile; fileRef = E3AAD42B1F573DB200B7831D /* BuildDotenvConfig.ruby */; };
 		E3AAD4321F573DB200B7831D /* ReactNativeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AAD42F1F573DB200B7831D /* ReactNativeConfig.m */; };
 /* End PBXBuildFile section */
@@ -41,28 +41,28 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* UenoNativeStarterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UenoNativeStarterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* AppStoreCloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppStoreCloneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* UenoNativeStarterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UenoNativeStarterTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* UenoNativeStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UenoNativeStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = UenoNativeStarter/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = UenoNativeStarter/AppDelegate.m; sourceTree = "<group>"; };
+		0816B123C9BB87DC86D9A92C /* Pods-AppStoreCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreCloneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppStoreCloneTests/Pods-AppStoreCloneTests.release.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* AppStoreClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStoreClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = UenoNativeStarter/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = UenoNativeStarter/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = UenoNativeStarter/main.m; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* UenoNativeStarter-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UenoNativeStarter-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* UenoNativeStarter-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UenoNativeStarter-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		53031DDE923D9778D106F497 /* Pods-UenoNativeStarter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UenoNativeStarter.release.xcconfig"; path = "Pods/Target Support Files/Pods-UenoNativeStarter/Pods-UenoNativeStarter.release.xcconfig"; sourceTree = "<group>"; };
-		7B642519012E49C28F333EDB /* Pods-UenoNativeStarterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UenoNativeStarterTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-UenoNativeStarterTests/Pods-UenoNativeStarterTests.release.xcconfig"; sourceTree = "<group>"; };
-		B5CE841990A646807137FE1B /* Pods-UenoNativeStarter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UenoNativeStarter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UenoNativeStarter/Pods-UenoNativeStarter.debug.xcconfig"; sourceTree = "<group>"; };
-		C6D9CAC761C0BC40C9E6DED5 /* libPods-UenoNativeStarterTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UenoNativeStarterTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF6B3032214A4831BACEAB38 /* libPods-UenoNativeStarter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UenoNativeStarter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF940EB702F911EAF36780E6 /* Pods-UenoNativeStarterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UenoNativeStarterTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UenoNativeStarterTests/Pods-UenoNativeStarterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		23A735B6609BE13F1687DE79 /* Pods-AppStoreClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreClone.release.xcconfig"; path = "Pods/Target Support Files/Pods-AppStoreClone/Pods-AppStoreClone.release.xcconfig"; sourceTree = "<group>"; };
+		29A315450AA13F75A2AF5F3A /* Pods-AppStoreCloneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreCloneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppStoreCloneTests/Pods-AppStoreCloneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2BD97C6C3D52BC138450A43E /* libPods-AppStoreCloneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppStoreCloneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E47B1E0B4A5D006451C7 /* AppStoreClone-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AppStoreClone-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* AppStoreClone-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppStoreClone-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFDB818D9E51B0E81D50E5F9 /* libPods-AppStoreClone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppStoreClone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3AAD42B1F573DB200B7831D /* BuildDotenvConfig.ruby */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BuildDotenvConfig.ruby; sourceTree = "<group>"; };
 		E3AAD42D1F573DB200B7831D /* GeneratedInfoPlistDotEnv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedInfoPlistDotEnv.h; sourceTree = "<group>"; };
 		E3AAD42E1F573DB200B7831D /* ReactNativeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeConfig.h; sourceTree = "<group>"; };
 		E3AAD42F1F573DB200B7831D /* ReactNativeConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactNativeConfig.m; sourceTree = "<group>"; };
+		FE61BF5983CD96722C7A84AC /* Pods-AppStoreClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStoreClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AppStoreClone/Pods-AppStoreClone.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B05F3E741B2C2E2AF629B67 /* libPods-UenoNativeStarterTests.a in Frameworks */,
+				6D4E713C0CE8231C584F03A9 /* libPods-AppStoreCloneTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				669683BD280566FD7212F233 /* libPods-UenoNativeStarter.a in Frameworks */,
+				AC242EA5BAD33E490BF2AA1A /* libPods-AppStoreClone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +99,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* UenoNativeStarterTests */ = {
+		00E356EF1AD99517003FC87E /* AppStoreCloneTests */ = {
 			isa = PBXGroup;
 			children = (
 				00E356F21AD99517003FC87E /* UenoNativeStarterTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = UenoNativeStarterTests;
+			path = AppStoreCloneTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -116,7 +116,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* UenoNativeStarter */ = {
+		13B07FAE1A68108700A75B9A /* AppStoreClone */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -127,14 +127,14 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = UenoNativeStarter;
+			path = AppStoreClone;
 			sourceTree = "<group>";
 		};
 		4CE6C5BA572EF6078027A293 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DF6B3032214A4831BACEAB38 /* libPods-UenoNativeStarter.a */,
-				C6D9CAC761C0BC40C9E6DED5 /* libPods-UenoNativeStarterTests.a */,
+				AFDB818D9E51B0E81D50E5F9 /* libPods-AppStoreClone.a */,
+				2BD97C6C3D52BC138450A43E /* libPods-AppStoreCloneTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -142,10 +142,10 @@
 		8079FCF0BF9CE803AC9EB17F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE841990A646807137FE1B /* Pods-UenoNativeStarter.debug.xcconfig */,
-				53031DDE923D9778D106F497 /* Pods-UenoNativeStarter.release.xcconfig */,
-				DF940EB702F911EAF36780E6 /* Pods-UenoNativeStarterTests.debug.xcconfig */,
-				7B642519012E49C28F333EDB /* Pods-UenoNativeStarterTests.release.xcconfig */,
+				FE61BF5983CD96722C7A84AC /* Pods-AppStoreClone.debug.xcconfig */,
+				23A735B6609BE13F1687DE79 /* Pods-AppStoreClone.release.xcconfig */,
+				29A315450AA13F75A2AF5F3A /* Pods-AppStoreCloneTests.debug.xcconfig */,
+				0816B123C9BB87DC86D9A92C /* Pods-AppStoreCloneTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -160,10 +160,10 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				13B07FAE1A68108700A75B9A /* AppStoreClone */,
+				00E356EF1AD99517003FC87E /* AppStoreCloneTests */,
 				E3AAD42A1F573DB200B7831D /* Config */,
-				13B07FAE1A68108700A75B9A /* UenoNativeStarter */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* UenoNativeStarterTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				8079FCF0BF9CE803AC9EB17F /* Pods */,
 				4CE6C5BA572EF6078027A293 /* Frameworks */,
@@ -176,10 +176,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* UenoNativeStarter.app */,
-				00E356EE1AD99517003FC87E /* UenoNativeStarterTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* UenoNativeStarter-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* UenoNativeStarter-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* AppStoreClone.app */,
+				00E356EE1AD99517003FC87E /* AppStoreCloneTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* AppStoreClone-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* AppStoreClone-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,9 +214,9 @@
 /* End PBXLegacyTarget section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* UenoNativeStarterTests */ = {
+		00E356ED1AD99517003FC87E /* AppStoreCloneTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "UenoNativeStarterTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AppStoreCloneTests" */;
 			buildPhases = (
 				55AB937C5A02050F98C882C6 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -230,14 +230,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = UenoNativeStarterTests;
+			name = AppStoreCloneTests;
 			productName = UenoNativeStarterTests;
-			productReference = 00E356EE1AD99517003FC87E /* UenoNativeStarterTests.xctest */;
+			productReference = 00E356EE1AD99517003FC87E /* AppStoreCloneTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* UenoNativeStarter */ = {
+		13B07F861A680F5B00A75B9A /* AppStoreClone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "UenoNativeStarter" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AppStoreClone" */;
 			buildPhases = (
 				DE29A3C61EA94606C7B30F25 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
@@ -251,14 +251,14 @@
 			);
 			dependencies = (
 			);
-			name = UenoNativeStarter;
+			name = AppStoreClone;
 			productName = "Hello World";
-			productReference = 13B07F961A680F5B00A75B9A /* UenoNativeStarter.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* AppStoreClone.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* UenoNativeStarter-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* AppStoreClone-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "UenoNativeStarter-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "AppStoreClone-tvOS" */;
 			buildPhases = (
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -269,14 +269,14 @@
 			);
 			dependencies = (
 			);
-			name = "UenoNativeStarter-tvOS";
+			name = "AppStoreClone-tvOS";
 			productName = "UenoNativeStarter-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* UenoNativeStarter-tvOS.app */;
+			productReference = 2D02E47B1E0B4A5D006451C7 /* AppStoreClone-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* UenoNativeStarter-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* AppStoreClone-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "UenoNativeStarter-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "AppStoreClone-tvOSTests" */;
 			buildPhases = (
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
@@ -287,9 +287,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "UenoNativeStarter-tvOSTests";
+			name = "AppStoreClone-tvOSTests";
 			productName = "UenoNativeStarter-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* UenoNativeStarter-tvOSTests.xctest */;
+			productReference = 2D02E4901E0B4A5D006451C7 /* AppStoreClone-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -326,7 +326,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "UenoNativeStarter" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "AppStoreClone" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -340,10 +340,10 @@
 			projectRoot = "";
 			targets = (
 				E3AAD4501F573E3700B7831D /* BuildEnv */,
-				13B07F861A680F5B00A75B9A /* UenoNativeStarter */,
-				00E356ED1AD99517003FC87E /* UenoNativeStarterTests */,
-				2D02E47A1E0B4A5D006451C7 /* UenoNativeStarter-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* UenoNativeStarter-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* AppStoreClone */,
+				00E356ED1AD99517003FC87E /* AppStoreCloneTests */,
+				2D02E47A1E0B4A5D006451C7 /* AppStoreClone-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* AppStoreClone-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -410,7 +410,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UenoNativeStarterTests/Pods-UenoNativeStarterTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppStoreCloneTests/Pods-AppStoreCloneTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
@@ -438,7 +438,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UenoNativeStarterTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AppStoreCloneTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -457,7 +457,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UenoNativeStarterTests/Pods-UenoNativeStarterTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppStoreCloneTests/Pods-AppStoreCloneTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BE2E2C58577DE61FBF9F0CAB /* [CP] Copy Pods Resources */ = {
@@ -472,7 +472,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UenoNativeStarter/Pods-UenoNativeStarter-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppStoreClone/Pods-AppStoreClone-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DE29A3C61EA94606C7B30F25 /* [CP] Check Pods Manifest.lock */ = {
@@ -486,7 +486,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-UenoNativeStarter-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-AppStoreClone-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -505,7 +505,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UenoNativeStarter/Pods-UenoNativeStarter-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AppStoreClone/Pods-AppStoreClone-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -551,12 +551,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* UenoNativeStarter */;
+			target = 13B07F861A680F5B00A75B9A /* AppStoreClone */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* UenoNativeStarter-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* AppStoreClone-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -568,7 +568,6 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = UenoNativeStarter;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -576,7 +575,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DF940EB702F911EAF36780E6 /* Pods-UenoNativeStarterTests.debug.xcconfig */;
+			baseConfigurationReference = 29A315450AA13F75A2AF5F3A /* Pods-AppStoreCloneTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
@@ -584,40 +583,40 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = UenoNativeStarterTests/Info.plist;
+				INFOPLIST_FILE = AppStoreCloneTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "${inherited}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UenoNativeStarter.app/UenoNativeStarter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStoreClone.app/AppStoreClone";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B642519012E49C28F333EDB /* Pods-UenoNativeStarterTests.release.xcconfig */;
+			baseConfigurationReference = 0816B123C9BB87DC86D9A92C /* Pods-AppStoreCloneTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
-				INFOPLIST_FILE = UenoNativeStarterTests/Info.plist;
+				INFOPLIST_FILE = AppStoreCloneTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "${inherited}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UenoNativeStarter.app/UenoNativeStarter";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStoreClone.app/AppStoreClone";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5CE841990A646807137FE1B /* Pods-UenoNativeStarter.debug.xcconfig */;
+			baseConfigurationReference = FE61BF5983CD96722C7A84AC /* Pods-AppStoreClone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
-				INFOPLIST_FILE = UenoNativeStarter/Info.plist;
+				INFOPLIST_FILE = AppStoreClone/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${SRCROOT}/Config/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -627,19 +626,20 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_NAME = UenoNativeStarter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ueno.appstoreclone;
+				PRODUCT_NAME = AppStoreClone;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53031DDE923D9778D106F497 /* Pods-UenoNativeStarter.release.xcconfig */;
+			baseConfigurationReference = 23A735B6609BE13F1687DE79 /* Pods-AppStoreClone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
-				INFOPLIST_FILE = UenoNativeStarter/Info.plist;
+				INFOPLIST_FILE = AppStoreClone/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${SRCROOT}/Config/GeneratedInfoPlistDotEnv.h";
 				INFOPLIST_PREPROCESS = YES;
@@ -649,7 +649,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_NAME = UenoNativeStarter;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ueno.appstoreclone;
+				PRODUCT_NAME = AppStoreClone;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -667,13 +668,13 @@
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "UenoNativeStarter-tvOS/Info.plist";
+				INFOPLIST_FILE = "AppStoreClone-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.UenoNativeStarter-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ueno.appstoreclone.tv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -694,13 +695,13 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "UenoNativeStarter-tvOS/Info.plist";
+				INFOPLIST_FILE = "AppStoreClone-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.UenoNativeStarter-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ueno.appstoreclone.tv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -719,12 +720,12 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "UenoNativeStarter-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "AppStoreClone-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.UenoNativeStarter-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ueno.appstoreclone-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UenoNativeStarter-tvOS.app/UenoNativeStarter-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStoreClone-tvOS.app/AppStoreClone-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
@@ -740,12 +741,12 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "UenoNativeStarter-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "AppStoreClone-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.UenoNativeStarter-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ueno.appstoreclone-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UenoNativeStarter-tvOS.app/UenoNativeStarter-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStoreClone-tvOS.app/AppStoreClone-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -868,7 +869,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "UenoNativeStarterTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AppStoreCloneTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -877,7 +878,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "UenoNativeStarter" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AppStoreClone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -886,7 +887,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "UenoNativeStarter-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "AppStoreClone-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -895,7 +896,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "UenoNativeStarter-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "AppStoreClone-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -904,7 +905,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "UenoNativeStarter" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "AppStoreClone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
