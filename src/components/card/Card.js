@@ -356,20 +356,22 @@ const styles = StyleSheet.create({
   },
 
   legend: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: 'rgba(246, 246, 246, 0.58)',
-    letterSpacing: -0.8,
+    fontFamily: 'SFProText-Semibold',
+    fontSize: 15,
+    color: '#FFFFFF',
+    letterSpacing: -0.24,
+    lineHeight: 14,
 
+    opacity: 0.7,
     marginBottom: 3,
   },
 
   title: {
-    fontSize: 30,
-    fontWeight: '700',
+    fontFamily: 'SFProDisplay-Bold',
+    fontSize: 28,
     color: '#F6F6F6',
-    letterSpacing: -0.3,
-
+    letterSpacing: 0.34,
+    lineHeight: 34,
     maxWidth: 300,
   },
 

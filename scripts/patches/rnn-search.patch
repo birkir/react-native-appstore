@@ -1,0 +1,123 @@
+From a381463f4144a0725fa74578228cbf66860d29e2 Mon Sep 17 00:00:00 2001
+From: Birkir Gudjonsson <birkir.gudjonsson@gmail.com>
+Date: Thu, 16 Nov 2017 23:49:19 -0500
+Subject: [PATCH] Search
+
+---
+ ios/RCCViewController.m | 70 +++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 68 insertions(+), 2 deletions(-)
+
+diff --git a/ios/RCCViewController.m b/ios/RCCViewController.m
+index f57086f..2f66b28 100755
+--- a/ios/RCCViewController.m
++++ b/ios/RCCViewController.m
+@@ -19,11 +19,12 @@ const NSInteger BLUR_STATUS_TAG = 78264801;
+ const NSInteger BLUR_NAVBAR_TAG = 78264802;
+ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+ 
+-@interface RCCViewController() <UIGestureRecognizerDelegate>
++@interface RCCViewController() <UIGestureRecognizerDelegate, UISearchDisplayDelegate, UISearchControllerDelegate>
+ @property (nonatomic) BOOL _hidesBottomBarWhenPushed;
+ @property (nonatomic) BOOL _statusBarHideWithNavBar;
+ @property (nonatomic) BOOL _statusBarHidden;
+ @property (nonatomic) BOOL _statusBarTextColorSchemeLight;
++@property (nonatomic) BOOL _hideNavBarBorder;
+ @property (nonatomic, strong) NSDictionary *originalNavBarImages;
+ @property (nonatomic, strong) UIImageView *navBarHairlineImageView;
+ @property (nonatomic, weak) id <UIGestureRecognizerDelegate> originalInteractivePopGestureDelegate;
+@@ -312,6 +313,9 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+   [self sendGlobalScreenEvent:@"didAppear" endTimestampString:[self getTimestampString] shouldReset:YES];
+   [self sendScreenChangedEvent:@"didAppear"];
+   
++  if (self._hideNavBarBorder) {
++    [self hideHairlineSubviews:self.navigationController.view];
++  }
+ }
+ 
+ - (void)viewWillAppear:(BOOL)animated
+@@ -611,6 +615,7 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+   
+   NSNumber *removeNavBarBorder = self.navigatorStyle[@"navBarNoBorder"];
+   BOOL removeNavBarBorderBool = removeNavBarBorder ? [removeNavBarBorder boolValue] : NO;
++  self._hideNavBarBorder = removeNavBarBorderBool;
+   if (removeNavBarBorderBool) {
+     self.navBarHairlineImageView.hidden = YES;
+   } else {
+@@ -630,7 +635,39 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+      }
+    }
+  }
+-  
++
++
++  // Search controller
++  NSString *navBarSearch = self.navigatorStyle[@"navBarSearch"];
++  BOOL navBarSearchBool = navBarSearch ? [navBarSearch boolValue] : NO;
++  if (navBarSearchBool) {
++    UISearchController *search;
++    if (self.navigationItem.searchController == nil) {
++      search = [[UISearchController alloc] initWithSearchResultsController:nil];
++      search.searchResultsUpdater = self;
++      // TODO: Allow configuration of these parameters
++      search.hidesNavigationBarDuringPresentation = YES;
++      search.obscuresBackgroundDuringPresentation = YES;
++      search.dimsBackgroundDuringPresentation = NO;
++      [self.navigationItem setSearchController:search];
++    } else {
++      search = self.navigationItem.searchController;
++    }
++
++    // Placeholder
++    NSString *navBarSearchPlaceholder = self.navigatorStyle[@"navBarSearchPlaceholder"];
++    if (navBarSearchPlaceholder) {
++      search.searchBar.placeholder = navBarSearchPlaceholder;
++    }
++
++    // Toggle active
++    NSString *navBarSearchActive = self.navigatorStyle[@"navBarSearchActive"];
++    BOOL navBarSearchActiveBool = navBarSearchActive ? [navBarSearchActive boolValue] : NO;
++    search.active = navBarSearchActiveBool;
++  } else {
++    [self.navigationItem setSearchController:nil];
++  }
++
+   NSString *navBarCustomView = self.navigatorStyle[@"navBarCustomView"];
+   if (navBarCustomView && ![self.navigationItem.titleView isKindOfClass:[RCCCustomTitleView class]]) {
+     if ([self.view isKindOfClass:[RCTRootView class]]) {
+@@ -827,4 +864,33 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+   return !disabledSimultaneousGestureBool;
+ }
+ 
++
++- (void)hideHairlineSubviews:(UIView *)view {
++  NSArray *subviews = [view subviews];
++  if ([subviews count] == 0) return;
++  for (UIView *subview in subviews) {
++    if ([subview isKindOfClass:UIImageView.class] && subview.bounds.size.height == 0.5) {
++      subview.hidden = YES;
++    }
++    [self hideHairlineSubviews:subview];
++  }
++}
++
++#pragma mark – UISearchControllerDelegate & UISearchResultsDelegate
++-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
++  NSString *searchString = searchController.searchBar.text;
++  if ([self.view isKindOfClass:[RCTRootView class]]){
++    RCTRootView *rootView = (RCTRootView *)self.view;
++    if (rootView.appProperties && rootView.appProperties[@"navigatorEventID"]) {
++      [[[RCCManager sharedInstance] getBridge].eventDispatcher sendAppEventWithName:rootView.appProperties[@"navigatorEventID"] body:@{
++        @"type": @"SearchChanged",
++        @"payload": @{
++          @"query": searchString,
++          @"active": @(searchController.active)
++        }
++      }];
++    }
++  }
++}
++
+ @end
+-- 
+2.6.1
+

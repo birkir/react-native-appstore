@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 
   host: {
     flex: 1,
-    padding: 16,
+    padding: 18,
     marginBottom: -100,
   },
 

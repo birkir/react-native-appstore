@@ -40,9 +40,10 @@ const styles = StyleSheet.create({
   },
 
   action: {
-    fontSize: 18,
-    color: '#0075FF',
-    letterSpacing: -0.55,
+    fontFamily: 'SFProText-Regular',
+    fontSize: 17,
+    color: '#007AFF',
+    letterSpacing: -0.41,
 
     // Making hit area a little bit bigger
     paddingHorizontal: 6,
@@ -51,10 +52,10 @@ const styles = StyleSheet.create({
   },
 
   host__title: {
-    fontWeight: '600',
-    fontSize: 23,
+    fontFamily: 'SFProDisplay-Bold',
+    fontSize: 22,
     color: '#000000',
-    letterSpacing: -0.7,
+    letterSpacing: -0.32,
     flex: 1,
   },
 });

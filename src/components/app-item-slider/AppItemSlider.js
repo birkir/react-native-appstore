@@ -1,5 +1,6 @@
 import React, { Children, PureComponent } from 'react';
 import { StyleSheet, View, Dimensions } from 'react-native';
+import Divider from 'components/divider';
 import Carousel from 'react-native-snap-carousel';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
@@ -50,17 +51,19 @@ export default class AppItemSlider extends PureComponent {
     }
 
     return (
-      <View style={styles.host} onLayout={this.onLayout}>
-        <Carousel
-          data={groups}
-          renderItem={this.renderItem}
-          sliderWidth={width}
-          itemWidth={width - 30}
-          activeSlideAlignment="center"
-          inactiveSlideScale={1}
-          inactiveSlideOpacity={1}
-        />
-        <View style={styles.border} />
+      <View>
+        <View style={styles.host} onLayout={this.onLayout}>
+          <Carousel
+            data={groups}
+            renderItem={this.renderItem}
+            sliderWidth={width}
+            itemWidth={width - 30}
+            activeSlideAlignment="center"
+            inactiveSlideScale={1}
+            inactiveSlideOpacity={1}
+          />
+        </View>
+        <Divider />
       </View>
     );
   }
@@ -69,17 +72,11 @@ export default class AppItemSlider extends PureComponent {
 const styles = StyleSheet.create({
   host: {
     marginHorizontal: -20,
+    marginBottom: 24,
   },
 
   item: {
     paddingHorizontal: 5,
     marginBottom: -16,
-  },
-
-  border: {
-    marginTop: 35,
-    backgroundColor: '#CDCDCD',
-    height: StyleSheet.hairlineWidth,
-    width: '100%',
   },
 });

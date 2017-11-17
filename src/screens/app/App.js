@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
+import CollapsedText from 'components/collapsed-text';
 import Header from './components/header';
 import StatsRow from './components/stats-row';
 import Screenshots from './components/screenshots';
@@ -113,6 +114,15 @@ export default class App extends Component {
         </View>
         <View>
           <Heading action="Version History">What{'\''}s New</Heading>
+          <View style={styles.columns}>
+            <Text style={styles.grayText}>Version 5.1.0</Text>
+            <Text style={styles.grayText}>16h ago</Text>
+          </View>
+          <CollapsedText numberOfLines={3}>
+            Now the #1 classic dice game is new and better than ever!{'\n'}
+             - New score board for faster, more exciting troubles.{'\n\n'}
+            Then some more...
+          </CollapsedText>
         </View>
         <View>
           <Heading>Information</Heading>
@@ -134,7 +144,8 @@ export default class App extends Component {
           {/* <SupportItem
             icon="cloud-family"
             title="Family Sharing"
-            description="Up to six family members will be able to use this app with Family Sharing enabled."
+            description="Up to six family members will be
+            able to use this app with Family Sharing enabled."
           /> */}
         </View>
         <View>
@@ -153,7 +164,19 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   host: {
     flex: 1,
-    padding: 16,
+    padding: 18,
+  },
+
+  columns: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  grayText: {
+    fontFamily: 'SFProText-Regular',
+    fontSize: 15,
+    color: '#818181',
+    letterSpacing: -0.25,
   },
 
   gutter: {

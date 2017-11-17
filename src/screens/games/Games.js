@@ -4,6 +4,7 @@ import { SPLASH_SCREEN, pushAppScreen } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
 import Heading from 'components/heading';
+import Divider from 'components/divider';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
 
@@ -45,7 +46,7 @@ export default class Games extends Component {
   render() {
     return (
       <ScrollView style={styles.host}>
-        <View style={styles.border} />
+        <Divider />
         <Heading action="See All" onActionPress={this.onAppGroupPress}>
           Best New Updates
         </Heading>
@@ -99,15 +100,9 @@ export default class Games extends Component {
 const styles = StyleSheet.create({
   host: {
     flex: 1,
-    padding: 16,
+    padding: 18,
     marginTop: -50,
     paddingTop: 50,
-  },
-
-  border: {
-    width: '100%',
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#CDCDCF',
   },
 
   gutter: {

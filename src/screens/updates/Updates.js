@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import AppItemRow from 'components/app-item-row';
 import Heading from 'components/heading';
 import CollapsedText from 'components/collapsed-text';
@@ -46,15 +46,13 @@ export default class Updates extends Component {
         </Heading>
         {DATA.slice(0, 1).map(item => (
           <View style={styles.item} key={item.key}>
-            <AppItemRow {...item} action="UPDATE" border={false} />
+            <AppItemRow {...item} action="UPDATE" actionWidth={92} border={false} />
             <View style={styles.spacing} />
             <CollapsedText numberOfLines={3}>
-              <Text style={styles.text}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                 Praesent pretium mattis massa, non dictum leo imperdiet sed. Morbi vitae dolor
                 luctus, dapibus dui a, elementum mi. Vivamus in commodo erat.{'\n\n'}
                 luctus, dapibus dui a, elementum mi. Vivamus in commodo erat.
-              </Text>
             </CollapsedText>
           </View>
         ))}
@@ -73,7 +71,7 @@ export default class Updates extends Component {
 const styles = StyleSheet.create({
   host: {
     flex: 1,
-    padding: 16,
+    padding: 20,
     paddingTop: 0,
   },
 
@@ -85,15 +83,6 @@ const styles = StyleSheet.create({
 
   spacing: {
     height: 8,
-  },
-
-  text: {
-    fontSize: 16,
-    letterSpacing: -0.28,
-    lineHeight: 21,
-    color: '#000',
-
-    marginBottom: 16,
   },
 
   gutter: {

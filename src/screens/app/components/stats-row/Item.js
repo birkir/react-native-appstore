@@ -33,15 +33,16 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontWeight: '600',
-    fontSize: 23,
-    color: 'rgba(0, 0, 0, 0.45)',
-    letterSpacing: -0.08,
+    fontFamily: 'SFProDisplay-Semibold',
+    fontSize: 22,
+    color: '#858E98',
+    letterSpacing: 0,
   },
 
   value: {
-    fontSize: 13,
-    color: 'rgba(0, 0, 0, 0.25)',
-    letterSpacing: -0.08,
+    fontFamily: 'SFProText-Regular',
+    fontSize: 12,
+    color: '#C8C7CC',
+    letterSpacing: 0,
   },
 });

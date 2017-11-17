@@ -3,8 +3,8 @@ import { StyleSheet, View, Animated, Text, MaskedViewIOS, TouchableWithoutFeedba
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 
-const WIDTH = 80;
-const HEIGHT = 30;
+const WIDTH = 72;
+const HEIGHT = 28;
 
 export default class Button extends PureComponent {
 
@@ -16,6 +16,7 @@ export default class Button extends PureComponent {
     blue: PropTypes.bool,
     horizontal: PropTypes.bool,
     align: PropTypes.oneOf(['left', 'center', 'right']),
+    width: PropTypes.number,
   };
 
   static defaultProps = {
@@ -26,6 +27,7 @@ export default class Button extends PureComponent {
     blue: false,
     horizontal: false,
     align: 'center',
+    width: WIDTH,
   };
 
   componentWillReceiveProps(props) {
@@ -50,21 +52,21 @@ export default class Button extends PureComponent {
   }
 
   get containerTranslateX() {
-    const { align } = this.props;
+    const { align, width } = this.props;
     if (align === 'center') {
-      return 25;
+      return (width - HEIGHT) / 2;
     } else if (align === 'right') {
-      return 50;
+      return (width - HEIGHT);
     }
     return 0;
   }
 
   get contentTranslateX() {
-    const { align } = this.props;
+    const { align, width } = this.props;
     if (align === 'right') {
-      return 25;
+      return (width - HEIGHT) / 2;
     } else if (align === 'left') {
-      return -25;
+      return -(width - HEIGHT) / 2;
     }
     return 0;
   }
@@ -107,6 +109,7 @@ export default class Button extends PureComponent {
       subtitle,
       horizontal,
       align,
+      width,
     } = this.props;
 
     const circle = (typeof children === 'string' && children === '...');
@@ -148,7 +151,7 @@ export default class Button extends PureComponent {
         }],
         width: this.cursor.interpolate({
           inputRange: [0, 1],
-          outputRange: [circle ? HEIGHT : WIDTH, HEIGHT],
+          outputRange: [circle ? HEIGHT : width, HEIGHT],
         }),
       },
       background: {
@@ -183,7 +186,7 @@ export default class Button extends PureComponent {
 
     return (
       <TouchableWithoutFeedback onPress={this.props.onPress}>
-        <View style={[styles.host, circle && styles.host__circle]}>
+        <View style={[styles.host, { width }, circle && styles.host__circle]}>
           <Animated.View style={[styles.container, animated.container]}>
             <Animated.View
               style={[
@@ -296,11 +299,11 @@ const styles = StyleSheet.create({
 
   background: {
     borderRadius: HEIGHT / 2,
-    backgroundColor: '#F1F0F7',
+    backgroundColor: '#EFEFF4',
   },
 
   background__blue: {
-    backgroundColor: '#0077FD',
+    backgroundColor: '#007AFF',
   },
 
   content: {
@@ -310,10 +313,10 @@ const styles = StyleSheet.create({
   },
 
   content__text: {
-    fontWeight: '600',
+    fontWeight: 'bold',
     fontSize: 16,
-    color: '#0077FD',
-    letterSpacing: -0.4,
+    color: '#007AFF',
+    letterSpacing: -0.32,
     backgroundColor: 'transparent',
   },
 
@@ -323,12 +326,13 @@ const styles = StyleSheet.create({
 
   // Arbitary numbers... sorry
   content__subtitle: {
-    position: 'absolute',
-    top: 34,
-    fontSize: 9,
-    color: 'rgba(0, 0, 0, 0.4)',
-    letterSpacing: 0,
+    fontFamily: 'SFProText-Regular',
+    fontSize: 8,
     lineHeight: 10,
+    color: '#8A8A8F',
+    letterSpacing: 0.21,
+    position: 'absolute',
+    top: 30,
     backgroundColor: 'transparent',
   },
 

@@ -51,6 +51,39 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+    <string>SF-Pro-Display-Black.otf</string>
+    <string>SF-Pro-Display-BlackItalic.otf</string>
+    <string>SF-Pro-Display-Bold.otf</string>
+    <string>SF-Pro-Display-BoldItalic.otf</string>
+    <string>SF-Pro-Display-Heavy.otf</string>
+    <string>SF-Pro-Display-HeavyItalic.otf</string>
+    <string>SF-Pro-Display-Light.otf</string>
+    <string>SF-Pro-Display-LightItalic.otf</string>
+    <string>SF-Pro-Display-Medium.otf</string>
+    <string>SF-Pro-Display-MediumItalic.otf</string>
+    <string>SF-Pro-Display-Regular.otf</string>
+    <string>SF-Pro-Display-RegularItalic.otf</string>
+    <string>SF-Pro-Display-Semibold.otf</string>
+    <string>SF-Pro-Display-SemiboldItalic.otf</string>
+    <string>SF-Pro-Display-Thin.otf</string>
+    <string>SF-Pro-Display-ThinItalic.otf</string>
+    <string>SF-Pro-Display-Ultralight.otf</string>
+    <string>SF-Pro-Display-UltralightItalic.otf</string>
+    <string>SF-Pro-Text-Bold.otf</string>
+    <string>SF-Pro-Text-BoldItalic.otf</string>
+    <string>SF-Pro-Text-Heavy.otf</string>
+    <string>SF-Pro-Text-HeavyItalic.otf</string>
+    <string>SF-Pro-Text-Light.otf</string>
+    <string>SF-Pro-Text-LightItalic.otf</string>
+    <string>SF-Pro-Text-Medium.otf</string>
+    <string>SF-Pro-Text-MediumItalic.otf</string>
+    <string>SF-Pro-Text-Regular.otf</string>
+    <string>SF-Pro-Text-RegularItalic.otf</string>
+    <string>SF-Pro-Text-Semibold.otf</string>
+    <string>SF-Pro-Text-SemiboldItalic.otf</string>
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

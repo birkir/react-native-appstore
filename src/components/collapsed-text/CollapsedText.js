@@ -69,6 +69,7 @@ export default class CollapsedText extends Component {
           <Text
             style={[
               styles.allLines,
+              styles.text,
               style,
               !isExpanded && hidden,
             ]}
@@ -77,7 +78,7 @@ export default class CollapsedText extends Component {
             {children}
           </Text>
           <Text
-            style={[style, isExpanded && hidden]}
+            style={[style, styles.text, isExpanded && hidden]}
             numberOfLines={numberOfLines}
             onLayout={this.onCollapsedLayout}
           >
@@ -107,6 +108,14 @@ const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
     marginBottom: 2,
+  },
+
+  text: {
+    fontFamily: 'SFProText-Regular',
+    fontSize: 15,
+    color: '#000000',
+    letterSpacing: -0.24,
+    lineHeight: 20,
   },
 
   allLines: {
