@@ -15,6 +15,8 @@ PODS:
     - React
   - React (0.50.3):
     - React/Core (= 0.50.3)
+  - react-native-blur (0.8.0):
+    - React
   - react-native-navigation (1.1.268):
     - React
   - React/BatchedBridge (0.50.3):
@@ -52,6 +54,7 @@ PODS:
 
 DEPENDENCIES:
   - CodePush (from `../node_modules/react-native-code-push`)
+  - react-native-blur (from `../node_modules/react-native-blur`)
   - react-native-navigation (from `../node_modules/react-native-navigation`)
   - React/BatchedBridge (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
@@ -70,6 +73,8 @@ EXTERNAL SOURCES:
     :path: ../node_modules/react-native-code-push
   React:
     :path: ../node_modules/react-native
+  react-native-blur:
+    :path: ../node_modules/react-native-blur
   react-native-navigation:
     :path: ../node_modules/react-native-navigation
   yoga:
@@ -78,9 +83,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CodePush: ffe876b57db57e0295653d69aa1653b0278b43ad
   React: 0ba6cae888dc82dc47d6d5f3090615e1b5f6f3e7
+  react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-navigation: d77c0e00d30544284afe22dd5db7532991a786ea
   yoga: faecc6be81ca7823ccbb470b93a1b228499fa1c0
 
-PODFILE CHECKSUM: 0394ff3647701305ce45276b9a9bb5c858652aa2
+PODFILE CHECKSUM: 4ae09bf3bc42c4d2c44c760571222d8a755ad751
 
 COCOAPODS: 1.3.1
