@@ -27,13 +27,10 @@ export default class Today extends Component {
 
   @autobind
   onCardOpenChange(item, isOpen) {
-    console.log(item);
     this.setState({
       // Disable scroll to be extra safe if JS thread hangs.
       isScrollEnabled: !isOpen,
       openIndex: item.index,
-      // // Remap cards with correct zIndex (for visible stacking)
-      // zIndexes: cards.map(card => (card.id === item.id ? 10 : 0)),
     });
 
     // AppStore hides the status bar and bottom tabs.
