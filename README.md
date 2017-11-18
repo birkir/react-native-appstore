@@ -5,16 +5,16 @@ This sample project was intended to demonstrate the possibilities with react-nat
  - [x] TabBar
  - [x] Today list headings
  - [x] Card Shared Element transition
- - [ ] Card list of apps
- - [ ] Card app components (GET button, etc.)
+ - [x] Card list of apps
+ - [x] Card app components (GET button, etc.)
  - [ ] Card detail lazy loading
- - [ ] Search list
- - [ ] Search input field focus transition
- - [ ] Navigation title transition (ex. Games to App detail)
- - [ ] App list horizontal scroll
- - [ ] App detail horizontal scroll
+ - [x] Search list
+ - [x] Search input field focus transition
+ - [x] Navigation title transition (ex. Games to App detail)
+ - [x] App list horizontal scroll
+ - [x] App detail horizontal scroll
  - [ ] Categories view
- - [ ] Updates list of apps
+ - [x] Updates list of apps
 
 ## Hard Problems
 
@@ -23,10 +23,16 @@ This sample project was intended to demonstrate the possibilities with react-nat
  - Animate width and height properally in an controlled animated environment.
  - Horizontal scroll view with next and previous slides peeking through.
  - Animated spinner
+ - Native search
+ - Link Header and screen Hero scroll reveal
 
-## Why
+## Unsolved problems
 
-It's fun.
+ - Large titles flicker on scrollview while scrolling or pulling to refresh.
+ - Set search query dynamically (when tapping suggested keyword).
+ - BlurView is flickering when transitioning back.
+ - 3D Touch navigation Peek'n'Pop.
+ - Search safe area not working.
 
 ## Goal
 
