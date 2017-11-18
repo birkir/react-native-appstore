@@ -49,7 +49,7 @@ export default class CollapsedText extends Component {
 
     Animated.spring(this.height, {
       toValue: isExpanded ? maxHeight : minHeight,
-      bounciness: 0
+      bounciness: 0,
     }).start();
   }
 
