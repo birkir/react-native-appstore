@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView, View, RefreshControl } from 'react-native';
 import AppItemRow from 'components/app-item-row';
 import Heading from 'components/heading';
+import Divider from 'components/divider';
 import CollapsedText from 'components/collapsed-text';
 // import PropTypes from 'prop-types';
 
@@ -34,19 +35,30 @@ export default class Updates extends Component {
 
   static navigatorStyle = {
     navBarNoBorder: true,
+    navBarTransparent: true,
     drawUnderTabBar: true,
     prefersLargeTitles: true,
   }
 
   render() {
     return (
-      <ScrollView style={styles.host}>
+      <ScrollView
+        style={styles.host}
+        refreshControl={
+          <RefreshControl
+            style={styles.refresh}
+            refreshing={false}
+            onRefresh={() => {}}
+          />
+        }
+      >
+        <Divider />
         <Heading action="Update All">
           Pending
         </Heading>
         {DATA.slice(0, 1).map(item => (
           <View style={styles.item} key={item.key}>
-            <AppItemRow {...item} action="UPDATE" actionWidth={92} border={false} />
+            <AppItemRow {...item} action="UPDATE" actionWidth={92} divider={false} />
             <View style={styles.spacing} />
             <CollapsedText numberOfLines={3}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -59,7 +71,7 @@ export default class Updates extends Component {
         <Heading>Updated recently</Heading>
         {DATA.slice(1).map(item => (
           <View style={styles.item} key={item.key}>
-            <AppItemRow {...item} action="OPEN" border={false} />
+            <AppItemRow {...item} action="OPEN" divider={false} />
           </View>
         ))}
         <View style={styles.gutter} />
@@ -71,14 +83,20 @@ export default class Updates extends Component {
 const styles = StyleSheet.create({
   host: {
     flex: 1,
-    padding: 20,
+    padding: 18,
     paddingTop: 0,
+    marginTop: -50,
+  },
+
+  refresh: {
+    marginTop: 50,
   },
 
   item: {
-    paddingBottom: 20,
+    paddingBottom: 13.5,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: '#CDCDCF',
+    borderBottomColor: '#CFCFCF',
+    marginBottom: 14,
   },
 
   spacing: {

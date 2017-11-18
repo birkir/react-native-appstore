@@ -8,10 +8,14 @@ import { autobind } from 'core-decorators';
 export default class AppItemRow extends PureComponent {
 
   static propTypes = {
+    legend: PropTypes.string,
     imageUrl: PropTypes.string,
+    screenshotUrl: PropTypes.string,
+    index: PropTypes.number,
     title: PropTypes.string,
     subtitle: PropTypes.string,
     divider: PropTypes.bool,
+    compact: PropTypes.bool,
     action: PropTypes.string,
     actionWidth: PropTypes.number,
     onActionPress: PropTypes.func,
@@ -20,10 +24,14 @@ export default class AppItemRow extends PureComponent {
   }
 
   static defaultProps = {
+    legend: undefined,
     imageUrl: undefined,
+    screenshotUrl: undefined,
+    index: undefined,
     title: undefined,
     subtitle: undefined,
     divider: true,
+    compact: false,
     action: undefined,
     actionWidth: undefined,
     isActionLoading: false,
@@ -56,10 +64,14 @@ export default class AppItemRow extends PureComponent {
 
   render() {
     const {
+      legend,
       imageUrl,
+      screenshotUrl,
+      index,
       title,
       subtitle,
       divider,
+      compact,
       action,
       actionWidth,
       onPress,
@@ -67,20 +79,50 @@ export default class AppItemRow extends PureComponent {
     const { isActionLoading } = this.state;
     return (
       <TouchableWithoutFeedback onPress={onPress}>
-        <View style={[styles.host, divider && styles.host__divider]}>
-          <Image source={{ uri: imageUrl }} style={styles.image} />
-          <View style={styles.content}>
-            <Text style={styles.content__title}>{title}</Text>
-            <Text style={styles.content__subtitle}>{subtitle}</Text>
-          </View>
-          <Button onPress={this.onActionPress} width={actionWidth} loading={isActionLoading}>
-            {action}
-          </Button>
-          {divider && (
-            <View style={styles.divider}>
-              <Divider />
-            </View>
+        <View>
+          {legend && (
+            <Text style={styles.legend}>{legend}</Text>
           )}
+          {screenshotUrl && (
+            <Image source={{ uri: screenshotUrl }} style={styles.screenshot} />
+          )}
+          <View style={[styles.host, divider && styles.host__divider]}>
+            <Image
+              source={{ uri: imageUrl }}
+              style={[styles.image, compact && styles.image__compact]}
+            />
+            <View style={styles.content}>
+              {index && (
+                <View style={styles.index}>
+                  <Text style={styles.index__text}>{index}</Text>
+                </View>
+              )}
+              <View style={styles.content__summary}>
+                <Text
+                  style={[styles.content__title, compact && styles.content__title__compact]}
+                  numberOfLines={2}
+                >
+                  {title}
+                </Text>
+                <Text
+                  style={[styles.content__subtitle, compact && styles.content__subtitle__compact]}
+                  numberOfLines={compact ? 1 : 2}
+                >
+                  {subtitle}
+                </Text>
+              </View>
+            </View>
+            <View>
+              <Button onPress={this.onActionPress} width={actionWidth} loading={isActionLoading}>
+                {action}
+              </Button>
+            </View>
+            {divider && (
+              <View style={[styles.divider, compact && styles.divider__compact]}>
+                <Divider />
+              </View>
+            )}
+          </View>
         </View>
       </TouchableWithoutFeedback>
     );
@@ -97,17 +139,57 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
+  legend: {
+    fontFamily: 'SFProText-Regular',
+    fontSize: 15,
+    color: '#8A8A8F',
+    letterSpacing: -0.08,
+    marginBottom: 12,
+  },
+
+  screenshot: {
+    width: '100%',
+    height: 215,
+    borderRadius: 5,
+    marginBottom: 16,
+  },
+
   image: {
     width: 62,
     height: 62,
-    borderRadius: 15,
+    borderRadius: 16,
     marginRight: 10,
+  },
+
+  image__compact: {
+    width: 44,
+    height: 44,
+    borderRadius: 10,
+  },
+
+  index: {
+    // minWidth: 14,
+    paddingRight: 10,
+    paddingTop: 1,
+  },
+
+  index__text: {
+    fontFamily: 'SFProText-Semibold',
+    fontSize: 17,
+    color: '#000000',
+    letterSpacing: -0.41,
   },
 
   content: {
     flex: 1,
+    marginRight: 16,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+
+  content__summary: {
     flexDirection: 'column',
-    marginRight: 10,
+    flex: 1,
   },
 
   content__title: {
@@ -116,6 +198,13 @@ const styles = StyleSheet.create({
     color: '#000000',
     letterSpacing: -0.41,
     lineHeight: 22,
+    paddingBottom: 3,
+  },
+
+  content__title__compact: {
+    letterSpacing: -0.22,
+    fontSize: 14,
+    lineHeight: 17,
   },
 
   content__subtitle: {
@@ -128,7 +217,11 @@ const styles = StyleSheet.create({
   divider: {
     position: 'absolute',
     bottom: -8,
-    left: 77,
+    left: 72,
     right: 0,
+  },
+
+  divider__compact: {
+    left: 54,
   },
 });

@@ -3,7 +3,9 @@ import { StyleSheet, View, ScrollView, Image } from 'react-native';
 import { SPLASH_SCREEN, pushAppScreen } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
+import AppItemFeatured from 'components/app-item-featured';
 import Heading from 'components/heading';
+import ListItem from 'components/list-item';
 import Divider from 'components/divider';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
@@ -46,25 +48,44 @@ export default class Games extends Component {
   render() {
     return (
       <ScrollView style={styles.host}>
+        <View style={styles.user}>
+          <Image source={require('images/UserIcon.png')} style={styles.user__image} />
+        </View>
         <Divider />
-        <Heading action="See All" onActionPress={this.onAppGroupPress}>
-          Best New Updates
-        </Heading>
         <AppItemSlider>
           {Array.from({ length: 10 }).map((_, i) => (
-            <AppItemRow
+            <AppItemFeatured
               key={`x-${i + 0}`}
               imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
-              title="Spark Email"
-              subtitle="New exciting tournament game mode!"
+              legend="NEW GAME"
+              title="Injustice 2"
+              subtitle="When iconic superheroes"
               action="FREE"
               onPress={this.onAppPress}
             />
           ))}
         </AppItemSlider>
 
-        <Heading action="See All" onActionPress={this.onTestPress}>In-App Purchases</Heading>
-        <AppItemSlider itemsPerPage={2}>
+        <Heading action="See All" onActionPress={this.onAppGroupPress}>
+          Great on iPhone X
+        </Heading>
+        <AppItemSlider itemsPerPage={3}>
+          {Array.from({ length: 10 }).map((_, i) => (
+            <AppItemRow
+              key={`x-${i + 0}`}
+              imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
+              title="Spark Email"
+              subtitle="New exciting tournament game mode!"
+              action="GET"
+              onPress={this.onAppPress}
+            />
+          ))}
+        </AppItemSlider>
+
+        <Heading action="See All" onActionPress={this.onTestPress}>
+          New Games We Love
+        </Heading>
+        <AppItemSlider itemsPerPage={3}>
           {Array.from({ length: 10 }).map((_, i) => (
             <AppItemRow
               key={`x-${i + 0}`}
@@ -76,11 +97,15 @@ export default class Games extends Component {
           ))}
         </AppItemSlider>
 
-        <Heading action="See All">In-App Purchases</Heading>
-        <AppItemSlider itemsPerPage={2}>
+        <Heading action="See All">
+          Great for Game Night
+        </Heading>
+        <AppItemSlider itemsPerPage={1}>
           {Array.from({ length: 10 }).map((_, i) => (
             <AppItemRow
               key={`x-${i + 0}`}
+              legend="Interperet visions, solve mysteries"
+              screenshotUrl={`https://placeimg.com/335/215/any?${Math.random()}`}
               imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
               title="Spark Email"
               subtitle="New exciting tournament game mode!"
@@ -88,10 +113,52 @@ export default class Games extends Component {
             />
           ))}
         </AppItemSlider>
-        <View style={styles.gutter} />
-        <View style={styles.user}>
-          <Image source={require('images/UserIcon.png')} style={styles.user__image} />
+
+        <Heading action="See All">
+          Top Paid
+        </Heading>
+        <AppItemSlider itemsPerPage={3}>
+          {Array.from({ length: 10 }).map((_, i) => (
+            <AppItemRow
+              key={`x-${i + 0}`}
+              index={i + 1}
+              imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
+              title="Spark Email"
+              subtitle="New exciting game that will be cool"
+              action={`$${(Math.random() * 2.99).toFixed(2)}`}
+            />
+          ))}
+        </AppItemSlider>
+
+        <Heading action="See All">
+          Top Free
+        </Heading>
+        <AppItemSlider itemsPerPage={3}>
+          {Array.from({ length: 10 }).map((_, i) => (
+            <AppItemRow
+              key={`x-${i + 0}`}
+              index={i + 1}
+              imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
+              title="Spark Email"
+              subtitle="New exciting game that will be cool"
+              action="GET"
+            />
+          ))}
+        </AppItemSlider>
+
+        <Heading action="See All">
+          Top Categories
+        </Heading>
+        <View>
+          <ListItem label="AR Games" onPress={() => {}} />
+          <ListItem label="Action" />
+          <ListItem label="Arcade" />
+          <ListItem label="Indie" />
+          <ListItem label="Puzzle" />
+          <ListItem label="Kids" divider={false} />
         </View>
+
+        <View style={styles.gutter} />
       </ScrollView>
     );
   }

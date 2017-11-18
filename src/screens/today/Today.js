@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView, SafeAreaView, StatusBar, Animated, View } from 
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 import SectionHeader from 'components/section-header';
-import Card from 'components/card';
+import cards from './Today.cards';
 
 export default class Today extends Component {
 
@@ -22,34 +22,18 @@ export default class Today extends Component {
   state = {
     isScrollEnabled: true,
     top: 20,
-    cards: [{
-      id: '1',
-      legend: 'What we\'re playing',
-      title: 'Words Without Friends',
-      imageUrl: 'https://petapixel.com/assets/uploads/2017/01/Official_portrait_of_Barack_Obama.jpg',
-    }, {
-      id: '2',
-      legend: 'What we\'re playing',
-      title: 'Words Without Friends',
-      imageUrl: 'https://cdn.dribbble.com/users/40433/screenshots/3709382/untitled-1.png',
-    }, {
-      id: '3',
-      legend: 'What we\'re playing',
-      title: 'Words Without Friends',
-      imageUrl: 'https://cdn.dribbble.com/users/40433/screenshots/3891558/dr4.png',
-    }],
+    openIndex: -1,
   }
 
   @autobind
   onCardOpenChange(item, isOpen) {
+    console.log(item);
     this.setState({
       // Disable scroll to be extra safe if JS thread hangs.
       isScrollEnabled: !isOpen,
-      // Remap cards with correct zIndex (for visible stacking)
-      cards: this.state.cards.map(card => ({
-        ...card,
-        zIndex: (card.id === item.id) ? 10 : 0,
-      })),
+      openIndex: item.index,
+      // // Remap cards with correct zIndex (for visible stacking)
+      // zIndexes: cards.map(card => (card.id === item.id ? 10 : 0)),
     });
 
     // AppStore hides the status bar and bottom tabs.
@@ -69,7 +53,7 @@ export default class Today extends Component {
   top = new Animated.Value(0);
 
   render() {
-    const { top, cards, isScrollEnabled } = this.state;
+    const { top, isScrollEnabled, openIndex } = this.state;
     return (
       <View style={styles.flex}>
         <SafeAreaView style={StyleSheet.absoluteFill}>
@@ -82,13 +66,12 @@ export default class Today extends Component {
           contentContainerStyle={[styles.content, { paddingTop: top }]}
         >
           <SectionHeader title="Today" label="Thursday, November 9" />
-          {cards.map(card => (
-            <Card
-              {...card}
-              key={card.id}
-              onOpenChange={this.onCardOpenChange}
-            />
-          ))}
+          {cards.map((card, index) => React.cloneElement(card, {
+            key: card.label,
+            onOpenChange: this.onCardOpenChange,
+            zIndex: openIndex === index ? 10 : 0,
+            index,
+          }))}
           <View style={styles.gutter} />
         </ScrollView>
 

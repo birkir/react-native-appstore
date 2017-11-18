@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, Animated, View, Text, Dimensions, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Animated, View, Text, Image, Dimensions, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import { autobind } from 'core-decorators';
-import Strong from 'components/strong';
+import Button from 'components/button';
+import AppItemRow from 'components/app-item-row';
+import { VibrancyView } from 'react-native-blur';
 import PropTypes from 'prop-types';
 
 // Transition helper method
@@ -29,15 +31,29 @@ export default class Card extends PureComponent {
     imageUrl: PropTypes.string,
     legend: PropTypes.string,
     title: PropTypes.string,
+    subtitle: PropTypes.string,
+    frosted: PropTypes.bool,
+    hero: PropTypes.bool,
+    app: PropTypes.object,
+    apps: PropTypes.arrayOf(PropTypes.object),
     zIndex: PropTypes.number,
+    children: PropTypes.node,
+    light: PropTypes.bool,
   }
 
   static defaultProps = {
     onOpenChange: undefined,
     imageUrl: undefined,
     legend: undefined,
+    frosted: false,
+    hero: false,
     title: undefined,
+    subtitle: undefined,
+    app: undefined,
+    apps: undefined,
     zIndex: 0,
+    children: undefined,
+    light: false,
   }
 
   state = {
@@ -128,12 +144,32 @@ export default class Card extends PureComponent {
   render() {
     // Extract needed properties from the class
     const {
-      cursorNative, scale, state, layout,
+      cursorNative,
+      scale,
+      state,
+      layout,
     } = this;
+
     const {
-      imageUrl, legend, title, zIndex,
+      imageUrl,
+      legend,
+      frosted,
+      hero,
+      title,
+      subtitle,
+      app,
+      apps,
+      zIndex,
+      children,
+      light,
     } = this.props;
-    const { isOpen, host } = state;
+
+    const {
+      isOpen,
+      host,
+    } = state;
+
+    const dark = !imageUrl || frosted || light;
 
     const animated = {
       host: {
@@ -198,6 +234,13 @@ export default class Card extends PureComponent {
         }],
       },
 
+      apps__cover: {
+        opacity: cursorNative.interpolate({
+          inputRange: [0, 1],
+          outputRange: [1, 0],
+        }),
+      },
+
     };
 
     if (layout) {
@@ -206,6 +249,9 @@ export default class Card extends PureComponent {
       animated.host.height = !isOpen ? layout.height : host.height;
       animated.image.height = !isOpen ? CARD_COLLAPSED_HEIGHT : CARD_EXPANDED_HEIGHT;
     }
+
+    const opacity = layout ? 1 : 0;
+    const Frosted = frosted ? VibrancyView : View;
 
     return (
       <View
@@ -224,42 +270,12 @@ export default class Card extends PureComponent {
             contentInset={{ top: CARD_EXPANDED_HEIGHT }}
             scrollEventThrottle={16}
             scrollEnabled={this.state.isOpen}
-            style={StyleSheet.absoluteFill}
+            style={[StyleSheet.absoluteFill, { opacity }]}
           >
             <Animated.View style={[styles.content, animated.content]}>
-              <Text style={styles.content__text}>
-                <Strong>Lorem ipsum dolor sit amet</Strong>, consectetur adipiscing elit.
-                Praesent pretium mattis massa, non dictum leo imperdiet sed. Morbi vitae dolor
-                luctus, dapibus dui a, elementum mi. Vivamus in commodo erat.
-              </Text>
-              <Text style={styles.content__text}>
-                Praesent et volutpat erat, ac fermentum tortor. Sed id tristique enim.
-                Ut eu odio lobortis, gravida justo in, pulvinar dolor. In eu ullamcorper leo.
-                Phasellus faucibus lorem quis tristique gravida. Nulla efficitur libero at imperdiet
-                iaculis. Morbi efficitur volutpat iaculis. Suspendisse laoreet condimentum lacinia.
-                Maecenas eu justo euismod, porta turpis vitae, elementum est.
-              </Text>
-              <Text style={styles.content__text}>
-                Nulla dignissim viverra lobortis. Nulla sollicitudin, justo et faucibus elementum,
-                lectus nibh tristique ante, vel dapibus dui enim sit amet orci. Sed molestie
-                ultricies varius. Proin risus justo, lacinia at suscipit in, commodo sed metus.
-                Ut iaculis mi in ante accumsan, quis ultrices est tempor. Mauris eget iaculis augue,
-                t iaculis magna. Sed congue neque consequat egestas imperdiet. Integer dictum
-                tristique ante, eget volutpat odio gravida euismod. Nullam vel blandit nulla.
-                Etiam imperdiet ut magna et varius. Duis porttitor consequat finibus. Vestibulum
-                quis est at lacus venenatis ornare. Quisque nunc velit, pulvinar et eros elementum,
-                ullamcorper viverra nulla. Nam efficitur ante purus, eget cursus magna dignissim
-                sit amet. Morbi blandit dui pharetra magna tempor, et blandit libero interdum.
-              </Text>
-              <Text style={styles.content__text}>
-                Etiam eleifend feugiat tortor, vel luctus massa. Aliquam lorem risus, dapibus ut
-                luctus non, condimentum eget odio. Aenean venenatis arcu dapibus, blandit nunc eu,
-                fringilla purus. Quisque dictum felis et orci eleifend, et ultricies diam ornare.
-                Sed suscipit, neque quis semper malesuada, diam ex consectetur metus, vel hendrerit
-                ex sapien eu justo. Nullam vehicula ex vel ipsum faucibus efficitur. Aenean
-                magna metus, volutpat in laoreet et, ornare vestibulum neque. Nunc congue elit
-                sed sapien dictum feugiat.
-              </Text>
+              {React.Children.map(children, child => React.cloneElement(child, {
+                style: styles.content__text,
+              }))}
             </Animated.View>
           </Animated.ScrollView>
           <TouchableWithoutFeedback
@@ -276,19 +292,100 @@ export default class Card extends PureComponent {
                   style={[styles.image, animated.image]}
                   onLayout={this.onLayout}
                 />
-                <View style={[StyleSheet.absoluteFill, styles.image__content]}>
-                  {legend && (
-                    <Text style={styles.legend}>{String(legend || '').toLocaleUpperCase()}</Text>
+                <View
+                  style={[
+                    StyleSheet.absoluteFill,
+                    styles.image__content,
+                    isOpen && styles.image__content__open,
+                  ]}
+                >
+                  {hero ? (
+                    <View style={styles.hero}>
+                      <Image source={{ uri: app.imageUrl }} style={styles.hero__icon} />
+                      <Text style={styles.hero__text}>
+                        {String(title || '').toLocaleUpperCase()}
+                      </Text>
+                    </View>
+                  ) : (
+                    <Frosted
+                      style={[frosted && styles.frosted]}
+                      blurAmount={15}
+                      blurType="light"
+                    >
+                      {legend && (
+                        <Text style={[styles.legend, dark && styles.dark]}>
+                          {String(legend || '').toLocaleUpperCase()}
+                        </Text>
+                      )}
+                      {title && (
+                        <Text style={[styles.title, dark && styles.dark]}>
+                          {title}
+                        </Text>
+                      )}
+                    </Frosted>
                   )}
-                  {title && (
-                    <Text style={styles.title}>{title}</Text>
+                  {apps ? (
+                    <View style={styles.apps}>
+                      {apps.map(appItem => (
+                        <AppItemRow
+                          key={Math.random()}
+                          compact
+                          {...appItem}
+                        />
+                      ))}
+                    </View>
+                  ) : (
+                    <View style={styles.flex} />
+                  )}
+                  {app && (
+                    <View style={styles.hero__app}>
+                      <View style={styles.hero__appsummary}>
+                        <Text
+                          style={[styles.hero__apptitle, dark && styles.dark]}
+                          numberOfLines={2}
+                        >
+                          {app.title}
+                        </Text>
+                        <Text
+                          style={[styles.hero__appsubtitle, dark && styles.dark]}
+                          numberOfLines={1}
+                        >
+                          {app.subtitle}
+                        </Text>
+                      </View>
+                      <Button
+                        onPress={app.onActionPress}
+                        subtitle={app.actionSubtitle}
+                        loading={app.isActionLoading}
+                        align="right"
+                      >
+                        {app.action}
+                      </Button>
+                    </View>
+                  )}
+
+                  {subtitle && (
+                    <Text style={styles.subtitle}>{subtitle}</Text>
+                  )}
+
+                  {apps && (
+                    <Animated.View
+                      style={[styles.apps__cover, animated.apps__cover]}
+                      pointerEvents="none"
+                    />
                   )}
                 </View>
               </Animated.View>
               <TouchableWithoutFeedback onPress={this.onPress} pointerEvents="auto">
                 <Animated.View style={[styles.close, animated.close]}>
-                  <Animated.Image source={require('images/CloseIcon.png')} style={[StyleSheet.absoluteFill, animated.close__light]} />
-                  <Animated.Image source={require('images/CloseIconBlack.png')} style={[StyleSheet.absoluteFill, animated.close__dark]} />
+                  <Animated.Image
+                    source={require('images/CloseIcon.png')}
+                    style={[StyleSheet.absoluteFill, animated.close__light]}
+                  />
+                  <Animated.Image
+                    source={require('images/CloseIconBlack.png')}
+                    style={[StyleSheet.absoluteFill, animated.close__dark]}
+                  />
                 </Animated.View>
               </TouchableWithoutFeedback>
             </View>
@@ -304,6 +401,10 @@ const styles = StyleSheet.create({
   root: {
     height: CARD_COLLAPSED_HEIGHT,
     marginBottom: 30,
+  },
+
+  flex: {
+    flex: 1,
   },
 
   host: {
@@ -324,11 +425,11 @@ const styles = StyleSheet.create({
   },
 
   content__text: {
-    fontSize: 21,
-    color: '#7E7E82',
-    letterSpacing: -0.5,
-
-    marginBottom: 30,
+    fontFamily: 'SFProText-Regular',
+    fontSize: 19,
+    color: '#000000',
+    letterSpacing: -0.49,
+    marginBottom: 20,
   },
 
   close: {
@@ -342,17 +443,36 @@ const styles = StyleSheet.create({
     opacity: 0.6,
   },
 
+  apps: {
+    paddingTop: 32,
+  },
+
+  apps__cover: {
+    position: 'absolute',
+    bottom: 0,
+    left: 16,
+    right: 16,
+    height: 44,
+    backgroundColor: 'white',
+  },
+
   image: {
-    backgroundColor: '#eee',
+    backgroundColor: '#FFFFFF',
     width: '100%',
     height: CARD_COLLAPSED_HEIGHT,
   },
 
   image__content: {
     padding: 20,
-    paddingTop: 42,
+    paddingTop: 25,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    overflow: 'hidden',
+  },
 
-    backgroundColor: 'transparent',
+  image__content__open: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
   },
 
   legend: {
@@ -361,7 +481,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     letterSpacing: -0.24,
     lineHeight: 14,
-
+    backgroundColor: 'transparent',
     opacity: 0.7,
     marginBottom: 3,
   },
@@ -369,10 +489,78 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'SFProDisplay-Bold',
     fontSize: 28,
-    color: '#F6F6F6',
+    color: '#FFFFFF',
     letterSpacing: 0.34,
     lineHeight: 34,
-    maxWidth: 300,
+    maxWidth: 240,
+    backgroundColor: 'transparent',
   },
 
+  subtitle: {
+    fontFamily: 'SFProText-Regular',
+    fontSize: 15,
+    color: '#FFFFFF',
+    letterSpacing: -0.24,
+    backgroundColor: 'transparent',
+  },
+
+  frosted: {
+    backgroundColor: 'rgba(255, 255, 255, 0.33)',
+    margin: -20,
+    marginTop: -25,
+    padding: 20,
+  },
+
+  dark: {
+    color: '#000000',
+  },
+
+  hero: {
+    flex: 1,
+  },
+
+  hero__text: {
+    fontFamily: 'SFProDisplay-Heavy',
+    fontSize: 54,
+    color: '#FFFFFF',
+    letterSpacing: 0.23,
+    lineHeight: 44,
+    maxWidth: 190,
+    paddingTop: 10,
+    backgroundColor: 'transparent',
+  },
+
+  hero__icon: {
+    width: 88,
+    height: 88,
+    borderRadius: 16,
+    marginBottom: 29,
+  },
+
+  hero__app: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  hero__appsummary: {
+    flex: 1,
+    paddingRight: 20,
+  },
+
+  hero__apptitle: {
+    fontFamily: 'SFProText-SemiBold',
+    fontSize: 16,
+    color: '#FFFFFF',
+    letterSpacing: -0.41,
+    lineHeight: 22,
+    backgroundColor: 'transparent',
+  },
+
+  hero__appsubtitle: {
+    fontFamily: 'SFProText-Regular',
+    fontSize: 14,
+    color: '#FFFFFF',
+    letterSpacing: -0.24,
+    backgroundColor: 'transparent',
+  },
 });

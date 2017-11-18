@@ -41,7 +41,8 @@ export const startApp = () => {
       icon: require('images/GamesIcon.png'),
     }, {
       label: 'Apps',
-      screen: SPLASH_SCREEN,
+      title: 'Apps',
+      screen: GAMES_SCREEN,
       icon: require('images/AppsIcon.png'),
     }, {
       label: 'Updates',

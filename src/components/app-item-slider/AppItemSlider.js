@@ -15,7 +15,7 @@ export default class AppItemSlider extends PureComponent {
   }
 
   static defaultProps = {
-    itemsPerPage: 3,
+    itemsPerPage: 1,
     children: undefined,
   }
 
@@ -72,7 +72,7 @@ export default class AppItemSlider extends PureComponent {
 const styles = StyleSheet.create({
   host: {
     marginHorizontal: -20,
-    marginBottom: 24,
+    marginBottom: 32,
   },
 
   item: {
