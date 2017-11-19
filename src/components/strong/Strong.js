@@ -3,6 +3,7 @@ import { StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class Strong extends PureComponent {
+
   static propTypes = {
     children: PropTypes.node,
   }

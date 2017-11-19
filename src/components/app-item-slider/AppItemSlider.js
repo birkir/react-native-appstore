@@ -5,8 +5,11 @@ import Carousel from 'react-native-snap-carousel';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 
-const { width: initialWidth } = Dimensions.get('window');
-
+/**
+ * App Item Slider
+ * Groups a list of components into `Pages` that are slidable.
+ * @todo Better general naming for the component?
+ */
 export default class AppItemSlider extends PureComponent {
 
   static propTypes = {
@@ -20,21 +23,22 @@ export default class AppItemSlider extends PureComponent {
   }
 
   state = {
-    width: initialWidth,
+    width: Dimensions.get('window').width,
   }
 
+  // Fired when layout changes
   @autobind
   onLayout() {
-    const { width } = Dimensions.get('window');
     this.setState({
-      width,
+      width: Dimensions.get('window').width,
     });
   }
 
   @autobind
   renderItem({ item }) {
+    const { width } = this.state;
     return (
-      <View style={[styles.item, { width: this.state.width - 30 }]}>
+      <View style={[styles.item, { width: (width - 30) }]}>
         {Children.toArray(item)}
       </View>
     );
@@ -43,10 +47,13 @@ export default class AppItemSlider extends PureComponent {
   render() {
     const { width } = this.state;
     const { itemsPerPage, children } = this.props;
+
+    // Setup groups (or pages)
     const childs = Children.toArray(children);
     const groups = [];
 
     for (let i = 0; i < childs.length; i += itemsPerPage) {
+      // Add item to it's group
       groups.push(childs.slice(i, i + itemsPerPage));
     }
 

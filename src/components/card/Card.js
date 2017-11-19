@@ -24,6 +24,13 @@ const config = {
 const CARD_COLLAPSED_HEIGHT = 412;
 const CARD_EXPANDED_HEIGHT = 492;
 
+/**
+ * Card component
+ * This is a monster and some things need refactoring.
+ * @todo Document what's going on.
+ * @todo Split view into components.
+ * @todo LayoutAnimation sucks.
+ */
 export default class Card extends PureComponent {
 
   static propTypes = {
@@ -169,6 +176,7 @@ export default class Card extends PureComponent {
       host,
     } = state;
 
+    // Text dark mode?
     const dark = !imageUrl || frosted || light;
 
     const animated = {
@@ -250,7 +258,10 @@ export default class Card extends PureComponent {
       animated.image.height = !isOpen ? CARD_COLLAPSED_HEIGHT : CARD_EXPANDED_HEIGHT;
     }
 
+    // Toggle opacity of content view
     const opacity = layout ? 1 : 0;
+
+    // Frosted flag uses vibrancy view
     const Frosted = frosted ? VibrancyView : View;
 
     return (

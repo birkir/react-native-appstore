@@ -3,6 +3,11 @@ import { StyleSheet, View, Animated, TouchableOpacity, Text } from 'react-native
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 
+/**
+ * Collapsed Text
+ * Shows text in collapsed state with one-time expanding button.
+ * @todo Currently does not use nativeDriver as we're animating height.
+ */
 export default class CollapsedText extends Component {
 
   static propTypes = {
@@ -41,18 +46,25 @@ export default class CollapsedText extends Component {
 
   @autobind
   onPress() {
-    const { maxHeight, minHeight } = this.state;
-    const isExpanded = !this.state.isExpanded;
-    this.setState({
-      isExpanded,
-    });
+    const {
+      maxHeight,
+      minHeight,
+    } = this.state;
 
+    // Set expanded to true (or toggle)
+    const isExpanded = !this.state.isExpanded;
+
+    // Update state
+    this.setState({ isExpanded });
+
+    // Animate height
     Animated.spring(this.height, {
       toValue: isExpanded ? maxHeight : minHeight,
       bounciness: 0,
     }).start();
   }
 
+  // Height animated value
   height = new Animated.Value(0);
 
   render() {

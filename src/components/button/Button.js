@@ -6,6 +6,12 @@ import { autobind } from 'core-decorators';
 const WIDTH = 72;
 const HEIGHT = 28;
 
+/**
+ * Button component
+ * This component turned out to be more complex than it looked at first.
+ * It's fixed width is mainly due to loading spinner, but that can be
+ * @todo refactored later so it can be dynamic.
+ */
 export default class Button extends PureComponent {
 
   static propTypes = {
@@ -112,6 +118,7 @@ export default class Button extends PureComponent {
       width,
     } = this.props;
 
+    // TODO: Show image for the three-dots.
     const circle = (typeof children === 'string' && children === '...');
 
     const animated = {

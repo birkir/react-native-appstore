@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class Heading extends PureComponent {
+
   static propTypes = {
     children: PropTypes.node,
     action: PropTypes.string,

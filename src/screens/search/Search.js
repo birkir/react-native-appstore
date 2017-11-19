@@ -28,7 +28,12 @@ const DATA = {
   ],
 };
 
+/**
+ * Search screen
+ * @todo Split the view code into more defined components.
+ */
 export default class Search extends Component {
+
   static propTypes = {
     navigator: PropTypes.object.isRequired,
   }
@@ -92,6 +97,7 @@ export default class Search extends Component {
 
   @autobind
   onBackdropPress() {
+    // Toggle search mode off
     this.props.navigator.setStyle({
       navBarSearchActive: false,
     });
@@ -108,6 +114,7 @@ export default class Search extends Component {
     this.setState({ results: false });
   }
 
+  // Animated value for backdrop opacity
   backdrop = new Animated.Value(0);
 
   render() {
@@ -118,6 +125,7 @@ export default class Search extends Component {
       results,
     } = this.state;
 
+    // TODO: Remove this
     DATA.suggestions.sort(() => Math.random() - 0.5);
 
     return (

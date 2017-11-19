@@ -8,8 +8,8 @@ import AppButton from './app/components/button';
 import UpdatesScreen from './updates';
 import SearchScreen from './search';
 
+// Set screen constants
 export const Screens = new Map();
-
 export const SPLASH_SCREEN = 'appStoreClone.SplashScreen';
 export const TODAY_SCREEN = 'appStoreClone.TodayScreen';
 export const GAMES_SCREEN = 'appStoreClone.GamesScreen';
@@ -19,6 +19,7 @@ export const APP_BUTTON = 'appStoreClone.AppButton';
 export const UPDATES_SCREEN = 'appStoreClone.UpdatesScreen';
 export const SEARCH_SCREEN = 'appStoreClone.SearchScreen';
 
+// Resolve screen constants to imported class
 Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(TODAY_SCREEN, () => TodayScreen);
 Screens.set(GAMES_SCREEN, () => GamesScreen);
@@ -62,6 +63,7 @@ export const startApp = () => {
   });
 };
 
+// Push app screen (helper function)
 export const pushAppScreen = (navigator, app) => navigator.push({
   screen: APP_SCREEN,
   backButtonTitle: app.backTitle,

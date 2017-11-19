@@ -5,6 +5,11 @@ import Button from 'components/button';
 import Divider from 'components/divider';
 import { autobind } from 'core-decorators';
 
+/**
+ * App Item Row
+ * Very complex but robust component that displays a row of app item.
+ * @todo Use object for action proptype
+ */
 export default class AppItemRow extends PureComponent {
 
   static propTypes = {
@@ -76,7 +81,9 @@ export default class AppItemRow extends PureComponent {
       actionWidth,
       onPress,
     } = this.props;
-    const { isActionLoading } = this.state;
+    const {
+      isActionLoading,
+    } = this.state;
     return (
       <TouchableWithoutFeedback onPress={onPress}>
         <View>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Divider from 'components/divider';
 
 export default class ListItem extends PureComponent {
+
   static propTypes = {
     label: PropTypes.string,
     color: PropTypes.object,
