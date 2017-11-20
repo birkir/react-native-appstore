@@ -9,14 +9,19 @@ import ListItem from 'components/list-item';
 import Divider from 'components/divider';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
+import { collections, PropTypeCollections } from 'graphql/queries/collections';
 
+@collections({ type: 'GAME' })
 export default class Games extends Component {
 
   static propTypes = {
-    navigator: PropTypes.object.isRequired,
+    navigator: PropTypes.object,
+    data: PropTypeCollections,
   }
 
   static defaultProps = {
+    navigator: undefined,
+    data: undefined,
   }
 
   static navigatorStyle = {
@@ -46,6 +51,9 @@ export default class Games extends Component {
   }
 
   render() {
+    // Get data
+    console.log(this.props.data);
+
     return (
       <ScrollView style={styles.host}>
         <View style={styles.user}>
