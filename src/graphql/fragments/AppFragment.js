@@ -1,23 +1,29 @@
 import gql from 'graphql-tag';
 import VersionFragment from './VersionFragment';
-import ReviewFragment from './ReviewFragment';
+// import ReviewFragment from './ReviewFragment';
 
 export default gql`
   fragment AppFragment on App {
     id
     title
-    createdAt
-    score
+    iconUrl
+    imageUrl
+    subtitle
+    description
+    hasInAppPurchases
+    age
+    price
     reviews {
       rating
     }
-    version {
+    # Get latest version
+    versions(
+      first: 1
+      orderBy: date_DESC
+    ) {
       ...VersionFragment
-    }
-    reviews {
-      ...ReviewFragment
     }
   }
   ${VersionFragment}
-  ${ReviewFragment}
+  #{ReviewFragment}
 `;

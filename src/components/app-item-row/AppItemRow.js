@@ -84,6 +84,7 @@ export default class AppItemRow extends PureComponent {
     const {
       isActionLoading,
     } = this.state;
+
     return (
       <TouchableWithoutFeedback onPress={onPress}>
         <View>
