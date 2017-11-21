@@ -31,13 +31,13 @@ index 145be55..f57086f 100755
        self.navigationItem.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
        self.navigationItem.titleView.clipsToBounds = YES;
      }
-+
-+    if ([self.navigationController.navigationBar respondsToSelector:@selector(setPrefersLargeTitles:)]) {
-+      NSNumber *prefersLargeTitles = self.navigatorStyle[@"prefersLargeTitles"];
-+      BOOL prefersLargeTitlesBool = prefersLargeTitles ? [prefersLargeTitles boolValue] : NO;
-+      self.navigationController.navigationBar.prefersLargeTitles = prefersLargeTitlesBool;
-+    }
    }
++
++  if ([self.navigationController.navigationBar respondsToSelector:@selector(setPrefersLargeTitles:)]) {
++    NSNumber *prefersLargeTitles = self.navigatorStyle[@"prefersLargeTitles"];
++    BOOL prefersLargeTitlesBool = prefersLargeTitles ? [prefersLargeTitles boolValue] : NO;
++    self.navigationController.navigationBar.prefersLargeTitles = prefersLargeTitlesBool;
++  }
  }
  
 -- 

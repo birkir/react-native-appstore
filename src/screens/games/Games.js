@@ -26,9 +26,10 @@ export default class Games extends Component {
 
   static navigatorStyle = {
     navBarNoBorder: true,
-    navBarTransparent: true,
+    // navBarTransparent: true,
     drawUnderTabBar: true,
     prefersLargeTitles: true,
+    navBarBackgroundColor: 'white',
   }
 
   @autobind
@@ -40,13 +41,11 @@ export default class Games extends Component {
   }
 
   @autobind
-  onAppPress() {
+  onAppPress({ id, action }) {
     pushAppScreen(this.props.navigator, {
       backTitle: 'Games',
-      iconUrl: 'https://placeimg.com/198/198/any?1=2',
-      action: 'FREE',
-      onActionPress() {},
-      isActionLoading: false,
+      action,
+      id,
     });
   }
 
@@ -69,10 +68,14 @@ export default class Games extends Component {
       // Setup props
       const props = {
         key: item.id,
+        id: item.id,
         imageUrl: item.iconUrl,
         title: item.title,
         subtitle: item.subtitle,
-        action: item.price ? `$${item.price}` : 'GET',
+        action: {
+          label: item.price ? `$${item.price}` : 'GET',
+          subtitle: item.hasInAppPurchases ? 'In-App Purchases' : undefined,
+        },
         onPress: this.onAppPress,
       };
 

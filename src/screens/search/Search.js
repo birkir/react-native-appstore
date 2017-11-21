@@ -188,7 +188,7 @@ export default class Search extends Component {
                 imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
                 title="Spark Email"
                 subtitle="New exciting tournament game mode!"
-                action="FREE"
+                action={{ label: 'FREE' }}
                 divider={false}
               />
               <View style={styles.spacer} />
@@ -197,7 +197,7 @@ export default class Search extends Component {
                 imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
                 title="Spark Email"
                 subtitle="New exciting tournament game mode!"
-                action="FREE"
+                action={{ label: 'FREE' }}
                 divider={false}
               />
             </ScrollView>

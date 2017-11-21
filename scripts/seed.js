@@ -344,7 +344,7 @@ const generateApp = (type, categories = [], sellerId) => ({
     })),
   reviews: Array.from({ length: 25 + faker.random.number(25) })
     .map(() => ({
-      rating: faker.random.number(5),
+      rating: 1 + faker.random.number(4),
       name: faker.name.findName(),
       ...faker.random.arrayElement([{}, {}, {
         title: faker.lorem.words(2),

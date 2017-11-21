@@ -75,13 +75,12 @@ export const pushAppScreen = (navigator, app) => navigator.push({
       iconUrl: app.iconUrl,
     },
   },
+  passProps: app,
   navigatorButtons: {
     rightButtons: [{
       id: 'action',
       component: APP_BUTTON,
-      passProps: {
-        action: app.action,
-      },
+      passProps: app.action,
     }],
   },
 });

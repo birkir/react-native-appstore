@@ -335,7 +335,7 @@ export default class Card extends PureComponent {
                       )}
                     </Frosted>
                   )}
-                  {apps ? (
+                  {/* {apps ? (
                     <View style={styles.apps}>
                       {apps.map(appItem => (
                         <AppItemRow
@@ -347,7 +347,7 @@ export default class Card extends PureComponent {
                     </View>
                   ) : (
                     <View style={styles.flex} />
-                  )}
+                  )} */}
                   {app && (
                     <View style={styles.hero__app}>
                       <View style={styles.hero__appsummary}>

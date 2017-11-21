@@ -4,14 +4,16 @@ import Button from 'components/button';
 import PropTypes from 'prop-types';
 
 export default class Header extends PureComponent {
+
   static propTypes = {
     iconUrl: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
-    action: PropTypes.string,
-    onActionPress: PropTypes.func,
-    actionSubtitle: PropTypes.string,
-    isActionLoading: PropTypes.bool,
+    action: PropTypes.shape({
+      onPress: PropTypes.func,
+      subtitle: PropTypes.string,
+      loading: PropTypes.bool,
+    }),
   }
 
   static defaultProps = {
@@ -19,9 +21,6 @@ export default class Header extends PureComponent {
     title: undefined,
     subtitle: undefined,
     action: undefined,
-    onActionPress: undefined,
-    actionSubtitle: undefined,
-    isActionLoading: undefined,
   }
 
   render() {
@@ -30,9 +29,6 @@ export default class Header extends PureComponent {
       title,
       subtitle,
       action,
-      onActionPress,
-      actionSubtitle,
-      isActionLoading,
     } = this.props;
     return (
       <View style={styles.host}>
@@ -43,13 +39,13 @@ export default class Header extends PureComponent {
           <View style={styles.content__actions}>
             <Button
               blue
-              subtitle={actionSubtitle}
+              subtitle={action.subtitle}
               horizontal
               align="left"
-              loading={isActionLoading}
-              onPress={onActionPress}
+              loading={action.loading}
+              onPress={action.onPress}
             >
-              {action}
+              {action.label}
             </Button>
             <Button blue>...</Button>
           </View>

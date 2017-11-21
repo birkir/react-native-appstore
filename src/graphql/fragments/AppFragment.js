@@ -9,13 +9,8 @@ export default gql`
     iconUrl
     imageUrl
     subtitle
-    description
     hasInAppPurchases
-    age
     price
-    reviews {
-      rating
-    }
     # Get latest version
     versions(
       first: 1
