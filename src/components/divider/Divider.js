@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   host: {
     width: '100%',
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#BCBBC1',
+    backgroundColor: '#CFCFCF',
   },
 
   gutter: {

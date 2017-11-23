@@ -9,7 +9,7 @@ import config from '../src/config.env';
 
 // Create new Apollo client
 const client = new ApolloClient({
-  link: new HttpLink({ uri: config.API_URL, fetch }),
+  link: new HttpLink({ uri: process.env.API_URL, fetch }),
   cache: new InMemoryCache(),
 });
 
@@ -210,10 +210,12 @@ const createCategoryMutation = gql`
   mutation createCategory(
     $title: String!
     $type: AppType!
+    $score: Float
   ) {
     createCategory(
       title: $title
       type: $type
+      score: $score
     ) {
       id
     }
@@ -239,6 +241,8 @@ const createAppMutation = gql`
     $languages: [String!]
     $type: AppType
     $size: Int
+    $score: Float
+    $rating: Float
   ) {
     createApp(
       iconUrl: $iconUrl
@@ -258,6 +262,8 @@ const createAppMutation = gql`
       languages: $languages
       type: $type
       size: $size
+      score: $score
+      rating: $rating
     ) {
       id
     }
@@ -316,6 +322,30 @@ const generateSeller = () => ({
   name: faker.company.companyName(),
 });
 
+const generateReviewsAndScore = () => {
+  const reviews = Array.from({ length: 25 + faker.random.number(25) })
+    .map(() => ({
+      rating: 1 + faker.random.number(4),
+      name: faker.name.findName(),
+      ...faker.random.arrayElement([{}, {}, {
+        title: faker.lorem.words(2),
+        description: faker.lorem.paragraph(),
+      }]),
+    }));
+
+  // Calculate app score
+  const scores = Array.from({ length: 5 })
+    .map((_, n) => reviews.filter(({ rating }) => rating === (n + 1)).length * n);
+  const score = (scores.reduce((a, b) => (a + b), 0) / 15);
+  const rating = reviews.map(r => r.rating).reduce((a, b) => (a + b), 0) / reviews.length;
+
+  return {
+    reviews,
+    rating,
+    score,
+  };
+}
+
 const generateApp = (type, categories = [], sellerId) => ({
   iconUrl: faker.image.avatar(),
   imageUrl: faker.image.imageUrl(),
@@ -342,15 +372,7 @@ const generateApp = (type, categories = [], sellerId) => ({
       date: faker.date.past(1),
       changelog: faker.lorem.paragraph(),
     })),
-  reviews: Array.from({ length: 25 + faker.random.number(25) })
-    .map(() => ({
-      rating: 1 + faker.random.number(4),
-      name: faker.name.findName(),
-      ...faker.random.arrayElement([{}, {}, {
-        title: faker.lorem.words(2),
-        description: faker.lorem.paragraph(),
-      }]),
-    })),
+  ...generateReviewsAndScore(),
 });
 
 const generateStory = (apps = []) => ({
@@ -376,6 +398,7 @@ async function createCategories(type, categories) {
       variables: {
         title,
         type,
+        score: Math.random(),
       },
     });
     console.log('Created category', data.createCategory.id);
@@ -445,16 +468,19 @@ async function createCollections(type, collections, apps) {
 
   console.log('Seeding database');
 
+  // Seed Count
+  const COUNT = process.env.COUNT || 25;
+
   // Generate categories
   const categoriesGames = await createCategories('GAME', CATEGORIES.GAMES);
   const categoriesApps = await createCategories('APP', CATEGORIES.APPS);
 
   // Generate 500 sellers
-  const sellers = await createSellers(150);
+  const sellers = await createSellers(COUNT * 1.25);
 
   // Generate 1000 apps (500/500 app/game)
-  const apps = await createApps('APP', 100, categoriesApps, sellers);
-  const games = await createApps('GAME', 100, categoriesGames, sellers);
+  const apps = await createApps('APP', COUNT, categoriesApps, sellers);
+  const games = await createApps('GAME', COUNT, categoriesGames, sellers);
 
   // Generate 25 stories
   await createStories(25, apps, games);

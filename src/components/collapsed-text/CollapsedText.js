@@ -14,12 +14,14 @@ export default class CollapsedText extends Component {
     children: PropTypes.node,
     numberOfLines: PropTypes.number,
     style: PropTypes.any,
+    backgroundColor: PropTypes.string,
   }
 
   static defaultProps = {
     children: undefined,
     numberOfLines: 2,
     style: undefined,
+    backgroundColor: 'white',
   }
 
   state = {
@@ -73,6 +75,7 @@ export default class CollapsedText extends Component {
       children,
       numberOfLines,
       style,
+      backgroundColor,
     } = this.props;
     const hidden = { opacity: 0 };
 
@@ -100,7 +103,12 @@ export default class CollapsedText extends Component {
           {!isExpanded && (
             <View>
               <View style={styles.fadeHost}>
-                <View style={styles.fade} />
+                <View
+                  style={[
+                    styles.fade,
+                    { backgroundColor, shadowColor: backgroundColor },
+                  ]}
+                />
               </View>
               <TouchableOpacity onPress={this.onPress}>
                 <Text style={styles.button}>more</Text>

@@ -5,13 +5,15 @@ import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
+import InfoRow from 'components/info-row';
 import CollapsedText from 'components/collapsed-text';
 import { appWithProps } from 'graphql/queries/app';
 import get from 'lodash/get';
-import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
 import Header from './components/header';
 import StatsRow from './components/stats-row';
 import Screenshots from './components/screenshots';
+import ReviewsOverview from './components/reviews-overview';
+import VersionOverview from './components/version-overview';
 
 const formatReviewsCount = (count) => {
   if (count > 1000) {
@@ -31,6 +33,7 @@ const formatReviewsCount = (count) => {
 export default class App extends Component {
 
   static propTypes = {
+    navigator: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
   }
@@ -64,7 +67,13 @@ export default class App extends Component {
       outputRange: [1, 0],
     });
 
-    const { App: app, loading, error } = this.props.data;
+    const {
+      App: app,
+      loading,
+      error,
+    } = this.props.data;
+
+    const version = get(app, 'versions.0');
 
     if (loading || error) {
       return null;
@@ -74,17 +83,6 @@ export default class App extends Component {
       label: app.price ? `$${app.price}` : 'GET',
       onPress: () => this.props.navigator.pop(),
     };
-
-    // Find all count for each rating score (1 - 5)
-    const ratings = Array.from({ length: 6 })
-      .map((_, i) => get(app, `star${i}.count`, 0));
-
-    // Sum them together
-    const ratingsCount = ratings.reduce((a, b) => (a + b), 0);
-
-    // Multiply each count with how many stars they were given and divide by total count
-    const ratingsScore = ratings.map((n, i) => n * (i + 1))
-      .reduce((a, b) => (a + b), 0) / ratingsCount;
 
     return (
       <Animated.ScrollView
@@ -103,8 +101,8 @@ export default class App extends Component {
 
         <StatsRow>
           <StatsRow.Item
-            title={ratingsScore.toFixed(1)}
-            value={`${formatReviewsCount(ratingsCount)} Ratings`}
+            title={get(app, 'rating').toFixed(1)}
+            value={`${formatReviewsCount(get(app, 'ratingsCount.count'))} Ratings`}
           />
           <StatsRow.Item title={`${app.age}+`} value="Age" />
         </StatsRow>
@@ -116,50 +114,41 @@ export default class App extends Component {
           }]}
         />
 
+        {/* <Description seller={get(app, 'seller')}>{get(app, 'description')}</Description> */}
         <View>
           <CollapsedText>{get(app, 'description')}</CollapsedText>
           <Text>Developer{'\n'}{get(app, 'seller.name')}</Text>
           <Divider />
         </View>
 
-        <View>
-          <Heading action="See All">Ratings & Reviews</Heading>
-          <Text>{ratingsScore.toFixed(1)} out of 5</Text>
-          <Text>{ratingsCount.toLocaleString()} Ratings</Text>
-          <View>
-            <Text>{get(app, 'reviews.0.title')}</Text>
-            <Text>{get(app, 'reviews.0.createdAt')}</Text>
-            <Text>{get(app, 'reviews.0.rating')} / 5</Text>
-            <CollapsedText>{get(app, 'reviews.0.description')}</CollapsedText>
-          </View>
-        </View>
+        <ReviewsOverview
+          title="Ratings & Reviews"
+          reviews={get(app, 'reviews')}
+          rating={get(app, 'rating')}
+          votes={get(app, 'ratingsCount.count')}
+          onActionPress={this.onAllReviewsPress}
+        />
 
-        <View>
-          <Heading action="Version History">What{'\''}s New</Heading>
-          <View style={styles.columns}>
-            <Text style={styles.grayText}>Version {get(app, 'versions.0.version')}</Text>
-            <Text style={styles.grayText}>{distanceInWordsToNow(get(app, 'versions.0.date'))} ago</Text>
-          </View>
-          <CollapsedText numberOfLines={3}>
-            {get(app, 'versions.0.changelog')}
-          </CollapsedText>
-        </View>
+        <VersionOverview
+          version={get(version, 'version')}
+          date={get(version, 'date')}
+          description={get(version, 'changelog')}
+        />
 
         <View>
           <Heading>Information</Heading>
-          <Text>Category: {}</Text>
-          {/* <InfoRow label="Seller" value="Some seller name" />
-          <InfoRow label="Category" value=`${get(app, 'type')}: ${get(app, 'categories.0.title')}` />
-          <InfoRow label="Compatibility" value="Works on this iPhone" />
+          <InfoRow label="Seller" value="Some seller name" />
+          <InfoRow label="Category" value="Games: AR Games" />
+          <InfoRow label="Compatibility" value="Works on this iPhone and some other stuff I dont know about yet" />
           <InfoRow label="Languages" value="English" />
           <InfoRow label="Age Rating" value="4+" />
           <InfoRow label="In-App Purchases" value={get(app, 'hasInAppPurchases') ? 'Yes' : 'No'}>
-            <Row label="No ads" value="$0.99" />
-            <Row label="300 Diamonds" value="$0.99" />
-            <Row label="All levels" value="$1.99" />
+            <InfoRow.Item label="No ads" value="$0.99" />
+            <InfoRow.Item label="300 Diamonds" value="$0.99" />
+            <InfoRow.Item label="All levels" value="$1.99" />
           </InfoRow>
-          <InfoRow label="Developer Website" icon="safari" onPress={() => {}} />
-          <InfoRow label="Privacy Policy" icon="hand" onPress={() => {}} /> */}
+          <InfoRow link label="Developer Website" onPress={() => {}} />
+          <InfoRow link label="Privacy Policy" onPress={() => {}} divider={false} />
         </View>
 
         <View style={styles.bottom}>
@@ -182,24 +171,12 @@ const styles = StyleSheet.create({
     padding: 18,
   },
 
-  columns: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-
-  grayText: {
-    fontFamily: 'SFProText-Regular',
-    fontSize: 15,
-    color: '#818181',
-    letterSpacing: -0.25,
-  },
-
   bottom: {
     backgroundColor: '#F0F0F8',
     margin: -20,
     padding: 20,
     paddingBottom: 300,
     marginBottom: -200,
+    marginTop: 20,
   },
 });

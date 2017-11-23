@@ -1,0 +1,124 @@
+# projectId: cj9yjsbbk6or601985w9ksqup
+# version: 65
+
+type Review @model {
+  id: ID! @isUnique
+  rating: Int!
+  title: String
+  description: String
+  name: String!
+  app: App! @relation(name: "AppReviews")
+  createdAt: DateTime!
+}
+
+type Version @model {
+  id: ID! @isUnique
+  version: String!
+  date: DateTime!
+  changelog: String!
+  app: App! @relation(name: "AppVersion")
+}
+
+type App @model {
+  id: ID! @isUnique
+  iconUrl: String!
+  imageUrl: String!
+  title: String!
+  subtitle: String!
+  description: String!
+  price: Float
+  hasInAppPurchases: Boolean!
+  age: Int!
+  previews: [String!]
+  reviews: [Review!]! @relation(name: "AppReviews")
+  versions: [Version!]! @relation(name: "AppVersion")
+  collection: Collection @relation(name: "CollectionOnApp")
+  createdAt: DateTime!
+  rating: Float
+  score: Float
+  stories: [Story!]! @relation(name: "StoryOnApps")
+  story: Story @relation(name: "StoryOnApp")
+  updatedAt: DateTime!
+  categories: [Category!]! @relation(name: "AppOnCategory")
+  compatibility: [String!]
+  languages: [String!]
+  seller: Seller @relation(name: "AppOnSeller")
+  size: Int
+  type: AppType
+}
+
+type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type Collection @model {
+  apps: [App!]! @relation(name: "CollectionOnApp")
+  id: ID! @isUnique
+  title: String!
+  appType: AppType!
+  position: Int!
+  rows: Int!
+  type: CollectionType!
+}
+
+type Story @model {
+  app: App @relation(name: "StoryOnApp")
+  apps: [App!]! @relation(name: "StoryOnApps")
+  backgroundColor: String! @defaultValue(value: "#FFFFFF")
+  createdAt: DateTime!
+  date: DateTime!
+  id: ID! @isUnique
+  imageUrl: String!
+  legend: String!
+  title: String!
+  displayType: StoryDisplayType!
+}
+
+type Category @model {
+  apps: [App!]! @relation(name: "AppOnCategory")
+  id: ID! @isUnique
+  title: String!
+  type: AppType!
+  score: Float
+}
+
+type Seller @model {
+  apps: [App!]! @relation(name: "AppOnSeller")
+  id: ID! @isUnique
+  name: String!
+}
+
+enum StoryDisplayType {
+  DEFAULT
+  HERO
+  FROSTED
+}
+
+enum AppType {
+  APP
+  GAME
+}
+
+enum CollectionType {
+  TOP_PAID
+  TOP_FREE
+  TOP_CATEGORIES
+  FEATURED
+  LARGE_TILE
+  PROMO_TOP
+  PROMO_BOTTOM
+  DEFAULT
+}

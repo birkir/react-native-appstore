@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
 import VersionFragment from './VersionFragment';
-// import ReviewFragment from './ReviewFragment';
 
 export default gql`
   fragment AppFragment on App {
@@ -11,6 +10,7 @@ export default gql`
     subtitle
     hasInAppPurchases
     price
+    rating
     # Get latest version
     versions(
       first: 1
@@ -20,5 +20,4 @@ export default gql`
     }
   }
   ${VersionFragment}
-  #{ReviewFragment}
 `;

@@ -4,8 +4,9 @@ import { SPLASH_SCREEN, pushAppScreen } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
 import AppItemFeatured from 'components/app-item-featured';
+import AppItemLargeTile from 'components/app-item-large-tile';
 import Heading from 'components/heading';
-import ListItem from 'components/list-item';
+import CategoriesList from 'components/categories-list';
 import Divider from 'components/divider';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
@@ -80,9 +81,14 @@ export default class Games extends Component {
       };
 
       if (type === 'FEATURED') {
-        // Switch component to render
+        // Switch to Featured Component
         ComposedComponent = AppItemFeatured;
         props.legend = 'NEW GAME';
+      }
+
+      if (type === 'LARGE_TILE') {
+        // Switch to Large Tile Component
+        ComposedComponent = AppItemLargeTile;
       }
 
       if (type === 'PROMO_TOP' || type === 'PROMO_BOTTOM') {
@@ -95,7 +101,7 @@ export default class Games extends Component {
 
     // Content of the collection section
     let content = (
-      <AppItemSlider itemsPerPage={rows}>
+      <AppItemSlider itemsPerPage={rows} condensed={type === 'LARGE_TILE'}>
         {apps.map(renderAppItem)}
       </AppItemSlider>
     );
@@ -110,16 +116,17 @@ export default class Games extends Component {
       return null;
     }
 
-    // TODO: Use a component `<TopCategories type="APP|GAME" size={4} />` here
     if (type === 'TOP_CATEGORIES') {
-      const categories = ['Category 1', 'Category 2'];
-      content = categories.map(category => (
-        <ListItem key={category} label={category} />
-      ));
+      content = <CategoriesList type="GAME" top={5} />;
     }
 
     // Show heading?
     const isHeadingShown = (type !== 'FEATURED');
+
+    // Dont show empty collections
+    if (apps.length === 0) {
+      return null;
+    }
 
     return (
       <View key={collection.id}>

@@ -14,11 +14,13 @@ export default class AppItemSlider extends PureComponent {
 
   static propTypes = {
     itemsPerPage: PropTypes.number,
+    condensed: PropTypes.bool,
     children: PropTypes.node,
   }
 
   static defaultProps = {
     itemsPerPage: 1,
+    condensed: false,
     children: undefined,
   }
 
@@ -46,7 +48,7 @@ export default class AppItemSlider extends PureComponent {
 
   render() {
     const { width } = this.state;
-    const { itemsPerPage, children } = this.props;
+    const { itemsPerPage, children, condensed } = this.props;
 
     // Setup groups (or pages)
     const childs = Children.toArray(children);
@@ -59,7 +61,7 @@ export default class AppItemSlider extends PureComponent {
 
     return (
       <View>
-        <View style={styles.host} onLayout={this.onLayout}>
+        <View style={[styles.host, condensed && styles.host__condensed]} onLayout={this.onLayout}>
           <Carousel
             data={groups}
             renderItem={this.renderItem}
@@ -80,6 +82,10 @@ const styles = StyleSheet.create({
   host: {
     marginHorizontal: -20,
     marginBottom: 32,
+  },
+
+  host__condensed: {
+    marginBottom: 0,
   },
 
   item: {

@@ -16,12 +16,8 @@ export const query = gql`
       categories {
         title
       }
-      # Star ratings
-      star5: _reviewsMeta(filter: { rating: 5 }) { count }
-      star4: _reviewsMeta(filter: { rating: 4 }) { count }
-      star3: _reviewsMeta(filter: { rating: 3 }) { count }
-      star2: _reviewsMeta(filter: { rating: 2 }) { count }
-      star1: _reviewsMeta(filter: { rating: 1 }) { count }
+      rating
+      ratingsCount: _reviewsMeta { count }
       # Find one good review
       reviews(
         first: 1
