@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, ScrollView, Animated, Image, View, Keyboard, Text, TouchableOpacity } from 'react-native';
 import { autobind } from 'core-decorators';
+import { inject } from 'mobx-react/native';
 import Strong from 'components/strong';
 import Heading from 'components/heading';
 import ListItem from 'components/list-item';
 import AppItemRow from 'components/app-item-row';
 import PropTypes from 'prop-types';
+import get from 'lodash/get';
 
 const DATA = {
   trending: [
@@ -17,25 +19,18 @@ const DATA = {
     'microsoft authenticator',
     'spirit airline',
   ],
-  suggestions: [
-    'flight',
-    'speed',
-    'now',
-    'demo',
-    'goochie',
-    'lorem',
-    'ipsum',
-  ],
 };
 
 /**
  * Search screen
  * @todo Split the view code into more defined components.
  */
+@inject('algolia')
 export default class Search extends Component {
 
   static propTypes = {
     navigator: PropTypes.object.isRequired,
+    algolia: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -55,6 +50,7 @@ export default class Search extends Component {
     active: false,
     trending: false,
     results: false,
+    suggestions: [],
   };
 
   componentDidMount() {
@@ -72,6 +68,7 @@ export default class Search extends Component {
 
   @autobind
   onNavigatorEvent(e) {
+    const { algolia } = this.props;
     if (e.type === 'SearchChanged') {
       const { query, active } = e.payload;
       // Show or hide backdrop
@@ -84,6 +81,14 @@ export default class Search extends Component {
       }
       // Update active-ness and search query
       this.setState({ query, active, results: false });
+      // Search query
+      algolia.apps.search(query, (err, res) => {
+        if (!err) {
+          this.setState({
+            suggestions: res.hits,
+          });
+        }
+      });
     }
 
     if (e.id === 'didAppear') {
@@ -117,6 +122,16 @@ export default class Search extends Component {
   // Animated value for backdrop opacity
   backdrop = new Animated.Value(0);
 
+  renderHighlights(str = '') {
+    const re = /<em>.*?<\/em>/g;
+    const highlights = str.match(re) || [];
+    return (str.split(re) || []).reduce((acc, word, i) => [
+      ...acc,
+      <Text key={`w${i + 0}`}>{word}</Text>,
+      highlights[i] && <Strong key={`h${i + 0}`}>{highlights[i].replace(/<\/?em>/g, '')}</Strong>,
+    ], []);
+  }
+
   render() {
     const {
       active,
@@ -124,9 +139,6 @@ export default class Search extends Component {
       trending,
       results,
     } = this.state;
-
-    // TODO: Remove this
-    DATA.suggestions.sort(() => Math.random() - 0.5);
 
     return (
       <View style={styles.host}>
@@ -164,15 +176,14 @@ export default class Search extends Component {
         {active && query !== '' && (
           <View style={[StyleSheet.absoluteFill, styles.results]}>
             <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.content}>
-              {DATA.suggestions.map(label => (
-                <TouchableOpacity style={styles.suggestion} key={label}>
+              {this.state.suggestions.map(suggestion => (
+                <TouchableOpacity style={styles.suggestion} key={suggestion.id}>
                   <Image
                     style={styles.suggestion__icon}
                     source={require('images/SearchIcon.png')}
                   />
                   <Text style={styles.suggestion__text}>
-                    <Strong>{query}</Strong>
-                    <Text> {label}</Text>
+                    {this.renderHighlights(get(suggestion, '_highlightResult.title.value'))}
                   </Text>
                 </TouchableOpacity>
               ))}

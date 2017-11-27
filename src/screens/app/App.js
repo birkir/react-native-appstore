@@ -49,6 +49,21 @@ export default class App extends Component {
     // Make sure those are set from the previous screen
   }
 
+  constructor(props) {
+    super(props);
+    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+  }
+
+  @autobind
+  onNavigatorEvent(e) {
+    const { id, type } = e;
+    if (type === 'ScreenChangedEvent') {
+      if (id === 'willDisappear') {
+        this.props.ui.appScreenHeaderOpacity.setValue(0);
+      }
+    }
+  }
+
   @autobind
   onScroll(e) {
     const isHeaderVisible = e.nativeEvent.contentOffset.y < 110;
@@ -114,7 +129,7 @@ export default class App extends Component {
           }]}
         />
 
-        {/* <Description seller={get(app, 'seller')}>{get(app, 'description')}</Description> */}
+        {/* <Description onSellerPress seller={get(app, 'seller')}>{get(app, 'description')}</Description> */}
         <View>
           <CollapsedText>{get(app, 'description')}</CollapsedText>
           <Text>Developer{'\n'}{get(app, 'seller.name')}</Text>
@@ -137,11 +152,11 @@ export default class App extends Component {
 
         <View>
           <Heading>Information</Heading>
-          <InfoRow label="Seller" value="Some seller name" />
+          <InfoRow label="Seller" value={get(app, 'seller.name')} />
           <InfoRow label="Category" value="Games: AR Games" />
           <InfoRow label="Compatibility" value="Works on this iPhone and some other stuff I dont know about yet" />
           <InfoRow label="Languages" value="English" />
-          <InfoRow label="Age Rating" value="4+" />
+          <InfoRow label="Age Rating" value={`${get(app, 'age')}+`} />
           <InfoRow label="In-App Purchases" value={get(app, 'hasInAppPurchases') ? 'Yes' : 'No'}>
             <InfoRow.Item label="No ads" value="$0.99" />
             <InfoRow.Item label="300 Diamonds" value="$0.99" />
@@ -156,7 +171,8 @@ export default class App extends Component {
             <Heading>More by Some seller name</Heading>
             <Heading>You may also like</Heading>
           </View>
-          <View>
+          <Divider />
+          <View style={styles.copyright}>
             <Text>© {get(app, 'seller.name')}</Text>
           </View>
         </View>
@@ -169,6 +185,10 @@ const styles = StyleSheet.create({
   host: {
     flex: 1,
     padding: 18,
+  },
+
+  copyright: {
+    paddingTop: 5,
   },
 
   bottom: {

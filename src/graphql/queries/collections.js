@@ -24,10 +24,10 @@ export const query = gql`
   ${AppFragment}
 `;
 
-export default ({ appType }) => graphql(query, {
-  options: {
+export default graphql(query, {
+  options: props => ({
     variables: {
-      appType,
+      appType: props.type,
     },
-  },
+  }),
 });

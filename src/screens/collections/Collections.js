@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView, Image, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { SPLASH_SCREEN, pushAppScreen } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
@@ -10,24 +10,25 @@ import CategoriesList from 'components/categories-list';
 import Divider from 'components/divider';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
-import collections from 'graphql/queries/collections';
+import collectionsWithProps from 'graphql/queries/collections';
 
-@collections({ appType: 'GAME' })
+@collectionsWithProps
 export default class Games extends Component {
 
   static propTypes = {
     navigator: PropTypes.object,
     data: PropTypes.object,
+    title: PropTypes.string,
   }
 
   static defaultProps = {
     navigator: undefined,
     data: undefined,
+    title: undefined,
   }
 
   static navigatorStyle = {
     navBarNoBorder: true,
-    // navBarTransparent: true,
     drawUnderTabBar: true,
     prefersLargeTitles: true,
     navBarBackgroundColor: 'white',
@@ -43,11 +44,24 @@ export default class Games extends Component {
 
   @autobind
   onAppPress({ id, action }) {
+    const { title } = this.props;
     pushAppScreen(this.props.navigator, {
-      backTitle: 'Games',
+      backTitle: title,
       action,
       id,
     });
+  }
+
+  keyExtractor(item) {
+    return item.key || item.id;
+  }
+
+  @autobind
+  renderItem({ item }) {
+    if (typeof item.type === 'function' && item.type.prototype instanceof Component) {
+      return item;
+    }
+    return this.renderCollection(item);
   }
 
   @autobind
@@ -142,7 +156,6 @@ export default class Games extends Component {
 
   render() {
     const {
-      loading,
       error,
       allCollections = [],
     } = this.props.data;
@@ -152,15 +165,16 @@ export default class Games extends Component {
     }
 
     return (
-      <ScrollView style={styles.host}>
-        <View style={styles.user}>
-          <Image source={require('images/UserIcon.png')} style={styles.user__image} />
-        </View>
-        <Divider />
-        {loading && <ActivityIndicator />}
-        {allCollections.map(this.renderCollection)}
-        <View style={styles.gutter} />
-      </ScrollView>
+      <FlatList
+        style={styles.host}
+        renderItem={this.renderItem}
+        keyExtractor={this.keyExtractor}
+        data={[
+          <Divider key="divider" />,
+          ...allCollections,
+          <View key="gutter" style={styles.gutter} />,
+        ]}
+      />
     );
   }
 }
@@ -169,23 +183,9 @@ const styles = StyleSheet.create({
   host: {
     flex: 1,
     padding: 18,
-    marginTop: -50,
-    paddingTop: 50,
   },
 
   gutter: {
     height: 200,
-  },
-
-  user: {
-    position: 'absolute',
-    top: -50,
-    right: 0,
-    width: 42,
-    height: 42,
-  },
-
-  user__image: {
-    tintColor: '#0077FD',
   },
 });

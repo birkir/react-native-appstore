@@ -1,7 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 import SplashScreen from './splash';
 import TodayScreen from './today';
-import GamesScreen from './games';
+import CollectionsScreen from './collections';
 import AppScreen from './app';
 import AppToolbar from './app/components/toolbar';
 import AppButton from './app/components/button';
@@ -12,7 +12,7 @@ import SearchScreen from './search';
 export const Screens = new Map();
 export const SPLASH_SCREEN = 'appStoreClone.SplashScreen';
 export const TODAY_SCREEN = 'appStoreClone.TodayScreen';
-export const GAMES_SCREEN = 'appStoreClone.GamesScreen';
+export const COLLECTIONS_SCREEN = 'appStoreClone.CollectionsScreen';
 export const APP_SCREEN = 'appStoreClone.AppScreen';
 export const APP_TOOLBAR = 'appStoreClone.AppToolbar';
 export const APP_BUTTON = 'appStoreClone.AppButton';
@@ -22,7 +22,7 @@ export const SEARCH_SCREEN = 'appStoreClone.SearchScreen';
 // Resolve screen constants to imported class
 Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(TODAY_SCREEN, () => TodayScreen);
-Screens.set(GAMES_SCREEN, () => GamesScreen);
+Screens.set(COLLECTIONS_SCREEN, () => CollectionsScreen);
 Screens.set(APP_SCREEN, () => AppScreen);
 Screens.set(APP_TOOLBAR, () => AppToolbar);
 Screens.set(APP_BUTTON, () => AppButton);
@@ -38,13 +38,21 @@ export const startApp = () => {
     }, {
       label: 'Games',
       title: 'Games',
-      screen: GAMES_SCREEN,
+      screen: COLLECTIONS_SCREEN,
       icon: require('images/GamesIcon.png'),
+      passProps: {
+        type: 'GAME',
+        title: 'Games',
+      },
     }, {
       label: 'Apps',
       title: 'Apps',
-      screen: GAMES_SCREEN,
+      screen: COLLECTIONS_SCREEN,
       icon: require('images/AppsIcon.png'),
+      passProps: {
+        type: 'APP',
+        title: 'Apps',
+      },
     }, {
       label: 'Updates',
       title: 'Updates',

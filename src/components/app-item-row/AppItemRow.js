@@ -158,7 +158,6 @@ const styles = StyleSheet.create({
   },
 
   index: {
-    // minWidth: 14,
     paddingRight: 10,
     paddingTop: 1,
   },

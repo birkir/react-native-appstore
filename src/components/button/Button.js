@@ -10,7 +10,7 @@ const HEIGHT = 28;
  * Button component
  * This component turned out to be more complex than it looked at first.
  * It's fixed width is mainly due to loading spinner, but that can be
- * @todo refactored later so it can be dynamic.
+ * @todo refactored later so it can be dynamic width.
  */
 export default class Button extends PureComponent {
 
@@ -36,9 +36,15 @@ export default class Button extends PureComponent {
     width: WIDTH,
   };
 
+  state = {
+    loading: false,
+  }
+
   componentWillReceiveProps(props) {
     if (this.props.loading !== props.loading) {
-      this.loading(props.loading);
+      this.setState({ loading: true }, () => {
+        this.loading(props.loading);
+      });
     }
   }
 
@@ -194,21 +200,30 @@ export default class Button extends PureComponent {
     return (
       <TouchableWithoutFeedback onPress={this.props.onPress}>
         <View style={[styles.host, { width }, circle && styles.host__circle]}>
-          <Animated.View style={[styles.container, animated.container]}>
-            <Animated.View
-              style={[
-                StyleSheet.absoluteFill,
-                styles.background, blue && styles.background__blue,
-                animated.background,
-              ]}
-            />
-            <Animated.View style={[styles.flex, animated.rotate]}>
-              <MaskedViewIOS style={styles.flex} maskElement={spinnerMask}>
-                <View style={styles.spinner} />
-              </MaskedViewIOS>
+          {this.state.loading && (
+            <Animated.View style={[styles.container, animated.container]}>
+              <Animated.View
+                style={[
+                  StyleSheet.absoluteFill,
+                  styles.background, blue && styles.background__blue,
+                  animated.background,
+                ]}
+              />
+              <Animated.View style={[styles.flex, animated.rotate]}>
+                <MaskedViewIOS style={styles.flex} maskElement={spinnerMask}>
+                  <View style={styles.spinner} />
+                </MaskedViewIOS>
+              </Animated.View>
             </Animated.View>
-          </Animated.View>
-          <Animated.View style={[StyleSheet.absoluteFill, styles.content, animated.content]}>
+          )}
+          <Animated.View
+            style={[
+              StyleSheet.absoluteFill,
+              styles.content,
+              animated.content,
+              !this.state.loading && styles.content__loading__placeholder,
+            ]}
+          >
             <Text
               style={[
                 styles.content__text,
@@ -317,6 +332,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  content__loading__placeholder: {
+    borderRadius: HEIGHT / 2,
+    backgroundColor: '#EFEFF4',
   },
 
   content__text: {

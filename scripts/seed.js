@@ -1,17 +1,22 @@
+/* eslint import/no-extraneous-dependencies: 0 */
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import faker from 'faker'; // eslint-disable-line
-import fetch from 'node-fetch'; // eslint-disable-line
+import algoliasearch from 'algoliasearch';
+import faker from 'faker';
+import fetch from 'node-fetch';
 import sampleSize from 'lodash/sampleSize';
 import gql from 'graphql-tag';
-import config from '../src/config.env';
 
 // Create new Apollo client
 const client = new ApolloClient({
   link: new HttpLink({ uri: process.env.API_URL, fetch }),
   cache: new InMemoryCache(),
 });
+
+// Create algolia client
+const algoliaClient = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_API_KEY);
+const index = algoliaClient.initIndex('apps');
 
 // Static
 const CATEGORIES = {
@@ -344,7 +349,7 @@ const generateReviewsAndScore = () => {
     rating,
     score,
   };
-}
+};
 
 const generateApp = (type, categories = [], sellerId) => ({
   iconUrl: faker.image.avatar(),
@@ -422,11 +427,16 @@ async function createApps(type, size, categories, sellers) {
   console.log('\nCreate apps', type, size);
   return Promise.all(Array.from({ length: size }).map(async () => {
     const seller = faker.random.arrayElement(sellers);
+    const variables = generateApp(type, categories, seller);
     const { data } = await client.mutate({
       mutation: createAppMutation,
-      variables: generateApp(type, categories, seller),
+      variables,
     });
     console.log('Created app', data.createApp.id);
+    // Add index
+    await index.addObject({ ...data.createApp, ...variables, versions: null });
+    console.log('Added index');
+
     return data.createApp.id;
   }));
 }
