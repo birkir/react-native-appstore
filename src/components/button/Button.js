@@ -221,7 +221,8 @@ export default class Button extends PureComponent {
               StyleSheet.absoluteFill,
               styles.content,
               animated.content,
-              !this.state.loading && styles.content__loading__placeholder,
+              !this.state.loading && styles.background,
+              !this.state.loading && blue && styles.background__blue,
             ]}
           >
             <Text
@@ -334,7 +335,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  content__loading__placeholder: {
+  content__bg: {
     borderRadius: HEIGHT / 2,
     backgroundColor: '#EFEFF4',
   },
