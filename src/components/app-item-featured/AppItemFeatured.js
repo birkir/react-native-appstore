@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import Divider from 'components/divider';
 import PropTypes from 'prop-types';
+import { autobind } from 'core-decorators';
 
 /**
  * Featured App Item
@@ -25,16 +26,22 @@ export default class AppItemFeatured extends PureComponent {
     onPress: undefined,
   }
 
+  @autobind
+  onPress() {
+    if (this.props.onPress) {
+      this.props.onPress(this.props);
+    }
+  }
+
   render() {
     const {
       legend,
       imageUrl,
       title,
       subtitle,
-      onPress,
     } = this.props;
     return (
-      <TouchableWithoutFeedback onPress={onPress}>
+      <TouchableWithoutFeedback onPress={this.onPress}>
         <View style={styles.host}>
           <Text style={styles.legend}>{legend}</Text>
           <Text style={styles.title} numberOfLines={1}>{title}</Text>
