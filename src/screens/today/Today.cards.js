@@ -63,7 +63,6 @@ const cards = [
     children={text} // eslint-disable-line
   />,
   <Card
-    frosted
     legend="Play with friends"
     title="Board Games Gone Digital"
     imageUrl="https://cdn.dribbble.com/users/3856/screenshots/2995924/linda-zero-ueno.jpg"

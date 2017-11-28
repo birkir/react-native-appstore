@@ -128,7 +128,7 @@ export default class Search extends Component {
     return (str.split(re) || []).reduce((acc, word, i) => [
       ...acc,
       <Text key={`w${i + 0}`}>{word}</Text>,
-      highlights[i] && <Strong key={`h${i + 0}`}>{highlights[i].replace(/<\/?em>/g, '')}</Strong>,
+      highlights[i] && <Text style={styles.light} key={`h${i + 0}`}>{highlights[i].replace(/<\/?em>/g, '')}</Text>,
     ], []);
   }
 
@@ -140,21 +140,29 @@ export default class Search extends Component {
       results,
     } = this.state;
 
+    const fontStyle = {
+      fontFamily: 'SFProText-Regular',
+      fontSize: 21,
+      letterSpacing: -0.4,
+      color: this.backdrop.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['#007AFF', '#555555'],
+      }),
+    };
+
     return (
       <View style={styles.host}>
         {trending && (
           <ScrollView style={styles.content}>
             <Heading>Trending</Heading>
-            {DATA.trending.map(label => (
+            {DATA.trending.map((label, i, arr) => (
               <ListItem
                 key={label}
                 label={label}
-                color={this.backdrop.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ['#007AFF', '#555555'],
-                })}
+                fontStyle={fontStyle}
                 underlayColor="white"
                 onPress={() => {}}
+                divider={(i + 1) < arr.length}
               />
             ))}
           </ScrollView>
@@ -181,9 +189,10 @@ export default class Search extends Component {
                   <Image
                     style={styles.suggestion__icon}
                     source={require('images/SearchIcon.png')}
+                    resizeMode="contain"
                   />
                   <Text style={styles.suggestion__text}>
-                    {this.renderHighlights(get(suggestion, '_highlightResult.title.value'))}
+                    {this.renderHighlights(get(suggestion, '_highlightResult.title.value').toLowerCase())}
                   </Text>
                 </TouchableOpacity>
               ))}
@@ -228,16 +237,27 @@ const styles = StyleSheet.create({
     padding: 18,
   },
 
+  light: {
+    color: '#7E7E80',
+  },
+
   suggestion: {
     flexDirection: 'row',
-    paddingVertical: 11,
+    paddingVertical: 14,
     alignItems: 'center',
   },
 
+  suggestion__text: {
+    fontFamily: 'SFProText-Regular',
+    fontSize: 21,
+    letterSpacing: -0.4,
+  },
+
   suggestion__icon: {
-    width: 14,
-    height: 14,
-    marginRight: 8,
+    width: 16,
+    height: 16,
+    marginRight: 5,
+    marginTop: 1,
   },
 
   results: {

@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, Animated, View, Text, Image, Dimensions, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import { autobind } from 'core-decorators';
 import Button from 'components/button';
-import AppItemRow from 'components/app-item-row';
-import { VibrancyView } from 'react-native-blur';
+// import AppItemRow from 'components/app-item-row';
 import PropTypes from 'prop-types';
 
 // Transition helper method
@@ -39,7 +38,6 @@ export default class Card extends PureComponent {
     legend: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
-    frosted: PropTypes.bool,
     hero: PropTypes.bool,
     app: PropTypes.object,
     apps: PropTypes.arrayOf(PropTypes.object),
@@ -52,7 +50,6 @@ export default class Card extends PureComponent {
     onOpenChange: undefined,
     imageUrl: undefined,
     legend: undefined,
-    frosted: false,
     hero: false,
     title: undefined,
     subtitle: undefined,
@@ -160,7 +157,6 @@ export default class Card extends PureComponent {
     const {
       imageUrl,
       legend,
-      frosted,
       hero,
       title,
       subtitle,
@@ -177,7 +173,7 @@ export default class Card extends PureComponent {
     } = state;
 
     // Text dark mode?
-    const dark = !imageUrl || frosted || light;
+    const dark = !imageUrl || light;
 
     const animated = {
       host: {
@@ -261,9 +257,6 @@ export default class Card extends PureComponent {
     // Toggle opacity of content view
     const opacity = layout ? 1 : 0;
 
-    // Frosted flag uses vibrancy view
-    const Frosted = frosted ? VibrancyView : View;
-
     return (
       <View
         style={[styles.root, { zIndex }]}
@@ -318,11 +311,7 @@ export default class Card extends PureComponent {
                       </Text>
                     </View>
                   ) : (
-                    <Frosted
-                      style={[frosted && styles.frosted]}
-                      blurAmount={15}
-                      blurType="light"
-                    >
+                    <View>
                       {legend && (
                         <Text style={[styles.legend, dark && styles.dark]}>
                           {String(legend || '').toLocaleUpperCase()}
@@ -333,7 +322,7 @@ export default class Card extends PureComponent {
                           {title}
                         </Text>
                       )}
-                    </Frosted>
+                    </View>
                   )}
                   {/* {apps ? (
                     <View style={styles.apps}>
@@ -414,10 +403,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
 
-  flex: {
-    flex: 1,
-  },
-
   host: {
     height: CARD_COLLAPSED_HEIGHT,
     marginBottom: 30,
@@ -452,10 +437,6 @@ const styles = StyleSheet.create({
     height: 30,
 
     opacity: 0.6,
-  },
-
-  apps: {
-    paddingTop: 32,
   },
 
   apps__cover: {
@@ -513,13 +494,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     letterSpacing: -0.24,
     backgroundColor: 'transparent',
-  },
-
-  frosted: {
-    backgroundColor: 'rgba(255, 255, 255, 0.33)',
-    margin: -20,
-    marginTop: -25,
-    padding: 20,
   },
 
   dark: {

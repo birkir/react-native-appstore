@@ -59,7 +59,12 @@ export default class ReviewsOverview extends PureComponent {
             <Text style={styles.review__subtitle}>{get(review, 'name')}</Text>
           </View>
         </View>
-        <CollapsedText backgroundColor="#F0F0F8">{get(review, 'description')}</CollapsedText>
+        <CollapsedText
+          backgroundColor="#F0F0F8"
+          numberOfLines={5}
+        >
+          {get(review, 'description')}
+        </CollapsedText>
       </View>
     );
   }
