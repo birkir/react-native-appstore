@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import Divider from 'components/divider';
 import Carousel from 'react-native-snap-carousel';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
@@ -34,7 +35,6 @@ export default class Screenshots extends PureComponent {
     );
   }
 
-
   render() {
     const { width } = this.state;
     return (
@@ -50,9 +50,8 @@ export default class Screenshots extends PureComponent {
             inactiveSlideOpacity={1}
           />
         </View>
-        <Text>[] iPhone</Text>
-        <Text>Summary here</Text>
-        <View style={styles.border} />
+        <Text>Offers iPhone App</Text>
+        <Divider />
       </View>
     );
   }

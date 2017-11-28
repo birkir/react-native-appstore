@@ -5,9 +5,15 @@ import Button from 'components/button';
 import Divider from 'components/divider';
 import { autobind } from 'core-decorators';
 
+/**
+ * App Item Row
+ * Very complex but robust component that displays a row of app item.
+ * @todo Use object for action proptype
+ */
 export default class AppItemRow extends PureComponent {
 
   static propTypes = {
+    id: PropTypes.string,
     legend: PropTypes.string,
     imageUrl: PropTypes.string,
     screenshotUrl: PropTypes.string,
@@ -16,14 +22,17 @@ export default class AppItemRow extends PureComponent {
     subtitle: PropTypes.string,
     divider: PropTypes.bool,
     compact: PropTypes.bool,
-    action: PropTypes.string,
-    actionWidth: PropTypes.number,
-    onActionPress: PropTypes.func,
-    isActionLoading: PropTypes.bool,
+    action: PropTypes.shape({
+      label: PropTypes.string,
+      width: PropTypes.number,
+      onPress: PropTypes.func,
+      loading: PropTypes.bool,
+    }),
     onPress: PropTypes.func,
   }
 
   static defaultProps = {
+    id: undefined,
     legend: undefined,
     imageUrl: undefined,
     screenshotUrl: undefined,
@@ -33,32 +42,13 @@ export default class AppItemRow extends PureComponent {
     divider: true,
     compact: false,
     action: undefined,
-    actionWidth: undefined,
-    isActionLoading: false,
-    onActionPress: undefined,
     onPress: undefined,
   }
 
-  state = {
-    isActionLoading: false,
-  }
-
-  componentWillReceiveProps(props) {
-    if (props.isActionLoading !== this.props.isActionLoading) {
-      this.setState({
-        isActionLoading: props.isActionLoading,
-      });
-    }
-  }
-
   @autobind
-  onActionPress() {
-    if (this.props.onActionPress) {
-      this.props.onActionPress();
-    } else {
-      this.setState({
-        isActionLoading: !this.state.isActionLoading,
-      });
+  onPress() {
+    if (this.props.onPress) {
+      this.props.onPress(this.props);
     }
   }
 
@@ -73,12 +63,10 @@ export default class AppItemRow extends PureComponent {
       divider,
       compact,
       action,
-      actionWidth,
-      onPress,
     } = this.props;
-    const { isActionLoading } = this.state;
+
     return (
-      <TouchableWithoutFeedback onPress={onPress}>
+      <TouchableWithoutFeedback onPress={this.onPress}>
         <View>
           {legend && (
             <Text style={styles.legend}>{legend}</Text>
@@ -112,11 +100,13 @@ export default class AppItemRow extends PureComponent {
                 </Text>
               </View>
             </View>
-            <View>
-              <Button onPress={this.onActionPress} width={actionWidth} loading={isActionLoading}>
-                {action}
-              </Button>
-            </View>
+            {action && (
+              <View>
+                <Button {...action}>
+                  {action.label}
+                </Button>
+              </View>
+            )}
             {divider && (
               <View style={[styles.divider, compact && styles.divider__compact]}>
                 <Divider />
@@ -157,7 +147,7 @@ const styles = StyleSheet.create({
   image: {
     width: 62,
     height: 62,
-    borderRadius: 16,
+    borderRadius: 14,
     marginRight: 10,
   },
 
@@ -168,7 +158,6 @@ const styles = StyleSheet.create({
   },
 
   index: {
-    // minWidth: 14,
     paddingRight: 10,
     paddingTop: 1,
   },

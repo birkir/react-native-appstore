@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class Heading extends PureComponent {
+
   static propTypes = {
     children: PropTypes.node,
     action: PropTypes.string,
@@ -41,13 +42,13 @@ const styles = StyleSheet.create({
 
   action: {
     fontFamily: 'SFProText-Regular',
-    fontSize: 17,
+    fontSize: 16,
     color: '#007AFF',
     letterSpacing: -0.41,
 
     // Making hit area a little bit bigger
     paddingHorizontal: 6,
-    paddingVertical: 3,
+    paddingVertical: 4,
     marginBottom: -3,
   },
 

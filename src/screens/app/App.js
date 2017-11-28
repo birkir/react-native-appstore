@@ -4,45 +4,41 @@ import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
+import Divider from 'components/divider';
+import InfoRow from 'components/info-row';
 import CollapsedText from 'components/collapsed-text';
+import { appWithProps } from 'graphql/queries/app';
+import get from 'lodash/get';
 import Header from './components/header';
 import StatsRow from './components/stats-row';
 import Screenshots from './components/screenshots';
+import ReviewsOverview from './components/reviews-overview';
+import VersionOverview from './components/version-overview';
 
-const DATA = {
-  iconUrl: `https://placeimg.com/198/198/any?${Math.random()}`,
-  title: 'Spark Email',
-  subtitle: 'New exciting tournament game mode!',
-  action: 'FREE',
-  rating: {
-    value: 4.5,
-    votes: 8360,
-  },
-  ageRestriction: '4+',
-  versionHistory: [{
-    version: '3.0',
-    date: new Date(),
-    changelog: 'Refreshed design and better navigation.',
-  }],
-  previews: [''],
+const formatReviewsCount = (count) => {
+  if (count > 1000) {
+    return `${(count / 1000).toFixed(2)}K`;
+  }
+  return count;
 };
 
 /**
  * App detail screen
+ * Can be showed with initial data that will be used to render some parts of the screen while
+ * data needed further down the screen is being loaded.
  */
-
+@appWithProps
 @inject('ui')
 @observer
 export default class App extends Component {
 
   static propTypes = {
+    navigator: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
-    // children: PropTypes.node,
+    data: PropTypes.object.isRequired,
   }
 
-  static defaultProps = {
-    // children: undefined,
-  }
+  static defaultProps = {}
 
   static navigatorStyle = {
     prefersLargeTitles: false,
@@ -53,13 +49,19 @@ export default class App extends Component {
     // Make sure those are set from the previous screen
   }
 
-  state = {
-    loading: true,
+  constructor(props) {
+    super(props);
+    props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
 
   @autobind
-  onActionPress() {
-    this.setState({ loading: !this.state.loading });
+  onNavigatorEvent(e) {
+    const { id, type } = e;
+    if (type === 'ScreenChangedEvent') {
+      if (id === 'willDisappear') {
+        this.props.ui.appScreenHeaderOpacity.setValue(0);
+      }
+    }
   }
 
   @autobind
@@ -79,6 +81,24 @@ export default class App extends Component {
       inputRange: [0, 1],
       outputRange: [1, 0],
     });
+
+    const {
+      App: app,
+      loading,
+      error,
+    } = this.props.data;
+
+    const version = get(app, 'versions.0');
+
+    if (loading || error) {
+      return null;
+    }
+
+    const action = {
+      label: app.price ? `$${app.price}` : 'GET',
+      onPress: () => this.props.navigator.pop(),
+    };
+
     return (
       <Animated.ScrollView
         style={styles.host}
@@ -87,75 +107,75 @@ export default class App extends Component {
       >
         <Animated.View style={{ opacity }}>
           <Header
-            iconUrl={DATA.iconUrl}
-            title={DATA.title}
-            subtitle={DATA.subtitle}
-            action="FREE"
-            actionSubtitle="In-App Purchases"
-            isActionLoading={this.state.loading}
-            onActionPress={this.onActionPress}
+            iconUrl={app.iconUrl}
+            title={app.title}
+            subtitle={app.subtitle}
+            action={action}
           />
         </Animated.View>
+
         <StatsRow>
-          <StatsRow.Item title="4.5" value="8.36K Ratings" />
-          <StatsRow.Item title="4+" value="Age" />
+          <StatsRow.Item
+            title={get(app, 'rating').toFixed(1)}
+            value={`${formatReviewsCount(get(app, 'ratingsCount.count'))} Ratings`}
+          />
+          <StatsRow.Item title={`${app.age}+`} value="Age" />
         </StatsRow>
+
         <Screenshots
           data={[{
             title: 'iPhone',
-            screenshots: [1, 2, 3, 4, 5],
-          }, {
-            title: 'Apple Watch',
-            screenshots: [1, 2, 3, 4, 5],
+            screenshots: get(app, 'previews'),
           }]}
         />
+
+        {/* <Description onSellerPress seller={get(app, 'seller')}>{get(app, 'description')}</Description> */}
         <View>
-          <Heading action="See All">Ratings & Reviews</Heading>
+          <CollapsedText>{get(app, 'description')}</CollapsedText>
+          <Text>Developer{'\n'}{get(app, 'seller.name')}</Text>
+          <Divider />
         </View>
-        <View>
-          <Heading action="Version History">What{'\''}s New</Heading>
-          <View style={styles.columns}>
-            <Text style={styles.grayText}>Version 5.1.0</Text>
-            <Text style={styles.grayText}>16h ago</Text>
-          </View>
-          <CollapsedText numberOfLines={3}>
-            Now the #1 classic dice game is new and better than ever!{'\n'}
-             - New score board for faster, more exciting troubles.{'\n\n'}
-            Then some more...
-          </CollapsedText>
-        </View>
+
+        <ReviewsOverview
+          title="Ratings & Reviews"
+          reviews={get(app, 'reviews')}
+          rating={get(app, 'rating')}
+          votes={get(app, 'ratingsCount.count')}
+          onActionPress={this.onAllReviewsPress}
+        />
+
+        <VersionOverview
+          version={get(version, 'version')}
+          date={get(version, 'date')}
+          description={get(version, 'changelog')}
+        />
+
         <View>
           <Heading>Information</Heading>
-          {/* <InfoRow label="Seller" value="Some seller name" />
-          <InfoRow label="Category" value="Games: Puzzle" />
-          <InfoRow label="Compatibility" value="Works on this iPhone" />
+          <InfoRow label="Seller" value={get(app, 'seller.name')} />
+          <InfoRow label="Category" value="Games: AR Games" />
+          <InfoRow label="Compatibility" value="Works on this iPhone and some other stuff I dont know about yet" />
           <InfoRow label="Languages" value="English" />
-          <InfoRow label="Age Rating" value="4+" />
-          <InfoRow label="In-App Purchases" value="Yes">
-            <Row label="No ads" value="$0.99" />
-            <Row label="300 Diamonds" value="$0.99" />
-            <Row label="All levels" value="$1.99" />
+          <InfoRow label="Age Rating" value={`${get(app, 'age')}+`} />
+          <InfoRow label="In-App Purchases" value={get(app, 'hasInAppPurchases') ? 'Yes' : 'No'}>
+            <InfoRow.Item label="No ads" value="$0.99" />
+            <InfoRow.Item label="300 Diamonds" value="$0.99" />
+            <InfoRow.Item label="All levels" value="$1.99" />
           </InfoRow>
-          <InfoRow label="Developer Website" icon="safari" onPress={() => {}} />
-          <InfoRow label="Privacy Policy" icon="hand" onPress={() => {}} /> */}
+          <InfoRow link label="Developer Website" onPress={() => {}} />
+          <InfoRow link label="Privacy Policy" onPress={() => {}} divider={false} />
         </View>
-        <View>
-          <Heading>Supports</Heading>
-          {/* <SupportItem
-            icon="cloud-family"
-            title="Family Sharing"
-            description="Up to six family members will be
-            able to use this app with Family Sharing enabled."
-          /> */}
+
+        <View style={styles.bottom}>
+          <View>
+            <Heading>More by Some seller name</Heading>
+            <Heading>You may also like</Heading>
+          </View>
+          <Divider />
+          <View style={styles.copyright}>
+            <Text>© {get(app, 'seller.name')}</Text>
+          </View>
         </View>
-        <View>
-          <Heading>More by Some seller name</Heading>
-          <Heading>You may also like</Heading>
-        </View>
-        <View>
-          <Text>© Some seller name</Text>
-        </View>
-        <View style={styles.gutter} />
       </Animated.ScrollView>
     );
   }
@@ -167,19 +187,16 @@ const styles = StyleSheet.create({
     padding: 18,
   },
 
-  columns: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  copyright: {
+    paddingTop: 5,
   },
 
-  grayText: {
-    fontFamily: 'SFProText-Regular',
-    fontSize: 15,
-    color: '#818181',
-    letterSpacing: -0.25,
-  },
-
-  gutter: {
-    height: 100,
+  bottom: {
+    backgroundColor: '#F0F0F8',
+    margin: -20,
+    padding: 20,
+    paddingBottom: 300,
+    marginBottom: -200,
+    marginTop: 20,
   },
 });

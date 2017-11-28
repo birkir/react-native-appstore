@@ -4,29 +4,33 @@ import PropTypes from 'prop-types';
 import Divider from 'components/divider';
 
 export default class ListItem extends PureComponent {
+
   static propTypes = {
     label: PropTypes.string,
-    color: PropTypes.object,
+    fontStyle: PropTypes.any,
     underlayColor: PropTypes.string,
     onPress: PropTypes.func,
     divider: PropTypes.bool,
+    leftComponent: PropTypes.node,
   }
 
   static defaultProps = {
     label: undefined,
-    color: undefined,
+    fontStyle: undefined,
     underlayColor: '#BCBBC1',
     onPress: undefined,
     divider: true,
+    leftComponent: undefined,
   }
 
   render() {
     const {
       label,
-      color,
+      fontStyle,
       underlayColor,
       onPress,
       divider,
+      leftComponent,
     } = this.props;
 
     return (
@@ -37,9 +41,12 @@ export default class ListItem extends PureComponent {
           underlayColor={underlayColor}
           style={styles.touchable}
         >
-          <Animated.Text style={[styles.text, { color }]}>
-            {label}
-          </Animated.Text>
+          <View style={styles.content}>
+            {leftComponent}
+            <Animated.Text style={[styles.text, fontStyle]}>
+              {label}
+            </Animated.Text>
+          </View>
         </TouchableHighlight>
         {divider && <Divider />}
       </View>
@@ -58,6 +65,12 @@ const styles = StyleSheet.create({
     marginBottom: -1,
   },
 
+  content: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+  },
+
   text: {
     fontFamily: 'SFProText-Regular',
     fontSize: 17,
@@ -66,6 +79,5 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     paddingVertical: 11,
     backgroundColor: 'transparent',
-    paddingHorizontal: 20,
   },
 });

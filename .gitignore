@@ -48,7 +48,6 @@ buck-out/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/
 
-<<<<<<< ours
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
@@ -58,8 +57,4 @@ android/keystores/release.*
 config.env.js
 GeneratedDotEnv.m
 GeneratedInfoPlistDotEnv.h
-=======
-*/fastlane/report.xml
-*/fastlane/Preview.html
-*/fastlane/screenshots
->>>>>>> theirs
+.build

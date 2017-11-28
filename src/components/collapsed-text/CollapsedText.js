@@ -3,18 +3,25 @@ import { StyleSheet, View, Animated, TouchableOpacity, Text } from 'react-native
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
 
+/**
+ * Collapsed Text
+ * Shows text in collapsed state with one-time expanding button.
+ * @todo Currently does not use nativeDriver as we're animating height.
+ */
 export default class CollapsedText extends Component {
 
   static propTypes = {
     children: PropTypes.node,
     numberOfLines: PropTypes.number,
     style: PropTypes.any,
+    backgroundColor: PropTypes.string,
   }
 
   static defaultProps = {
     children: undefined,
     numberOfLines: 2,
     style: undefined,
+    backgroundColor: 'white',
   }
 
   state = {
@@ -41,18 +48,25 @@ export default class CollapsedText extends Component {
 
   @autobind
   onPress() {
-    const { maxHeight, minHeight } = this.state;
-    const isExpanded = !this.state.isExpanded;
-    this.setState({
-      isExpanded,
-    });
+    const {
+      maxHeight,
+      minHeight,
+    } = this.state;
 
+    // Set expanded to true (or toggle)
+    const isExpanded = !this.state.isExpanded;
+
+    // Update state
+    this.setState({ isExpanded });
+
+    // Animate height
     Animated.spring(this.height, {
       toValue: isExpanded ? maxHeight : minHeight,
       bounciness: 0,
     }).start();
   }
 
+  // Height animated value
   height = new Animated.Value(0);
 
   render() {
@@ -61,6 +75,7 @@ export default class CollapsedText extends Component {
       children,
       numberOfLines,
       style,
+      backgroundColor,
     } = this.props;
     const hidden = { opacity: 0 };
 
@@ -88,7 +103,12 @@ export default class CollapsedText extends Component {
           {!isExpanded && (
             <View>
               <View style={styles.fadeHost}>
-                <View style={styles.fade} />
+                <View
+                  style={[
+                    styles.fade,
+                    { backgroundColor, shadowColor: backgroundColor },
+                  ]}
+                />
               </View>
               <TouchableOpacity onPress={this.onPress}>
                 <Text style={styles.button}>more</Text>

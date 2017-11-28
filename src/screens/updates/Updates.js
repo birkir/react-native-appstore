@@ -58,7 +58,7 @@ export default class Updates extends Component {
         </Heading>
         {DATA.slice(0, 1).map(item => (
           <View style={styles.item} key={item.key}>
-            <AppItemRow {...item} action="UPDATE" actionWidth={92} divider={false} />
+            <AppItemRow {...item} action={{ label: 'UPDATE', width: 92 }} divider={false} />
             <View style={styles.spacing} />
             <CollapsedText numberOfLines={3}>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -71,7 +71,7 @@ export default class Updates extends Component {
         <Heading>Updated recently</Heading>
         {DATA.slice(1).map(item => (
           <View style={styles.item} key={item.key}>
-            <AppItemRow {...item} action="OPEN" divider={false} />
+            <AppItemRow {...item} action={{ label: 'OPEN' }} divider={false} />
           </View>
         ))}
         <View style={styles.gutter} />

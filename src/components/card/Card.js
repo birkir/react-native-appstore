@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, Animated, View, Text, Image, Dimensions, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import { autobind } from 'core-decorators';
 import Button from 'components/button';
-import AppItemRow from 'components/app-item-row';
-import { VibrancyView } from 'react-native-blur';
+// import AppItemRow from 'components/app-item-row';
 import PropTypes from 'prop-types';
 
 // Transition helper method
@@ -24,6 +23,13 @@ const config = {
 const CARD_COLLAPSED_HEIGHT = 412;
 const CARD_EXPANDED_HEIGHT = 492;
 
+/**
+ * Card component
+ * This is a monster and some things need refactoring.
+ * @todo Document what's going on.
+ * @todo Split view into components.
+ * @todo LayoutAnimation sucks.
+ */
 export default class Card extends PureComponent {
 
   static propTypes = {
@@ -32,7 +38,6 @@ export default class Card extends PureComponent {
     legend: PropTypes.string,
     title: PropTypes.string,
     subtitle: PropTypes.string,
-    frosted: PropTypes.bool,
     hero: PropTypes.bool,
     app: PropTypes.object,
     apps: PropTypes.arrayOf(PropTypes.object),
@@ -45,7 +50,6 @@ export default class Card extends PureComponent {
     onOpenChange: undefined,
     imageUrl: undefined,
     legend: undefined,
-    frosted: false,
     hero: false,
     title: undefined,
     subtitle: undefined,
@@ -153,7 +157,6 @@ export default class Card extends PureComponent {
     const {
       imageUrl,
       legend,
-      frosted,
       hero,
       title,
       subtitle,
@@ -169,7 +172,8 @@ export default class Card extends PureComponent {
       host,
     } = state;
 
-    const dark = !imageUrl || frosted || light;
+    // Text dark mode?
+    const dark = !imageUrl || light;
 
     const animated = {
       host: {
@@ -250,8 +254,8 @@ export default class Card extends PureComponent {
       animated.image.height = !isOpen ? CARD_COLLAPSED_HEIGHT : CARD_EXPANDED_HEIGHT;
     }
 
+    // Toggle opacity of content view
     const opacity = layout ? 1 : 0;
-    const Frosted = frosted ? VibrancyView : View;
 
     return (
       <View
@@ -307,11 +311,7 @@ export default class Card extends PureComponent {
                       </Text>
                     </View>
                   ) : (
-                    <Frosted
-                      style={[frosted && styles.frosted]}
-                      blurAmount={15}
-                      blurType="light"
-                    >
+                    <View>
                       {legend && (
                         <Text style={[styles.legend, dark && styles.dark]}>
                           {String(legend || '').toLocaleUpperCase()}
@@ -322,9 +322,9 @@ export default class Card extends PureComponent {
                           {title}
                         </Text>
                       )}
-                    </Frosted>
+                    </View>
                   )}
-                  {apps ? (
+                  {/* {apps ? (
                     <View style={styles.apps}>
                       {apps.map(appItem => (
                         <AppItemRow
@@ -336,7 +336,7 @@ export default class Card extends PureComponent {
                     </View>
                   ) : (
                     <View style={styles.flex} />
-                  )}
+                  )} */}
                   {app && (
                     <View style={styles.hero__app}>
                       <View style={styles.hero__appsummary}>
@@ -403,10 +403,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
 
-  flex: {
-    flex: 1,
-  },
-
   host: {
     height: CARD_COLLAPSED_HEIGHT,
     marginBottom: 30,
@@ -441,10 +437,6 @@ const styles = StyleSheet.create({
     height: 30,
 
     opacity: 0.6,
-  },
-
-  apps: {
-    paddingTop: 32,
   },
 
   apps__cover: {
@@ -502,13 +494,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     letterSpacing: -0.24,
     backgroundColor: 'transparent',
-  },
-
-  frosted: {
-    backgroundColor: 'rgba(255, 255, 255, 0.33)',
-    margin: -20,
-    marginTop: -25,
-    padding: 20,
   },
 
   dark: {

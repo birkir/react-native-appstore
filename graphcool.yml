@@ -1,0 +1,12 @@
+types: ./types.graphql
+
+functions:
+  afterReviewCreate:
+    type: operationAfter
+    operation: Review.create
+    handler:
+      code:
+        src: src/graphql/hooks/afterReviewCreate.js
+
+permissions:
+  - operation: "*"

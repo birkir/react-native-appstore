@@ -3,7 +3,12 @@ import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-n
 import Divider from 'components/divider';
 import PropTypes from 'prop-types';
 
+/**
+ * Featured App Item
+ * Usually used in the far top of Apps and Games screen.
+ */
 export default class AppItemFeatured extends PureComponent {
+
   static propTypes = {
     legend: PropTypes.string,
     imageUrl: PropTypes.string,
