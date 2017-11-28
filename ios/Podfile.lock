@@ -17,7 +17,7 @@ PODS:
     - React/Core (= 0.50.3)
   - react-native-blur (0.8.0):
     - React
-  - react-native-navigation (1.1.268):
+  - react-native-navigation (1.1.296):
     - React
   - React/BatchedBridge (0.50.3):
     - React/Core
@@ -84,7 +84,7 @@ SPEC CHECKSUMS:
   CodePush: ffe876b57db57e0295653d69aa1653b0278b43ad
   React: 0ba6cae888dc82dc47d6d5f3090615e1b5f6f3e7
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
-  react-native-navigation: d77c0e00d30544284afe22dd5db7532991a786ea
+  react-native-navigation: 44f8d695d95a69694c0f2403e9dca4846913cbf8
   yoga: faecc6be81ca7823ccbb470b93a1b228499fa1c0
 
 PODFILE CHECKSUM: 4ae09bf3bc42c4d2c44c760571222d8a755ad751

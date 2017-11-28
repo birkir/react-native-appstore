@@ -1,22 +1,61 @@
-From a381463f4144a0725fa74578228cbf66860d29e2 Mon Sep 17 00:00:00 2001
+From cbdecbcd01dc6670b29433b7c0de68d2c10b36a0 Mon Sep 17 00:00:00 2001
 From: Birkir Gudjonsson <birkir.gudjonsson@gmail.com>
-Date: Thu, 16 Nov 2017 23:49:19 -0500
+Date: Tue, 28 Nov 2017 15:44:21 -0500
 Subject: [PATCH] Search
 
 ---
- ios/RCCViewController.m | 70 +++++++++++++++++++++++++++++++++++++++++++++++--
- 1 file changed, 68 insertions(+), 2 deletions(-)
+ ios/RCCNavigationController.m | 27 ++++++++++++++++++
+ ios/RCCViewController.m       | 66 ++++++++++++++++++++++++++++++++++++++++++-
+ 2 files changed, 92 insertions(+), 1 deletion(-)
 
+diff --git a/ios/RCCNavigationController.m b/ios/RCCNavigationController.m
+index bbf0e53..173da7d 100755
+--- a/ios/RCCNavigationController.m
++++ b/ios/RCCNavigationController.m
+@@ -356,6 +356,33 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
+       [parent updateStyle];
+     }
+   }
++
++  // toggleSearch
++  if ([performAction isEqualToString:@"setSearch"]) {
++    if ([self.topViewController isKindOfClass:[RCCViewController class]]) {
++      RCCViewController *topViewController = (RCCViewController*)self.topViewController;
++      UISearchController *search = topViewController.navigationItem.searchController;
++      if (search != nil) {
++        NSString *placeholder = actionParams[@"placeholder"];
++        NSString *query = actionParams[@"query"];
++        NSString *active = actionParams[@"active"];
++        NSString *blur = actionParams[@"blur"];
++        if (placeholder) {
++          [search.searchBar setPlaceholder:placeholder];
++        }
++        if (query) {
++          [search.searchBar setText:query];
++        }
++        if (active) {
++          BOOL activeBool = active ? [active boolValue] : NO;
++          [search setActive:activeBool];
++        }
++        if (blur) {
++          [search.searchBar resignFirstResponder];
++        }
++      }
++    }
++  }
+ }
+
+ -(void)onButtonPress:(UIBarButtonItem*)barButtonItem
 diff --git a/ios/RCCViewController.m b/ios/RCCViewController.m
-index f57086f..2f66b28 100755
+index 5508075..8c9eba3 100755
 --- a/ios/RCCViewController.m
 +++ b/ios/RCCViewController.m
 @@ -19,11 +19,12 @@ const NSInteger BLUR_STATUS_TAG = 78264801;
  const NSInteger BLUR_NAVBAR_TAG = 78264802;
  const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
- 
--@interface RCCViewController() <UIGestureRecognizerDelegate>
-+@interface RCCViewController() <UIGestureRecognizerDelegate, UISearchDisplayDelegate, UISearchControllerDelegate>
+
+-@interface RCCViewController() <UIGestureRecognizerDelegate, UIViewControllerPreviewingDelegate>
++@interface RCCViewController() <UIGestureRecognizerDelegate, UIViewControllerPreviewingDelegate, UISearchDisplayDelegate, UISearchControllerDelegate>
  @property (nonatomic) BOOL _hidesBottomBarWhenPushed;
  @property (nonatomic) BOOL _statusBarHideWithNavBar;
  @property (nonatomic) BOOL _statusBarHidden;
@@ -28,28 +67,24 @@ index f57086f..2f66b28 100755
 @@ -312,6 +313,9 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
    [self sendGlobalScreenEvent:@"didAppear" endTimestampString:[self getTimestampString] shouldReset:YES];
    [self sendScreenChangedEvent:@"didAppear"];
-   
+
 +  if (self._hideNavBarBorder) {
 +    [self hideHairlineSubviews:self.navigationController.view];
 +  }
  }
- 
+
  - (void)viewWillAppear:(BOOL)animated
-@@ -611,6 +615,7 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
-   
+@@ -627,12 +631,35 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+
    NSNumber *removeNavBarBorder = self.navigatorStyle[@"navBarNoBorder"];
    BOOL removeNavBarBorderBool = removeNavBarBorder ? [removeNavBarBorder boolValue] : NO;
 +  self._hideNavBarBorder = removeNavBarBorderBool;
    if (removeNavBarBorderBool) {
      self.navBarHairlineImageView.hidden = YES;
    } else {
-@@ -630,7 +635,39 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
-      }
-    }
-  }
--  
-+
-+
+     self.navBarHairlineImageView.hidden = NO;
+   }
+
 +  // Search controller
 +  NSString *navBarSearch = self.navigatorStyle[@"navBarSearch"];
 +  BOOL navBarSearchBool = navBarSearch ? [navBarSearch boolValue] : NO;
@@ -58,37 +93,27 @@ index f57086f..2f66b28 100755
 +    if (self.navigationItem.searchController == nil) {
 +      search = [[UISearchController alloc] initWithSearchResultsController:nil];
 +      search.searchResultsUpdater = self;
-+      // TODO: Allow configuration of these parameters
-+      search.hidesNavigationBarDuringPresentation = YES;
++      search.searchBar.delegate = self;
++      NSString *navBarHiddenOnSearch = self.navigatorStyle[@"navBarHiddenOnSearch"];
++      BOOL navBarHiddenOnSearchBool = navBarHiddenOnSearch ? [navBarHiddenOnSearch boolValue] : YES;
++      search.hidesNavigationBarDuringPresentation = navBarHiddenOnSearchBool;
 +      search.obscuresBackgroundDuringPresentation = YES;
 +      search.dimsBackgroundDuringPresentation = NO;
 +      [self.navigationItem setSearchController:search];
 +    } else {
 +      search = self.navigationItem.searchController;
 +    }
-+
-+    // Placeholder
-+    NSString *navBarSearchPlaceholder = self.navigatorStyle[@"navBarSearchPlaceholder"];
-+    if (navBarSearchPlaceholder) {
-+      search.searchBar.placeholder = navBarSearchPlaceholder;
-+    }
-+
-+    // Toggle active
-+    NSString *navBarSearchActive = self.navigatorStyle[@"navBarSearchActive"];
-+    BOOL navBarSearchActiveBool = navBarSearchActive ? [navBarSearchActive boolValue] : NO;
-+    search.active = navBarSearchActiveBool;
 +  } else {
 +    [self.navigationItem setSearchController:nil];
 +  }
 +
-   NSString *navBarCustomView = self.navigatorStyle[@"navBarCustomView"];
-   if (navBarCustomView && ![self.navigationItem.titleView isKindOfClass:[RCCCustomTitleView class]]) {
-     if ([self.view isKindOfClass:[RCTRootView class]]) {
-@@ -827,4 +864,33 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
-   return !disabledSimultaneousGestureBool;
+  //Bug fix: in case there is a interactivePopGestureRecognizer, it prevents react-native from getting touch events on the left screen area that the gesture handles
+  //overriding the delegate of the gesture prevents this from happening while keeping the gesture intact (another option was to disable it completely by demand)
+  if(self.navigationController.viewControllers.count > 1){
+@@ -775,6 +802,17 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+   return nil;
  }
- 
-+
+
 +- (void)hideHairlineSubviews:(UIView *)view {
 +  NSArray *subviews = [view subviews];
 +  if ([subviews count] == 0) return;
@@ -100,6 +125,13 @@ index f57086f..2f66b28 100755
 +  }
 +}
 +
+ -(void)addExternalVCIfNecessary:(NSDictionary*)props
+ {
+   NSString *externalScreenClass = props[@"externalNativeScreenClass"];
+@@ -906,4 +944,30 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
+   return actions;
+ }
+
 +#pragma mark – UISearchControllerDelegate & UISearchResultsDelegate
 +-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
 +  NSString *searchString = searchController.searchBar.text;
@@ -117,7 +149,15 @@ index f57086f..2f66b28 100755
 +  }
 +}
 +
++- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
++  if ([self.view isKindOfClass:[RCTRootView class]]){
++    RCTRootView *rootView = (RCTRootView *)self.view;
++    if (rootView.appProperties && rootView.appProperties[@"navigatorEventID"]) {
++      [[[RCCManager sharedInstance] getBridge].eventDispatcher sendAppEventWithName:rootView.appProperties[@"navigatorEventID"] body:@{ @"type": @"SearchSubmit" }];
++    }
++  }
++}
++
  @end
--- 
+--
 2.6.1
-

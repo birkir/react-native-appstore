@@ -5037,9 +5037,9 @@ react-native-config@0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-0.6.0.tgz#0f71631ab5ac4b568637dcb8e9f6ab85ffb380ed"
 
-react-native-navigation@1.1.268:
-  version "1.1.268"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.268.tgz#6651c58c0dcabfb64e03aa21532788772f2b4908"
+react-native-navigation@1.1.296:
+  version "1.1.296"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-1.1.296.tgz#7a925612938edaa3930ed5f723aba2ef7d6841b4"
   dependencies:
     lodash "4.x.x"
 

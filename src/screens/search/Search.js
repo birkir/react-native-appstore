@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Animated, Image, View, Keyboard, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, Animated, Image, View, Text, NativeModules, TouchableOpacity } from 'react-native';
 import { autobind } from 'core-decorators';
 import { inject } from 'mobx-react/native';
-import Strong from 'components/strong';
 import Heading from 'components/heading';
 import ListItem from 'components/list-item';
 import AppItemRow from 'components/app-item-row';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
+const { RCCManager } = NativeModules;
+
 const DATA = {
   trending: [
+    'tasty',
     'friendo',
     'battle royale',
     'dunk shot',
@@ -50,27 +52,24 @@ export default class Search extends Component {
     active: false,
     trending: false,
     results: false,
+    enforceResults: false,
     suggestions: [],
   };
 
   componentDidMount() {
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
-    // TODO: Receive event from search input field.
-    // Currently 250ms delay.
-    this.keyboardHide = Keyboard.addListener('keyboardDidHide', this.onKeyboardHide);
-    this.keyboardShow = Keyboard.addListener('keyboardDidShow', this.onKeyboardShow);
-  }
-
-  componentWillUnmount() {
-    this.keyboardHide.remove();
-    this.keyboardShow.remove();
   }
 
   @autobind
   onNavigatorEvent(e) {
     const { algolia } = this.props;
+    const { enforceResults } = this.state;
     if (e.type === 'SearchChanged') {
       const { query, active } = e.payload;
+      // Dont do anything if active untill change of query
+      if (active && this.state.active && query === this.state.query) {
+        return;
+      }
       // Show or hide backdrop
       if (active) {
         Animated.spring(this.backdrop, { toValue: 1 }).start();
@@ -80,14 +79,24 @@ export default class Search extends Component {
         Animated.spring(this.backdrop, { toValue: 0 }).start();
       }
       // Update active-ness and search query
-      this.setState({ query, active, results: false });
+      this.setState({ query, active, results: enforceResults });
+      // Reset enforce results flag
+      // Sometimes this event is repeated one or two times, hence the timeout.
+      setTimeout(() => this.setState({ enforceResults: false }), 300);
       // Search query
       algolia.apps.search(query, (err, res) => {
-        if (!err) {
-          this.setState({
-            suggestions: res.hits,
-          });
-        }
+        if (err) return;
+        this.setState({
+          suggestions: res.hits,
+        });
+      });
+    }
+
+    if (e.type === 'SearchSubmit') {
+      // Search button on keyboard was pressed
+      this.setState({
+        active: true,
+        results: true,
       });
     }
 
@@ -102,21 +111,24 @@ export default class Search extends Component {
 
   @autobind
   onBackdropPress() {
-    // Toggle search mode off
-    this.props.navigator.setStyle({
-      navBarSearchActive: false,
+    // Set search in-active
+    const { navigatorID } = this.props.navigator;
+    RCCManager.NavigationControllerIOS(navigatorID, 'setSearch', {
+      active: false,
     });
   }
 
   @autobind
-  onKeyboardHide() {
-    const { active, query } = this.state;
-    this.setState({ results: active && query !== '' });
-  }
-
-  @autobind
-  onKeyboardShow() {
-    this.setState({ results: false });
+  searchByQuery(query) {
+    // Enforce showing results after search is active
+    this.setState({ enforceResults: true });
+    // Set search query and active-ness
+    const { navigatorID } = this.props.navigator;
+    RCCManager.NavigationControllerIOS(navigatorID, 'setSearch', {
+      active: true,
+      blur: true,
+      query,
+    });
   }
 
   // Animated value for backdrop opacity
@@ -161,7 +173,7 @@ export default class Search extends Component {
                 label={label}
                 fontStyle={fontStyle}
                 underlayColor="white"
-                onPress={() => {}}
+                onPress={() => this.searchByQuery(label)}
                 divider={(i + 1) < arr.length}
               />
             ))}
@@ -185,7 +197,11 @@ export default class Search extends Component {
           <View style={[StyleSheet.absoluteFill, styles.results]}>
             <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.content}>
               {this.state.suggestions.map(suggestion => (
-                <TouchableOpacity style={styles.suggestion} key={suggestion.id}>
+                <TouchableOpacity
+                  style={styles.suggestion}
+                  key={suggestion.id}
+                  onPress={() => this.searchByQuery(get(suggestion, 'title'))}
+                >
                   <Image
                     style={styles.suggestion__icon}
                     source={require('images/SearchIcon.png')}
