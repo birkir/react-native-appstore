@@ -41,15 +41,17 @@ export default class AppItemFeatured extends PureComponent {
       subtitle,
     } = this.props;
     return (
-      <TouchableWithoutFeedback onPress={this.onPress}>
-        <View style={styles.host}>
-          <Text style={styles.legend}>{legend}</Text>
-          <Text style={styles.title} numberOfLines={1}>{title}</Text>
-          <Text style={styles.subtitle} numberOfLines={1}>{subtitle}</Text>
-          <Image source={{ uri: imageUrl }} style={styles.image} resizeMode="cover" />
-          <Divider />
-        </View>
-      </TouchableWithoutFeedback>
+      <View>
+        <Divider />
+        <TouchableWithoutFeedback onPress={this.onPress}>
+          <View style={styles.host}>
+            <Text style={styles.legend}>{legend}</Text>
+            <Text style={styles.title} numberOfLines={1}>{title}</Text>
+            <Text style={styles.subtitle} numberOfLines={1}>{subtitle}</Text>
+            <Image source={{ uri: imageUrl }} style={styles.image} resizeMode="cover" />
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
     );
   }
 }

@@ -7,7 +7,6 @@ import AppItemFeatured from 'components/app-item-featured';
 import AppItemLargeTile from 'components/app-item-large-tile';
 import Heading from 'components/heading';
 import CategoriesList from 'components/categories-list';
-import Divider from 'components/divider';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
 import collectionsWithProps from 'graphql/queries/collections';
@@ -58,7 +57,7 @@ export default class Games extends Component {
 
   @autobind
   renderItem({ item }) {
-    if (typeof item.type === 'function' && item.type.prototype instanceof Component) {
+    if (typeof item.type === 'function') {
       return item;
     }
     return this.renderCollection(item);
@@ -115,7 +114,10 @@ export default class Games extends Component {
 
     // Content of the collection section
     let content = (
-      <AppItemSlider itemsPerPage={rows} condensed={type === 'LARGE_TILE'}>
+      <AppItemSlider
+        itemsPerPage={rows}
+        condensed={type === 'LARGE_TILE'}
+      >
         {apps.map(renderAppItem)}
       </AppItemSlider>
     );
@@ -170,7 +172,6 @@ export default class Games extends Component {
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
         data={[
-          <Divider key="divider" />,
           ...allCollections,
           <View key="gutter" style={styles.gutter} />,
         ]}
@@ -183,9 +184,12 @@ const styles = StyleSheet.create({
   host: {
     flex: 1,
     padding: 18,
+    paddingTop: 0,
   },
 
   gutter: {
-    height: 200,
+    height: 40,
+    backgroundColor: 'white',
+    marginTop: -2,
   },
 });

@@ -1,6 +1,7 @@
 import React, { Children, PureComponent } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, InteractionManager } from 'react-native';
 import Divider from 'components/divider';
+// import PerformanceCarousel from 'components/carousel';
 import Carousel from 'react-native-snap-carousel';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
@@ -24,15 +25,47 @@ export default class AppItemSlider extends PureComponent {
     children: undefined,
   }
 
-  state = {
-    width: Dimensions.get('window').width,
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: Dimensions.get('window').width,
+      slides: 1,
+      groups: this.getGroups(props),
+    };
   }
 
-  // Fired when layout changes
+  componentWillReceiveProps(props) {
+    this.setState({
+      groups: this.getGroups(props),
+    });
+  }
+
   @autobind
   onLayout() {
     this.setState({
       width: Dimensions.get('window').width,
+    }, this.showAllSlides);
+  }
+
+  getGroups({ children, itemsPerPage }) {
+    // Setup groups (or pages)
+    const childs = Children.toArray(children);
+    const groups = [];
+
+    for (let i = 0; i < childs.length; i += itemsPerPage) {
+      // Add item to it's group
+      groups.push(childs.slice(i, i + itemsPerPage));
+    }
+
+    return groups;
+  }
+
+  @autobind
+  showAllSlides() {
+    const { children, itemsPerPage } = this.props;
+    InteractionManager.runAfterInteractions(() => {
+      const slides = Math.ceil(Children.toArray(children).length / itemsPerPage) + 1;
+      this.setState({ slides });
     });
   }
 
@@ -47,23 +80,14 @@ export default class AppItemSlider extends PureComponent {
   }
 
   render() {
-    const { width } = this.state;
-    const { itemsPerPage, children, condensed } = this.props;
-
-    // Setup groups (or pages)
-    const childs = Children.toArray(children);
-    const groups = [];
-
-    for (let i = 0; i < childs.length; i += itemsPerPage) {
-      // Add item to it's group
-      groups.push(childs.slice(i, i + itemsPerPage));
-    }
+    const { slides, width, groups } = this.state;
+    const { condensed } = this.props;
 
     return (
       <View>
         <View style={[styles.host, condensed && styles.host__condensed]} onLayout={this.onLayout}>
           <Carousel
-            data={groups}
+            data={groups.slice(0, slides)}
             renderItem={this.renderItem}
             sliderWidth={width}
             itemWidth={width - 30}
