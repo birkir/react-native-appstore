@@ -20,6 +20,7 @@ export default class Button extends PureComponent {
     subtitle: PropTypes.string,
     loading: PropTypes.bool,
     blue: PropTypes.bool,
+    white: PropTypes.bool,
     horizontal: PropTypes.bool,
     align: PropTypes.oneOf(['left', 'center', 'right']),
     width: PropTypes.number,
@@ -31,6 +32,7 @@ export default class Button extends PureComponent {
     subtitle: undefined,
     loading: false,
     blue: false,
+    white: false,
     horizontal: false,
     align: 'center',
     width: WIDTH,
@@ -118,6 +120,7 @@ export default class Button extends PureComponent {
     const {
       children,
       blue,
+      white,
       subtitle,
       horizontal,
       align,
@@ -223,6 +226,7 @@ export default class Button extends PureComponent {
               animated.content,
               !this.state.loading && styles.background,
               !this.state.loading && blue && styles.background__blue,
+              !this.state.loading && white && styles.background__white,
             ]}
           >
             <Text
@@ -327,6 +331,10 @@ const styles = StyleSheet.create({
 
   background__blue: {
     backgroundColor: '#007AFF',
+  },
+
+  background__white: {
+    backgroundColor: '#FFFFFF',
   },
 
   content: {

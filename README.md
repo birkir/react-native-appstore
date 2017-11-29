@@ -29,9 +29,9 @@ This sample project was intended to demonstrate the possibilities with react-nat
 ## Unsolved problems
 
  - Large titles flicker on scrollview while scrolling or pulling to refresh.
- - Set search query dynamically (when tapping suggested keyword).
+ - ~~Set search query dynamically (when tapping suggested keyword).~~
  - BlurView is flickering when transitioning back.
- - 3D Touch navigation Peek'n'Pop.
+ - ~~3D Touch navigation Peek'n'Pop.~~
  - Search safe area not working.
 
 ## Goal
