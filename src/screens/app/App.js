@@ -7,6 +7,8 @@ import Heading from 'components/heading';
 import Divider from 'components/divider';
 import InfoRow from 'components/info-row';
 import CollapsedText from 'components/collapsed-text';
+import AppItemRow from 'components/app-item-row';
+import AppItemSlider from 'components/app-item-slider';
 import { appWithProps } from 'graphql/queries/app';
 import get from 'lodash/get';
 import Header from './components/header';
@@ -76,6 +78,29 @@ export default class App extends Component {
     }
   }
 
+  @autobind
+  renderAppItem({
+    id,
+    iconUrl,
+    price,
+    hasInAppPurchases,
+    ...props
+  }) {
+    return (
+      <AppItemRow
+        {...props}
+        key={id}
+        id={id}
+        imageUrl={iconUrl}
+        action={{
+          label: price ? `$${price}` : 'GET',
+          subtitle: hasInAppPurchases ? 'In-App Purchases' : undefined,
+          white: true,
+        }}
+      />
+    );
+  }
+
   render() {
     const opacity = this.props.ui.appScreenHeaderOpacity.interpolate({
       inputRange: [0, 1],
@@ -84,6 +109,7 @@ export default class App extends Component {
 
     const {
       App: app,
+      allApps: related,
       loading,
       error,
     } = this.props.data;
@@ -167,10 +193,22 @@ export default class App extends Component {
         </View>
 
         <View style={styles.bottom}>
-          <View>
-            <Heading>More by Some seller name</Heading>
-            <Heading>You may also like</Heading>
-          </View>
+          {get(app, 'seller.apps.length', 0) > 0 && (
+            <View>
+              <Heading action="See All">More by {get(app, 'seller.name')}</Heading>
+              <AppItemSlider itemsPerPage={2}>
+                {get(app, 'seller.apps', []).map(this.renderAppItem)}
+              </AppItemSlider>
+            </View>
+          )}
+          {related.length > 0 && (
+            <View>
+              <Heading action="See All">You may also like</Heading>
+              <AppItemSlider itemsPerPage={2}>
+                {related.map(this.renderAppItem)}
+              </AppItemSlider>
+            </View>
+          )}
           <Divider />
           <View style={styles.copyright}>
             <Text>© {get(app, 'seller.name')}</Text>

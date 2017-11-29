@@ -8,6 +8,9 @@ export const query = gql`
       ...AppFragment
       seller {
         name
+        apps(filter: { id_not: $id }) {
+          ...AppFragment
+        }
       }
       age
       description
@@ -33,6 +36,11 @@ export const query = gql`
         rating
         name
       }
+    }
+
+    # temporary related apps
+    allApps(first: 15, filter: { id_not: $id }) {
+      ...AppFragment
     }
   }
   ${AppFragment}
