@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import CollapsedText from 'components/collapsed-text';
 import Divider from 'components/divider';
+import { autobind } from 'core-decorators';
 
 export default class Description extends PureComponent {
 
@@ -15,17 +16,22 @@ export default class Description extends PureComponent {
   static defaultProps = {
     children: undefined,
     seller: undefined,
-    onDeveloperPress: undefined,
+    onDeveloperPress() {},
+  }
+
+  @autobind
+  onDeveloperPress() {
+    this.props.onDeveloperPress(this.props.seller);
   }
 
   render() {
-    const { children, seller, onDeveloperPress } = this.props;
+    const { children, seller } = this.props;
     return (
       <View style={styles.host}>
         <View style={styles.description}>
           <CollapsedText numberOfLines={3}>{children}</CollapsedText>
         </View>
-        <TouchableWithoutFeedback onPress={onDeveloperPress}>
+        <TouchableWithoutFeedback onPress={this.onDeveloperPress}>
           <View style={styles.developer}>
             <Text style={styles.label}>Developer</Text>
             <Text style={styles.seller}>{seller.name}</Text>

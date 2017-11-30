@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#8E8E93',
     letterSpacing: -0.1,
-    paddingTop: 8,
-    paddingBottom: 16,
+    paddingTop: 16,
+    paddingBottom: 20,
   },
 });

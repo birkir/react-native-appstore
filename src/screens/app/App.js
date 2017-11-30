@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Animated, View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
+import { DEVELOPER_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN } from 'screens';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
@@ -38,9 +39,8 @@ export default class App extends Component {
     navigator: PropTypes.object.isRequired,
     ui: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
+    id: PropTypes.string.isRequired,
   }
-
-  static defaultProps = {}
 
   static navigatorStyle = {
     prefersLargeTitles: false,
@@ -82,6 +82,49 @@ export default class App extends Component {
       }).start();
       this.isHeaderVisible = isHeaderVisible;
     }
+  }
+
+  @autobind
+  onDeveloperPress({ id, name }) {
+    this.props.navigator.push({
+      screen: DEVELOPER_SCREEN,
+      title: name,
+      passProps: {
+        id,
+      },
+    });
+  }
+
+  @autobind
+  onReviewsPress() {
+    this.props.navigator.push({
+      screen: REVIEWS_SCREEN,
+      title: 'Ratings & Reviews',
+      passProps: {
+        appId: this.props.id,
+      },
+    });
+  }
+
+  @autobind
+  onReviewPress({ id }) {
+    this.props.navigator.push({
+      screen: REVIEWS_SCREEN,
+      title: 'Ratings & Reviews',
+      passProps: {
+        id,
+      },
+    });
+  }
+
+  @autobind
+  onVersionsPress() {
+    this.props.navigator.push({
+      screen: VERSIONS_SCREEN,
+      passProps: {
+        appId: this.props.id,
+      },
+    });
   }
 
   /**
@@ -151,7 +194,10 @@ export default class App extends Component {
           }]}
         />
 
-        <Description onSellerPress seller={get(app, 'seller')}>
+        <Description
+          seller={get(app, 'seller')}
+          onDeveloperPress={this.onDeveloperPress}
+        >
           {get(app, 'description')}
         </Description>
 
@@ -160,13 +206,15 @@ export default class App extends Component {
           reviews={get(app, 'reviews')}
           rating={get(app, 'rating')}
           votes={get(app, 'ratingsCount.count')}
-          onActionPress={this.onAllReviewsPress}
+          onActionPress={this.onReviewsPress}
+          onReviewPress={this.onReviewPress}
         />
 
         <VersionOverview
           version={get(version, 'version')}
           date={get(version, 'date')}
           description={get(version, 'changelog')}
+          onActionPress={this.onVersionsPress}
         />
 
         <View>

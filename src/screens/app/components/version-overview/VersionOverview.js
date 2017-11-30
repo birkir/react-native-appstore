@@ -11,12 +11,14 @@ export default class VersionOverview extends PureComponent {
     version: PropTypes.string,
     date: PropTypes.string,
     description: PropTypes.string,
+    onActionPress: PropTypes.func,
   }
 
   static defaultProps = {
     version: undefined,
     date: undefined,
     description: undefined,
+    onActionPress: undefined,
   }
 
   render() {
@@ -24,11 +26,12 @@ export default class VersionOverview extends PureComponent {
       version,
       date,
       description,
+      onActionPress,
     } = this.props;
 
     return (
       <View style={styles.host}>
-        <Heading action="Version History">What{'\''}s New</Heading>
+        <Heading action="Version History" onActionPress={onActionPress}>What{'\''}s New</Heading>
         <View style={styles.row}>
           <Text style={styles.subtitle}>Version {version}</Text>
           <Text style={styles.subtitle}>
