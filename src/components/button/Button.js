@@ -343,14 +343,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  content__bg: {
-    borderRadius: HEIGHT / 2,
-    backgroundColor: '#EFEFF4',
-  },
-
   content__text: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 14,
     color: '#007AFF',
     letterSpacing: -0.32,
     backgroundColor: 'transparent',
@@ -374,7 +369,7 @@ const styles = StyleSheet.create({
 
   // Arbitary numbers... sorry
   content__subtitle__horizontal: {
-    left: 86,
+    left: 80,
     top: 4,
     width: 50,
   },
@@ -382,6 +377,6 @@ const styles = StyleSheet.create({
   content__subtitle__right: {
     textAlign: 'right',
     left: 'auto',
-    right: 86,
+    right: 80,
   },
 });

@@ -20,11 +20,9 @@ export const query = gql`
         id
         title
       }
-      rating
-      ratingsCount: _reviewsMeta { count }
       # Find one good review
       reviews(
-        first: 1
+        first: 3
         filter: {
           # Contains space, neat little hack for not null
           description_contains: " ",
@@ -45,7 +43,17 @@ export const query = gql`
 export const appWithProps = graphql(query, {
   options: props => ({
     variables: {
-      id: props.id,
+      id: props.app.id,
+    },
+  }),
+  // Attempt to re-use passed props while loading
+  props: ({ ownProps, data }) => ({
+    data: {
+      ...data,
+      App: {
+        ...ownProps.app,
+        ...data.App,
+      },
     },
   }),
 });

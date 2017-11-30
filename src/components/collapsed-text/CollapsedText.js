@@ -15,6 +15,7 @@ export default class CollapsedText extends Component {
     numberOfLines: PropTypes.number,
     style: PropTypes.any,
     backgroundColor: PropTypes.string,
+    onPress: PropTypes.func,
   }
 
   static defaultProps = {
@@ -22,6 +23,7 @@ export default class CollapsedText extends Component {
     numberOfLines: 2,
     style: undefined,
     backgroundColor: 'white',
+    onPress: undefined,
   }
 
   state = {
@@ -48,6 +50,11 @@ export default class CollapsedText extends Component {
 
   @autobind
   onPress() {
+    if (this.props.onPress) {
+      this.props.onPress();
+      return;
+    }
+
     const {
       maxHeight,
       minHeight,
@@ -70,7 +77,7 @@ export default class CollapsedText extends Component {
   height = new Animated.Value(0);
 
   render() {
-    const { isExpanded } = this.state;
+    const { isExpanded, minHeight, maxHeight } = this.state;
     const {
       children,
       numberOfLines,
@@ -78,7 +85,7 @@ export default class CollapsedText extends Component {
       backgroundColor,
     } = this.props;
     const hidden = { opacity: 0 };
-
+    const isMoreVisible = !isExpanded && (minHeight !== maxHeight);
     return (
       <View style={styles.host}>
         <Animated.View style={[styles.container, { height: this.height }]}>
@@ -100,7 +107,7 @@ export default class CollapsedText extends Component {
           >
             {children}
           </Text>
-          {!isExpanded && (
+          {isMoreVisible && (
             <View>
               <View style={styles.fadeHost}>
                 <View
@@ -172,7 +179,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 1,
     right: 0,
-    fontWeight: '500',
+    fontWeight: '400',
     fontSize: 15,
     color: '#0077FD',
     backgroundColor: 'transparent',

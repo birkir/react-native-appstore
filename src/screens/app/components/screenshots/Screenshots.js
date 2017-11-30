@@ -50,7 +50,7 @@ export default class Screenshots extends PureComponent {
             inactiveSlideOpacity={1}
           />
         </View>
-        <Text>Offers iPhone App</Text>
+        <Text style={styles.offering}>Offers iPhone App</Text>
         <Divider />
       </View>
     );
@@ -75,5 +75,15 @@ const styles = StyleSheet.create({
     width: 225,
     borderRadius: 15,
     backgroundColor: '#EEE',
+  },
+
+  offering: {
+    fontFamily: 'SFProText-Regular',
+    fontWeight: '500',
+    fontSize: 13,
+    color: '#8E8E93',
+    letterSpacing: -0.1,
+    paddingTop: 8,
+    paddingBottom: 16,
   },
 });

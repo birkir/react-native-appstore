@@ -1,7 +1,9 @@
 import { Navigation } from 'react-native-navigation';
+import { toJS } from 'mobx';
 import SplashScreen from './splash';
 import TodayScreen from './today';
 import CollectionsScreen from './collections';
+import CollectionScreen from './collection';
 import AppScreen from './app';
 import AppToolbar from './app/components/toolbar';
 import AppButton from './app/components/button';
@@ -13,6 +15,7 @@ export const Screens = new Map();
 export const SPLASH_SCREEN = 'appStoreClone.SplashScreen';
 export const TODAY_SCREEN = 'appStoreClone.TodayScreen';
 export const COLLECTIONS_SCREEN = 'appStoreClone.CollectionsScreen';
+export const COLLECTION_SCREEN = 'appStoreClone.CollectionScreen';
 export const APP_SCREEN = 'appStoreClone.AppScreen';
 export const APP_TOOLBAR = 'appStoreClone.AppToolbar';
 export const APP_BUTTON = 'appStoreClone.AppButton';
@@ -23,6 +26,7 @@ export const SEARCH_SCREEN = 'appStoreClone.SearchScreen';
 Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(TODAY_SCREEN, () => TodayScreen);
 Screens.set(COLLECTIONS_SCREEN, () => CollectionsScreen);
+Screens.set(COLLECTION_SCREEN, () => CollectionScreen);
 Screens.set(APP_SCREEN, () => AppScreen);
 Screens.set(APP_TOOLBAR, () => AppToolbar);
 Screens.set(APP_BUTTON, () => AppButton);
@@ -72,9 +76,9 @@ export const startApp = () => {
 };
 
 // Push app screen (helper function)
-export const pushAppScreen = (navigator, app) => navigator.push({
+export const pushAppScreen = ({ navigator, app, backTitle }) => navigator.push({
   screen: APP_SCREEN,
-  backButtonTitle: app.backTitle,
+  backButtonTitle: backTitle,
   backButtonHidden: false,
   navigatorStyle: {
     navBarCustomView: APP_TOOLBAR,
@@ -83,7 +87,10 @@ export const pushAppScreen = (navigator, app) => navigator.push({
       iconUrl: app.iconUrl,
     },
   },
-  passProps: app,
+  passProps: {
+    id: app.id,
+    app: toJS(app),
+  },
   navigatorButtons: {
     rightButtons: [{
       id: 'action',

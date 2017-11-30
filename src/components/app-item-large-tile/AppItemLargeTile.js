@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import Button from 'components/button';
 import PropTypes from 'prop-types';
+import { autobind } from 'core-decorators';
 
 export default class AppItemLargeTile extends PureComponent {
 
@@ -22,14 +23,20 @@ export default class AppItemLargeTile extends PureComponent {
     onPress: undefined,
   }
 
+  @autobind
+  onPress() {
+    if (this.props.onPress) {
+      this.props.onPress(this.props);
+    }
+  }
+
   render() {
     const {
-      onPress,
       action,
       imageUrl,
     } = this.props;
     return (
-      <TouchableWithoutFeedback onPress={onPress}>
+      <TouchableWithoutFeedback onPress={this.onPress}>
         <View style={styles.host}>
           <View style={styles.card}>
             <View style={styles.card__inner}>
