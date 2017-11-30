@@ -16,6 +16,7 @@ import StatsRow from './components/stats-row';
 import Screenshots from './components/screenshots';
 import ReviewsOverview from './components/reviews-overview';
 import VersionOverview from './components/version-overview';
+import RelatedApps from './components/related-apps';
 
 const formatReviewsCount = (count) => {
   if (count > 1000) {
@@ -109,7 +110,6 @@ export default class App extends Component {
 
     const {
       App: app,
-      allApps: related,
       loading,
       error,
     } = this.props.data;
@@ -201,14 +201,7 @@ export default class App extends Component {
               </AppItemSlider>
             </View>
           )}
-          {related.length > 0 && (
-            <View>
-              <Heading action="See All">You may also like</Heading>
-              <AppItemSlider itemsPerPage={2}>
-                {related.map(this.renderAppItem)}
-              </AppItemSlider>
-            </View>
-          )}
+          <RelatedApps id={app.id} type={app.type} categories={app.categories.map(c => c.id)} />
           <Divider />
           <View style={styles.copyright}>
             <Text>© {get(app, 'seller.name')}</Text>

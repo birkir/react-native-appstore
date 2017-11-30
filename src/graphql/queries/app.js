@@ -17,6 +17,7 @@ export const query = gql`
       type
       previews
       categories {
+        id
         title
       }
       rating
@@ -36,11 +37,6 @@ export const query = gql`
         rating
         name
       }
-    }
-
-    # temporary related apps
-    allApps(first: 15, filter: { id_not: $id }) {
-      ...AppFragment
     }
   }
   ${AppFragment}
