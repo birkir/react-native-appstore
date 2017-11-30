@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions, TouchableWithoutFeedback } from 'react-native';
 import Divider from 'components/divider';
 import Carousel from 'react-native-snap-carousel';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
+import { SCREENSHOT_SCREEN } from 'screens';
 
 export default class Screenshots extends PureComponent {
 
   static propTypes = {
+    navigator: PropTypes.object.isRequired,
     data: PropTypes.array,
   }
 
@@ -26,12 +28,31 @@ export default class Screenshots extends PureComponent {
     });
   }
 
+  @autobind
+  onScreenshotPress(index) {
+    // Make the navbar transparent to hide the border
+    this.props.navigator.setStyle({ navBarTransparent: true });
+    // Fire up an modal with correct screenshot selected
+    this.props.navigator.showModal({
+      screen: SCREENSHOT_SCREEN,
+      passProps: {
+        index,
+        screenshots: this.props.data[0].screenshots,
+      },
+    });
+  }
+
+  @autobind
   renderItem({ index }) {
     const paddingLeft = index === 0 ? 20 : 5;
     return (
-      <View style={[styles.screenshot, { paddingLeft }]}>
-        <View style={styles.screenshot__mock} />
-      </View>
+      <TouchableWithoutFeedback onPress={() => this.onScreenshotPress(index)}>
+        <View style={[styles.screenshot, { paddingLeft }]}>
+          <View style={styles.screenshot__mock}>
+            <Text style={styles.screenshot__text}>{index}</Text>
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 
@@ -75,6 +96,13 @@ const styles = StyleSheet.create({
     width: 225,
     borderRadius: 15,
     backgroundColor: '#EEE',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  screenshot__text: {
+    fontSize: 22,
+    color: '#AAA',
   },
 
   offering: {

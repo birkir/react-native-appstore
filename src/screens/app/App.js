@@ -64,7 +64,9 @@ export default class App extends Component {
   onNavigatorEvent(e) {
     const { id, type } = e;
     if (type === 'ScreenChangedEvent') {
-      if (id === 'willDisappear') {
+      if (id === 'didDisappear') {
+        // Save the state of header visibility
+        this.props.ui.appScreenHeaderVisible = !!this.props.ui.appScreenHeaderOpacity._value; // eslint-disable-line
         this.props.ui.appScreenHeaderOpacity.setValue(0);
       }
     }
@@ -142,6 +144,7 @@ export default class App extends Component {
         {this.renderPartial(app)}
 
         <Screenshots
+          navigator={this.props.navigator}
           data={[{
             title: 'iPhone',
             screenshots: get(app, 'previews'),

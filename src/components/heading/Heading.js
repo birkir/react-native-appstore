@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
 
   action: {
     fontFamily: 'SFProText-Regular',
-    fontSize: 16,
+    fontSize: 17,
     color: '#007AFF',
     letterSpacing: -0.41,
 
     // Making hit area a little bit bigger
     paddingHorizontal: 6,
-    paddingVertical: 4,
+    paddingVertical: 3,
     marginBottom: -3,
   },
 

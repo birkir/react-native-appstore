@@ -14,16 +14,16 @@ export default class RelatedApps extends PureComponent {
   }
 
   @autobind
-  renderAppItem({
-    id,
-    iconUrl,
-    price,
-    hasInAppPurchases,
-    ...props
-  }) {
+  renderAppItem(item, index, arr) {
+    const {
+      id,
+      iconUrl,
+      price,
+      hasInAppPurchases,
+    } = item;
     return (
       <AppItemRow
-        {...props}
+        {...item}
         key={id}
         id={id}
         imageUrl={iconUrl}
@@ -32,6 +32,7 @@ export default class RelatedApps extends PureComponent {
           subtitle: hasInAppPurchases ? 'In-App Purchases' : undefined,
           white: true,
         }}
+        divider={arr.length > 1 && index % 2 === 0}
       />
     );
   }

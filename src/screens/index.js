@@ -7,6 +7,7 @@ import CollectionScreen from './collection';
 import AppScreen from './app';
 import AppToolbar from './app/components/toolbar';
 import AppButton from './app/components/button';
+import ScreenshotScreen from './screenshot';
 import UpdatesScreen from './updates';
 import SearchScreen from './search';
 
@@ -19,6 +20,7 @@ export const COLLECTION_SCREEN = 'appStoreClone.CollectionScreen';
 export const APP_SCREEN = 'appStoreClone.AppScreen';
 export const APP_TOOLBAR = 'appStoreClone.AppToolbar';
 export const APP_BUTTON = 'appStoreClone.AppButton';
+export const SCREENSHOT_SCREEN = 'appStoreClone.ScreenshotScreen';
 export const UPDATES_SCREEN = 'appStoreClone.UpdatesScreen';
 export const SEARCH_SCREEN = 'appStoreClone.SearchScreen';
 
@@ -30,6 +32,7 @@ Screens.set(COLLECTION_SCREEN, () => CollectionScreen);
 Screens.set(APP_SCREEN, () => AppScreen);
 Screens.set(APP_TOOLBAR, () => AppToolbar);
 Screens.set(APP_BUTTON, () => AppButton);
+Screens.set(SCREENSHOT_SCREEN, () => ScreenshotScreen);
 Screens.set(UPDATES_SCREEN, () => UpdatesScreen);
 Screens.set(SEARCH_SCREEN, () => SearchScreen);
 

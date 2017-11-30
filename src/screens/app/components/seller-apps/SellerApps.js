@@ -21,7 +21,7 @@ export default class SellerApps extends PureComponent {
    * @param {object} item
    */
   @autobind
-  renderAppItem(item) {
+  renderAppItem(item, index, arr) {
     const {
       id,
       iconUrl,
@@ -40,6 +40,7 @@ export default class SellerApps extends PureComponent {
           subtitle: hasInAppPurchases ? 'In-App Purchases' : undefined,
           white: true,
         }}
+        divider={arr.length > 1 && index % 2 === 0}
       />
     );
   }

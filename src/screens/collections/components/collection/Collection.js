@@ -47,8 +47,8 @@ export default class Collection extends PureComponent {
   }
 
   @autobind
-  renderAppItem(item) {
-    const { type } = this.props.collection;
+  renderAppItem(item, index) {
+    const { type, rows } = this.props.collection;
 
     // Most likely will be AppItemRow
     let ComposedComponent = AppItemRow;
@@ -66,6 +66,7 @@ export default class Collection extends PureComponent {
         subtitle: item.hasInAppPurchases ? 'In-App Purchases' : undefined,
       },
       onPress: this.onAppPress,
+      divider: (index + 1) % rows !== 0,
     };
 
     if (type === 'FEATURED') {

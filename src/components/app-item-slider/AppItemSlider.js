@@ -105,7 +105,7 @@ export default class AppItemSlider extends PureComponent {
 const styles = StyleSheet.create({
   host: {
     marginHorizontal: -20,
-    marginBottom: 32,
+    marginBottom: 16,
   },
 
   host__condensed: {
@@ -114,6 +114,5 @@ const styles = StyleSheet.create({
 
   item: {
     paddingHorizontal: 5,
-    marginBottom: -16,
   },
 });
