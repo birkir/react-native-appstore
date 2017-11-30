@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Animated, View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
-import { DEVELOPER_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN } from 'screens';
+import { DEVELOPER_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN, pushAppScreen } from 'screens';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
@@ -127,6 +127,27 @@ export default class App extends Component {
     });
   }
 
+  @autobind
+  onAppPress(props) {
+    const { navigator } = this.props;
+    pushAppScreen({
+      navigator,
+      backTitle: 'Back',
+      app: props,
+    });
+  }
+
+  @autobind
+  onAppPressIn(props, previewView) {
+    const { navigator } = this.props;
+    pushAppScreen({
+      navigator,
+      backTitle: 'Back',
+      app: props,
+      previewView,
+    });
+  }
+
   /**
    * Render partial details of the app, we already pass props needed for this method.
    * @param {object} app App object
@@ -236,11 +257,15 @@ export default class App extends Component {
         <View style={styles.bottom}>
           <SellerApps
             seller={get(app, 'seller')}
+            onAppPress={this.onAppPress}
+            onAppPressIn={this.onAppPressIn}
           />
           <RelatedApps
             id={app.id}
             type={app.type}
             categories={app.categories.map(c => c.id)}
+            onAppPress={this.onAppPress}
+            onAppPressIn={this.onAppPressIn}
           />
           <Divider />
           <View style={styles.copyright}>

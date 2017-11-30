@@ -10,10 +10,14 @@ export default class SellerApps extends PureComponent {
 
   static propTypes = {
     seller: PropTypes.object,
+    onAppPress: PropTypes.func,
+    onAppPressIn: PropTypes.func,
   }
 
   static defaultProps = {
     seller: undefined,
+    onAppPress: undefined,
+    onAppPressIn: undefined,
   }
 
   /**
@@ -41,6 +45,8 @@ export default class SellerApps extends PureComponent {
           white: true,
         }}
         divider={arr.length > 1 && index % 2 === 0}
+        onPress={this.props.onAppPress}
+        onPressIn={this.props.onAppPressIn}
       />
     );
   }

@@ -22,15 +22,24 @@ export default class Collection extends PureComponent {
     type: undefined,
   }
 
-
   @autobind
   onAppPress(props) {
     const { navigator, type } = this.props;
-    console.log('app', props);
     pushAppScreen({
       navigator,
       backTitle: type === 'APP' ? 'Apps' : 'Games',
       app: props,
+    });
+  }
+
+  @autobind
+  onAppPressIn(props, previewView) {
+    const { navigator, type } = this.props;
+    pushAppScreen({
+      navigator,
+      backTitle: type === 'APP' ? 'Apps' : 'Games',
+      app: props,
+      previewView,
     });
   }
 
@@ -66,6 +75,7 @@ export default class Collection extends PureComponent {
         subtitle: item.hasInAppPurchases ? 'In-App Purchases' : undefined,
       },
       onPress: this.onAppPress,
+      onPressIn: this.onAppPressIn,
       divider: (index + 1) % rows !== 0,
     };
 

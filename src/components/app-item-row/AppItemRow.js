@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Image, Text, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, findNodeHandle } from 'react-native';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
 import Divider from 'components/divider';
@@ -29,6 +29,7 @@ export default class AppItemRow extends PureComponent {
       loading: PropTypes.bool,
     }),
     onPress: PropTypes.func,
+    onPressIn: PropTypes.func,
   }
 
   static defaultProps = {
@@ -43,6 +44,7 @@ export default class AppItemRow extends PureComponent {
     compact: false,
     action: undefined,
     onPress: undefined,
+    onPressIn: undefined,
   }
 
   @autobind
@@ -50,6 +52,18 @@ export default class AppItemRow extends PureComponent {
     if (this.props.onPress) {
       this.props.onPress(this.props);
     }
+  }
+
+  @autobind
+  onPressIn() {
+    if (this.props.onPressIn) {
+      this.props.onPressIn(this.props, findNodeHandle(this.hostRef));
+    }
+  }
+
+  @autobind
+  onRef(ref) {
+    this.hostRef = ref;
   }
 
   render() {
@@ -66,15 +80,15 @@ export default class AppItemRow extends PureComponent {
     } = this.props;
 
     return (
-      <TouchableWithoutFeedback onPress={this.onPress}>
-        <View>
+      <TouchableWithoutFeedback onPress={this.onPress} onPressIn={this.onPressIn}>
+        <View style={styles.host} ref={this.onRef}>
           {legend && (
             <Text style={styles.legend}>{legend}</Text>
           )}
           {screenshotUrl && (
             <Image source={{ uri: screenshotUrl }} style={styles.screenshot} />
           )}
-          <View style={[styles.host, divider && styles.host__divider]}>
+          <View style={[styles.row, divider && styles.row__divider]}>
             <Image
               source={{ uri: imageUrl }}
               style={[styles.image, compact && styles.image__compact]}
@@ -121,11 +135,14 @@ export default class AppItemRow extends PureComponent {
 
 const styles = StyleSheet.create({
   host: {
+  },
+
+  row: {
     flexDirection: 'row',
     alignItems: 'center',
   },
 
-  host__divider: {
+  row__divider: {
     marginBottom: 16,
   },
 
@@ -188,6 +205,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.41,
     lineHeight: 22,
     paddingBottom: 3,
+    backgroundColor: 'transparent',
   },
 
   content__title__compact: {
@@ -201,6 +219,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#8A8A8F',
     letterSpacing: -0.08,
+    backgroundColor: 'transparent',
   },
 
   divider: {

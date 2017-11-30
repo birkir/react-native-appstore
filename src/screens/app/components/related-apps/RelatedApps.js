@@ -9,8 +9,16 @@ import relatedApps from 'graphql/queries/relatedApps';
 
 @relatedApps
 export default class RelatedApps extends PureComponent {
+
   static propTypes = {
     data: PropTypes.object.isRequired,
+    onAppPress: PropTypes.func,
+    onAppPressIn: PropTypes.func,
+  }
+
+  static defaultProps = {
+    onAppPress: undefined,
+    onAppPressIn: undefined,
   }
 
   @autobind
@@ -33,6 +41,8 @@ export default class RelatedApps extends PureComponent {
           white: true,
         }}
         divider={arr.length > 1 && index % 2 === 0}
+        onPress={this.props.onAppPress}
+        onPressIn={this.props.onAppPressIn}
       />
     );
   }

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, findNodeHandle } from 'react-native';
 import Divider from 'components/divider';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
@@ -16,6 +16,7 @@ export default class AppItemFeatured extends PureComponent {
     title: PropTypes.string,
     subtitle: PropTypes.string,
     onPress: PropTypes.func,
+    onPressIn: PropTypes.func,
   }
 
   static defaultProps = {
@@ -24,6 +25,7 @@ export default class AppItemFeatured extends PureComponent {
     title: undefined,
     subtitle: undefined,
     onPress: undefined,
+    onPressIn: undefined,
   }
 
   @autobind
@@ -31,6 +33,18 @@ export default class AppItemFeatured extends PureComponent {
     if (this.props.onPress) {
       this.props.onPress(this.props);
     }
+  }
+
+  @autobind
+  onPressIn() {
+    if (this.props.onPressIn) {
+      this.props.onPressIn(this.props, findNodeHandle(this.hostRef));
+    }
+  }
+
+  @autobind
+  onRef(ref) {
+    this.hostRef = ref;
   }
 
   render() {
@@ -43,8 +57,8 @@ export default class AppItemFeatured extends PureComponent {
     return (
       <View>
         <Divider />
-        <TouchableWithoutFeedback onPress={this.onPress}>
-          <View style={styles.host}>
+        <TouchableWithoutFeedback onPress={this.onPress} onPressIn={this.onPressIn}>
+          <View style={styles.host} ref={this.onRef}>
             <Text style={styles.legend}>{legend}</Text>
             <Text style={styles.title} numberOfLines={1}>{title}</Text>
             <Text style={styles.subtitle} numberOfLines={1}>{subtitle}</Text>
@@ -69,6 +83,7 @@ const styles = StyleSheet.create({
     color: '#007AFF',
     letterSpacing: 0.06,
     marginBottom: 2,
+    backgroundColor: 'transparent',
   },
 
   title: {
@@ -76,6 +91,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: '#000000',
     letterSpacing: 0.36,
+    backgroundColor: 'transparent',
   },
 
   subtitle: {
@@ -84,6 +100,7 @@ const styles = StyleSheet.create({
     color: '#8A8A8F',
     letterSpacing: 0.36,
     marginBottom: 11,
+    backgroundColor: 'transparent',
   },
 
   image: {

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableWithoutFeedback, findNodeHandle } from 'react-native';
 import Button from 'components/button';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
@@ -15,12 +15,14 @@ export default class AppItemLargeTile extends PureComponent {
       loading: PropTypes.bool,
     }),
     onPress: PropTypes.func,
+    onPressIn: PropTypes.func,
   }
 
   static defaultProps = {
     imageUrl: undefined,
     action: undefined,
     onPress: undefined,
+    onPressIn: undefined,
   }
 
   @autobind
@@ -30,14 +32,26 @@ export default class AppItemLargeTile extends PureComponent {
     }
   }
 
+  @autobind
+  onPressIn() {
+    if (this.props.onPressIn) {
+      this.props.onPressIn(this.props, findNodeHandle(this.hostRef));
+    }
+  }
+
+  @autobind
+  onRef(ref) {
+    this.hostRef = ref;
+  }
+
   render() {
     const {
       action,
       imageUrl,
     } = this.props;
     return (
-      <TouchableWithoutFeedback onPress={this.onPress}>
-        <View style={styles.host}>
+      <TouchableWithoutFeedback onPress={this.onPress} onPressIn={this.onPressIn}>
+        <View style={styles.host} ref={this.onRef}>
           <View style={styles.card}>
             <View style={styles.card__inner}>
               <Image source={{ uri: imageUrl }} style={styles.card__inner} />
@@ -107,6 +121,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.41,
     lineHeight: 22,
     marginBottom: 5,
+    backgroundColor: 'transparent',
   },
 
   blue: {
@@ -119,6 +134,7 @@ const styles = StyleSheet.create({
     color: '#8A8A8F',
     letterSpacing: -0.08,
     marginBottom: 10,
+    backgroundColor: 'transparent',
   },
 
   button: {

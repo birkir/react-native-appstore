@@ -36,6 +36,18 @@ export default class Collection extends Component {
   }
 
   @autobind
+  onPressIn(props, previewView) {
+    const { navigator, data } = this.props;
+    pushAppScreen({
+      navigator,
+      backTitle: data.Collection.title,
+      app: props,
+      previewView,
+    });
+  }
+
+
+  @autobind
   keyExtractor(item) {
     return item.id;
   }
@@ -53,6 +65,7 @@ export default class Collection extends Component {
           subtitle: item.hasInAppPurchases ? 'In-App Purchases' : undefined,
         }}
         onPress={this.onPress}
+        onPressIn={this.onPressIn}
       />
     );
   }

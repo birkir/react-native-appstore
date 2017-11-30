@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Image, Text, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, findNodeHandle } from 'react-native';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
 import Divider from 'components/divider';
@@ -23,6 +23,7 @@ export default class AppItemRow extends PureComponent {
       loading: PropTypes.bool,
     }),
     onPress: PropTypes.func,
+    onPressIn: PropTypes.func,
   }
 
   static defaultProps = {
@@ -31,6 +32,7 @@ export default class AppItemRow extends PureComponent {
     subtitle: undefined,
     action: undefined,
     onPress: undefined,
+    onPressIn: undefined,
   }
 
   @autobind
@@ -40,6 +42,17 @@ export default class AppItemRow extends PureComponent {
     }
   }
 
+  @autobind
+  onPressIn() {
+    if (this.props.onPressIn) {
+      this.props.onPressIn(this.props, findNodeHandle(this.hostRef));
+    }
+  }
+
+  @autobind
+  onRef(ref) {
+    this.hostRef = ref;
+  }
   render() {
     const {
       imageUrl,
@@ -49,8 +62,8 @@ export default class AppItemRow extends PureComponent {
     } = this.props;
 
     return (
-      <TouchableWithoutFeedback onPress={this.onPress}>
-        <View style={styles.host}>
+      <TouchableWithoutFeedback onPress={this.onPress} onPressIn={this.onPressIn}>
+        <View style={styles.host} ref={this.onRef}>
           <Image
             source={{ uri: imageUrl }}
             style={styles.image}
@@ -113,6 +126,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.41,
     lineHeight: 22,
     paddingBottom: 3,
+    backgroundColor: 'transparent',
   },
 
   content__subtitle: {
@@ -120,6 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: '#8A8A8F',
     letterSpacing: -0.08,
+    backgroundColor: 'transparent',
   },
 
   content__button: {
