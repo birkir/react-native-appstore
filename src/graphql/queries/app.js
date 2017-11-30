@@ -45,7 +45,17 @@ export const query = gql`
 export const appWithProps = graphql(query, {
   options: props => ({
     variables: {
-      id: props.id,
+      id: props.app.id,
+    },
+  }),
+  // Attempt to re-use passed props while loading
+  props: ({ ownProps, data }) => ({
+    data: {
+      ...data,
+      App: {
+        ...ownProps.app,
+        ...data.App,
+      },
     },
   }),
 });
