@@ -20,11 +20,9 @@ export const query = gql`
         id
         title
       }
-      rating
-      ratingsCount: _reviewsMeta { count }
       # Find one good review
       reviews(
-        first: 1
+        first: 3
         filter: {
           # Contains space, neat little hack for not null
           description_contains: " ",

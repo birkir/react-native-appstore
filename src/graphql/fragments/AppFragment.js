@@ -11,6 +11,8 @@ export default gql`
     hasInAppPurchases
     price
     rating
+    ratingsCount: _reviewsMeta { count }
+    age
     # Get latest version
     versions(
       first: 1

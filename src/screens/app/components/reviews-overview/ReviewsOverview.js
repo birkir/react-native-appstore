@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import distanceInWordsStrict from 'date-fns/distance_in_words_strict';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
-import CollapsedText from 'components/collapsed-text';
+import ReviewStats from 'components/review-stats';
+import AppItemSlider from 'components/app-item-slider';
+import Review from 'components/review';
+import { autobind } from 'core-decorators';
 
 export default class ReviewsOverview extends PureComponent {
   static propTypes = {
@@ -29,43 +31,31 @@ export default class ReviewsOverview extends PureComponent {
     onActionPress: undefined,
   }
 
-  renderReview(review) {
-    const stars = Array.from({ length: 5 })
-      .map((_, i) => i < get(review, 'rating'));
-    const starImages = [
-      require('images/StarEmptyIcon.png'),
-      require('images/StarIcon.png'),
-    ];
+  @autobind
+  onReviewPress(/* review */) {
+    // Open review screen
+    // this.props.navigator.push({
+    //   screen: REVIEW_SCREEN,
+    //   passProps: {
+    //     id: review.id,
+    //     review,
+    //   },
+    // });
+  }
 
+  @autobind
+  renderReview(review) {
     return (
-      <View style={styles.review} key={review.id}>
-        <View style={styles.review__header}>
-          <View>
-            <Text style={styles.review__title}>{get(review, 'title')}</Text>
-            <View style={styles.stars}>
-              {stars.map((star, i) => (
-                <Image
-                  key={`star-${i + 0}`}
-                  style={styles.star}
-                  source={starImages[Number(star)]}
-                />
-              ))}
-            </View>
-          </View>
-          <View style={styles.right}>
-            <Text style={styles.review__subtitle}>
-              {distanceInWordsStrict(get(review, 'createdAt'), new Date())}
-            </Text>
-            <Text style={styles.review__subtitle}>{get(review, 'name')}</Text>
-          </View>
-        </View>
-        <CollapsedText
-          backgroundColor="#F0F0F8"
-          numberOfLines={5}
-        >
-          {get(review, 'description')}
-        </CollapsedText>
-      </View>
+      <Review
+        key={get(review, 'id')}
+        name={get(review, 'name')}
+        title={get(review, 'title')}
+        rating={get(review, 'rating')}
+        createdAt={get(review, 'createdAt')}
+        description={get(review, 'description')}
+        numberOfLines={5}
+        onMorePress={this.onReviewPress}
+      />
     );
   }
 
@@ -87,12 +77,15 @@ export default class ReviewsOverview extends PureComponent {
             <Text style={styles.rating__score}>{rating.toFixed(1)}</Text>
             <Text style={styles.rating__of}>out of 5</Text>
           </View>
-          <View style={styles.flex} />
-          <View>
+          <View style={styles.flex}>
+            <ReviewStats votes={[16, 32, 199, 45, 8]} />
+            <View style={styles.flex} />
             <Text style={styles.rating__votes}>{votes.toLocaleString()} Ratings</Text>
           </View>
         </View>
-        {this.renderReview(get(reviews, '0'))}
+        <AppItemSlider itemsPerPage={1}>
+          {reviews.map(this.renderReview)}
+        </AppItemSlider>
         <Divider />
       </View>
     );
@@ -100,13 +93,8 @@ export default class ReviewsOverview extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-
   flex: {
     flex: 1,
-  },
-
-  right: {
-    alignItems: 'flex-end',
   },
 
   rating: {
@@ -137,46 +125,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: '#8A8A8F',
     letterSpacing: -0.24,
+    textAlign: 'right',
   },
-
-  review: {
-    backgroundColor: '#F0F0F8',
-    borderRadius: 8,
-    paddingVertical: 12,
-    paddingHorizontal: 18,
-    marginBottom: 32,
-  },
-
-  review__header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 11,
-  },
-
-  review__title: {
-    fontFamily: 'SFProText-Semibold',
-    fontSize: 15,
-    color: '#000000',
-    letterSpacing: -0.24,
-    marginBottom: 6,
-  },
-
-  review__subtitle: {
-    fontFamily: 'SFProText-Regular',
-    fontSize: 15,
-    color: '#8A8A8F',
-    letterSpacing: -0.24,
-    marginBottom: 3,
-  },
-
-  stars: {
-    flexDirection: 'row',
-  },
-
-  star: {
-    width: 12,
-    height: 12,
-    tintColor: '#FD8206',
-  },
-
 });

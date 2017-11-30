@@ -6,9 +6,6 @@ import PropTypes from 'prop-types';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
 import InfoRow from 'components/info-row';
-import CollapsedText from 'components/collapsed-text';
-import AppItemRow from 'components/app-item-row';
-import AppItemSlider from 'components/app-item-slider';
 import { appWithProps } from 'graphql/queries/app';
 import get from 'lodash/get';
 import Header from './components/header';
@@ -17,6 +14,8 @@ import Screenshots from './components/screenshots';
 import ReviewsOverview from './components/reviews-overview';
 import VersionOverview from './components/version-overview';
 import RelatedApps from './components/related-apps';
+import SellerApps from './components/seller-apps';
+import Description from './components/description';
 
 const formatReviewsCount = (count) => {
   if (count > 1000) {
@@ -55,6 +54,10 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+    this.opacity = this.props.ui.appScreenHeaderOpacity.interpolate({
+      inputRange: [0, 1],
+      outputRange: [1, 0],
+    });
   }
 
   @autobind
@@ -79,59 +82,20 @@ export default class App extends Component {
     }
   }
 
+  /**
+   * Render partial details of the app, we already pass props needed for this method.
+   * @param {object} app App object
+   */
   @autobind
-  renderAppItem({
-    id,
-    iconUrl,
-    price,
-    hasInAppPurchases,
-    ...props
-  }) {
-    return (
-      <AppItemRow
-        {...props}
-        key={id}
-        id={id}
-        imageUrl={iconUrl}
-        action={{
-          label: price ? `$${price}` : 'GET',
-          subtitle: hasInAppPurchases ? 'In-App Purchases' : undefined,
-          white: true,
-        }}
-      />
-    );
-  }
-
-  render() {
-    const opacity = this.props.ui.appScreenHeaderOpacity.interpolate({
-      inputRange: [0, 1],
-      outputRange: [1, 0],
-    });
-
-    const {
-      App: app,
-      loading,
-      error,
-    } = this.props.data;
-
-    const version = get(app, 'versions.0');
-
-    if (loading || error) {
-      return null;
-    }
-
+  renderPartial(app) {
     const action = {
       label: app.price ? `$${app.price}` : 'GET',
       onPress: () => this.props.navigator.pop(),
     };
 
     return (
-      <Animated.ScrollView
-        style={styles.host}
-        scrollEventThrottle={16}
-        onScroll={this.onScroll}
-      >
-        <Animated.View style={{ opacity }}>
+      <View>
+        <Animated.View style={{ opacity: this.opacity }}>
           <Header
             iconUrl={app.iconUrl}
             title={app.title}
@@ -142,11 +106,40 @@ export default class App extends Component {
 
         <StatsRow>
           <StatsRow.Item
-            title={get(app, 'rating').toFixed(1)}
+            title={get(app, 'rating', 0).toFixed(1)}
             value={`${formatReviewsCount(get(app, 'ratingsCount.count'))} Ratings`}
           />
           <StatsRow.Item title={`${app.age}+`} value="Age" />
         </StatsRow>
+      </View>
+    );
+  }
+
+  render() {
+    const {
+      App: app,
+      loading,
+      error,
+    } = this.props.data;
+
+    if (app && (loading || error)) {
+      return (
+        <View style={styles.host}>
+          {this.renderPartial(app)}
+        </View>
+      );
+    }
+
+    const type = get(app, 'type', 'APP') === 'APP' ? 'Apps' : 'Games';
+    const version = get(app, 'versions.0');
+
+    return (
+      <Animated.ScrollView
+        style={styles.host}
+        scrollEventThrottle={16}
+        onScroll={this.onScroll}
+      >
+        {this.renderPartial(app)}
 
         <Screenshots
           data={[{
@@ -155,12 +148,9 @@ export default class App extends Component {
           }]}
         />
 
-        {/* <Description onSellerPress seller={get(app, 'seller')}>{get(app, 'description')}</Description> */}
-        <View>
-          <CollapsedText>{get(app, 'description')}</CollapsedText>
-          <Text>Developer{'\n'}{get(app, 'seller.name')}</Text>
-          <Divider />
-        </View>
+        <Description onSellerPress seller={get(app, 'seller')}>
+          {get(app, 'description')}
+        </Description>
 
         <ReviewsOverview
           title="Ratings & Reviews"
@@ -179,7 +169,7 @@ export default class App extends Component {
         <View>
           <Heading>Information</Heading>
           <InfoRow label="Seller" value={get(app, 'seller.name')} />
-          <InfoRow label="Category" value="Games: AR Games" />
+          <InfoRow label="Category" value={`${type}: ${get(app, 'categories.0.title')}`} />
           <InfoRow label="Compatibility" value="Works on this iPhone and some other stuff I dont know about yet" />
           <InfoRow label="Languages" value="English" />
           <InfoRow label="Age Rating" value={`${get(app, 'age')}+`} />
@@ -193,18 +183,17 @@ export default class App extends Component {
         </View>
 
         <View style={styles.bottom}>
-          {get(app, 'seller.apps.length', 0) > 0 && (
-            <View>
-              <Heading action="See All">More by {get(app, 'seller.name')}</Heading>
-              <AppItemSlider itemsPerPage={2}>
-                {get(app, 'seller.apps', []).map(this.renderAppItem)}
-              </AppItemSlider>
-            </View>
-          )}
-          <RelatedApps id={app.id} type={app.type} categories={app.categories.map(c => c.id)} />
+          <SellerApps
+            seller={get(app, 'seller')}
+          />
+          <RelatedApps
+            id={app.id}
+            type={app.type}
+            categories={app.categories.map(c => c.id)}
+          />
           <Divider />
           <View style={styles.copyright}>
-            <Text>© {get(app, 'seller.name')}</Text>
+            <Text style={styles.copyright__text}>© {get(app, 'seller.name')}</Text>
           </View>
         </View>
       </Animated.ScrollView>
@@ -219,14 +208,21 @@ const styles = StyleSheet.create({
   },
 
   copyright: {
-    paddingTop: 5,
+    paddingTop: 13,
+  },
+
+  copyright__text: {
+    fontFamily: 'SFProText-Regular',
+    fontSize: 15,
+    color: '#8A8A8F',
+    letterSpacing: -0.08,
   },
 
   bottom: {
     backgroundColor: '#F0F0F8',
     margin: -20,
     padding: 20,
-    paddingBottom: 300,
+    paddingBottom: 240,
     marginBottom: -200,
     marginTop: 20,
   },
