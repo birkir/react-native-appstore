@@ -54,6 +54,7 @@ export default class Games extends Component {
         data={[
           ...allCollections.map(collection => (
             <Collection
+              showAction
               key={collection.id}
               type={this.props.type}
               navigator={this.props.navigator}
