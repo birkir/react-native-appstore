@@ -12,12 +12,14 @@ export default class Games extends Component {
     navigator: PropTypes.object,
     data: PropTypes.object,
     type: PropTypes.string,
+    title: PropTypes.string,
   }
 
   static defaultProps = {
     navigator: undefined,
     data: undefined,
     type: undefined,
+    title: undefined,
   }
 
   static navigatorStyle = {
@@ -56,7 +58,7 @@ export default class Games extends Component {
             <Collection
               showAction
               key={collection.id}
-              type={this.props.type}
+              backTitle={this.props.title}
               navigator={this.props.navigator}
               collection={collection}
             />
