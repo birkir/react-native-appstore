@@ -58,6 +58,7 @@ export default class Games extends Component {
             <Collection
               showAction
               key={collection.id}
+              type={this.props.type}
               backTitle={this.props.title}
               navigator={this.props.navigator}
               collection={collection}

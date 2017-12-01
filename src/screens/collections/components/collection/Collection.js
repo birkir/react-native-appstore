@@ -15,11 +15,13 @@ export default class Collection extends PureComponent {
   static propTypes = {
     collection: PropTypes.object.isRequired,
     navigator: PropTypes.object.isRequired,
+    type: PropTypes.string,
     backTitle: PropTypes.string,
     showAction: PropTypes.bool,
   }
 
   static defaultProps = {
+    type: undefined,
     backTitle: undefined,
     showAction: false,
   }
