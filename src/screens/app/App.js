@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Animated, View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
-import { DEVELOPER_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN, pushAppScreen } from 'screens';
+import { DEVELOPER_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN, SELLER_COLLECTIONS_SCREEN, pushAppScreen } from 'screens';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
@@ -148,6 +148,20 @@ export default class App extends Component {
     });
   }
 
+  @autobind
+  onSeeAllSellerApps() {
+    const { data, navigator } = this.props;
+
+    navigator.push({
+      screen: SELLER_COLLECTIONS_SCREEN,
+      backButtonTitle: 'Back',
+      title: get(data, 'App.seller.name'),
+      passProps: {
+        id: get(data, 'App.seller.id'),
+      },
+    });
+  }
+
   /**
    * Render partial details of the app, we already pass props needed for this method.
    * @param {object} app App object
@@ -259,6 +273,7 @@ export default class App extends Component {
             seller={get(app, 'seller')}
             onAppPress={this.onAppPress}
             onAppPressIn={this.onAppPressIn}
+            onSeeAll={this.onSeeAllSellerApps}
           />
           <RelatedApps
             id={app.id}
