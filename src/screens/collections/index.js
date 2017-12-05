@@ -1,2 +1,1 @@
-export { default } from './Collections';
-export SellerCollectionsScreen from './SellerCollections';
+export { default, SellerCollectionsScreen } from './Collections';
