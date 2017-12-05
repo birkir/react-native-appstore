@@ -101,7 +101,7 @@ export default class App extends Component {
       screen: REVIEWS_SCREEN,
       title: 'Ratings & Reviews',
       passProps: {
-        id,
+        reviewId: id,
       },
     });
   }

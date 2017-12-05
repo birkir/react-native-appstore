@@ -91,7 +91,12 @@ export const startApp = () => {
 };
 
 // Push app screen (helper function)
-export const pushAppScreen = ({ navigator, app, backTitle, previewView }) => navigator.push({
+export const pushAppScreen = ({
+  navigator,
+  app,
+  backTitle,
+  previewView,
+}) => navigator.push({
   screen: APP_SCREEN,
   backButtonTitle: backTitle,
   backButtonHidden: false,

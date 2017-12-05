@@ -13,6 +13,7 @@ const starImages = [
 export default class Review extends PureComponent {
 
   static propTypes = {
+    compact: PropTypes.bool,
     title: PropTypes.string,
     rating: PropTypes.number,
     createdAt: PropTypes.string,
@@ -23,6 +24,7 @@ export default class Review extends PureComponent {
   }
 
   static defaultProps = {
+    compact: false,
     title: undefined,
     rating: undefined,
     createdAt: undefined,
@@ -42,6 +44,7 @@ export default class Review extends PureComponent {
   render() {
 
     const {
+      compact,
       title,
       rating,
       createdAt,
@@ -52,7 +55,7 @@ export default class Review extends PureComponent {
     } = this.props;
 
     return (
-      <View style={styles.review}>
+      <View style={[styles.review, compact && styles.review__compact]}>
         <View style={styles.review__header}>
           <View style={styles.row}>
             {title && <Text style={styles.review__title}>{title}</Text>}
@@ -103,7 +106,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     marginBottom: 32,
 
-    height: 200,
+    minHeight: 200,
+  },
+
+  review__compact: {
+    minHeight: 'auto',
+    marginBottom: 16,
   },
 
   row: {
