@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Animated, View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
-import { DEVELOPER_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN, SELLER_COLLECTIONS_SCREEN, pushAppScreen } from 'screens';
+import { REVIEWS_SCREEN, VERSIONS_SCREEN, SELLER_COLLECTIONS_SCREEN, pushAppScreen } from 'screens';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
@@ -82,17 +82,6 @@ export default class App extends Component {
       }).start();
       this.isHeaderVisible = isHeaderVisible;
     }
-  }
-
-  @autobind
-  onDeveloperPress({ id, name }) {
-    this.props.navigator.push({
-      screen: DEVELOPER_SCREEN,
-      title: name,
-      passProps: {
-        id,
-      },
-    });
   }
 
   @autobind
@@ -232,7 +221,7 @@ export default class App extends Component {
 
         <Description
           seller={get(app, 'seller')}
-          onDeveloperPress={this.onDeveloperPress}
+          onDeveloperPress={this.onSeeAllSellerApps}
         >
           {get(app, 'description')}
         </Description>
