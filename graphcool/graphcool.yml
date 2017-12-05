@@ -6,7 +6,7 @@ functions:
     operation: Review.create
     handler:
       code:
-        src: src/graphql/hooks/afterReviewCreate.js
+        src: hooks/afterReviewCreate.js
 
 permissions:
   - operation: "*"
