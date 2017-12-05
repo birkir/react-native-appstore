@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Animated, View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
-import { REVIEWS_SCREEN, VERSIONS_SCREEN, SELLER_COLLECTIONS_SCREEN, pushAppScreen } from 'screens';
+import { APP_LIST_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN, SELLER_COLLECTIONS_SCREEN, pushAppScreen } from 'screens';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
@@ -139,14 +139,24 @@ export default class App extends Component {
 
   @autobind
   onSeeAllSellerApps() {
-    const { data, navigator } = this.props;
-
-    navigator.push({
+    const seller = get(this.props.data, 'App.seller', {});
+    this.props.navigator.push({
       screen: SELLER_COLLECTIONS_SCREEN,
       backButtonTitle: 'Back',
-      title: get(data, 'App.seller.name'),
+      title: seller.name,
       passProps: {
-        id: get(data, 'App.seller.id'),
+        id: seller.id,
+      },
+    });
+  }
+
+  @autobind
+  onRelatedAppsPress({ apps }) {
+    this.props.navigator.push({
+      screen: APP_LIST_SCREEN,
+      title: 'You May Also Like',
+      passProps: {
+        apps,
       },
     });
   }
@@ -272,6 +282,7 @@ export default class App extends Component {
             categories={app.categories.map(c => c.id)}
             onAppPress={this.onAppPress}
             onAppPressIn={this.onAppPressIn}
+            onSeeAllPress={this.onRelatedAppsPress}
           />
           <Divider />
           <View style={styles.copyright}>
