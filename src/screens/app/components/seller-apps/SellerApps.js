@@ -12,12 +12,14 @@ export default class SellerApps extends PureComponent {
     seller: PropTypes.object,
     onAppPress: PropTypes.func,
     onAppPressIn: PropTypes.func,
+    onSeeAll: PropTypes.func,
   }
 
   static defaultProps = {
     seller: undefined,
     onAppPress: undefined,
     onAppPressIn: undefined,
+    onSeeAll: undefined,
   }
 
   /**
@@ -63,7 +65,7 @@ export default class SellerApps extends PureComponent {
 
     return (
       <View>
-        <Heading action="See All">More by {name}</Heading>
+        <Heading action="See All" onActionPress={this.props.onSeeAll}>More by {name}</Heading>
         <AppItemSlider itemsPerPage={2}>
           {apps.map(this.renderAppItem)}
         </AppItemSlider>
