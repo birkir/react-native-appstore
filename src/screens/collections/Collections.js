@@ -3,10 +3,11 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import { autobind } from 'core-decorators';
 import PropTypes from 'prop-types';
 import collectionsWithProps from 'graphql/queries/collections';
+import sellerWithProps from 'graphql/queries/seller';
 import Collection from './components/collection';
+import sellerCollectionsHoc from './utils/sellerCollectionsHoc';
 
-@collectionsWithProps
-export default class Games extends Component {
+class Collections extends Component {
 
   static propTypes = {
     navigator: PropTypes.object,
@@ -84,3 +85,6 @@ const styles = StyleSheet.create({
     marginTop: -2,
   },
 });
+
+export const SellerCollectionsScreen = sellerWithProps(sellerCollectionsHoc(Collections));
+export default collectionsWithProps(Collections);
