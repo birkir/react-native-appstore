@@ -182,11 +182,12 @@ export default class App extends Component {
   }
 
   render() {
+    const { navigator, data } = this.props;
     const {
       App: app,
       loading,
       error,
-    } = this.props.data;
+    } = data;
 
     if (app && (loading || error)) {
       return (
@@ -208,7 +209,7 @@ export default class App extends Component {
         {this.renderPartial(app)}
 
         <Screenshots
-          navigator={this.props.navigator}
+          navigator={navigator}
           data={[{
             title: 'iPhone',
             screenshots: get(app, 'previews'),
@@ -262,6 +263,7 @@ export default class App extends Component {
           />
           <RelatedApps
             id={app.id}
+            navigator={navigator}
             type={app.type}
             categories={app.categories.map(c => c.id)}
             onAppPress={this.onAppPress}
