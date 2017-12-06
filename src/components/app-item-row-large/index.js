@@ -1,1 +1,1 @@
-export default from './AppItemRowLarge';
+export { default } from './AppItemRowLarge';

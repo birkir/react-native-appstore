@@ -1,1 +1,1 @@
-export default from './InfoRow';
+export { default } from './InfoRow';

@@ -1,1 +1,1 @@
-export default from './Today';
+export { default } from './Today';

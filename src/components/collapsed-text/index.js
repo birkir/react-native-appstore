@@ -1,1 +1,1 @@
-export default from './CollapsedText';
+export { default } from './CollapsedText';

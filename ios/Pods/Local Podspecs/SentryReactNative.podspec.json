@@ -1,13 +1,13 @@
 {
   "name": "SentryReactNative",
-  "version": "0.31.0",
+  "version": "0.30.3",
   "license": "MIT",
   "summary": "Official Sentry SDK for react-native",
   "authors": "Sentry",
   "homepage": "https://github.com/getsentry/react-native-sentry",
   "source": {
     "git": "https://github.com/getsentry/react-native-sentry.git",
-    "tag": "v0.31.0"
+    "tag": "v0.30.3"
   },
   "platforms": {
     "ios": "8.0",

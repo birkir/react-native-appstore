@@ -2,10 +2,15 @@ platform :ios, '8.0'
 
 target 'AppStoreClone' do
 
+  pod 'Firebase/Core'
+  pod 'Firebase/Performance'
+  pod 'Firebase/Messaging'
+
   pod 'react-native-navigation', :path => '../node_modules/react-native-navigation'
   pod 'react-native-blur', :path => '../node_modules/react-native-blur'
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
   pod 'SentryReactNative', :path => '../node_modules/react-native-sentry'
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
   pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'Core',

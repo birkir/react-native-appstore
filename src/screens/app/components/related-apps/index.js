@@ -1,1 +1,1 @@
-export default from './RelatedApps';
+export { default } from './RelatedApps';

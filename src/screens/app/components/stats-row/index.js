@@ -1,1 +1,1 @@
-export default from './StatsRow';
+export { default } from './StatsRow';

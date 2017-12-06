@@ -15,12 +15,12 @@
     "react/forbid-prop-types": 0,
     "global-require": 0,
     "import/no-unresolved": [2, {
-      "ignore": ['\.png$', '\.jpg$']
+      "ignore": ["\\.png$", "\\.jpg$"]
     }],
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 1,
     "react-native/no-inline-styles": 2,
-    "react-native/no-color-literals": 0,
+    "react-native/no-color-literals": 0
   },
   "settings": {
     "import/resolver": {
@@ -29,5 +29,6 @@
   },
   "globals": {
     "fetch": true,
+    "__DEV__": true
   }
 }

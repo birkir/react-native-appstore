@@ -1,1 +1,1 @@
-export default from './AppItemRow';
+export { default } from './AppItemRow';

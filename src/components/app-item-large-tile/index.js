@@ -1,1 +1,1 @@
-export default from './AppItemLargeTile';
+export { default } from './AppItemLargeTile';

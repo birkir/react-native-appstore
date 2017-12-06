@@ -1,1 +1,1 @@
-export default from './ReviewStats';
+export { default } from './ReviewStats';

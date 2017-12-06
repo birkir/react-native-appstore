@@ -1,1 +1,1 @@
-export default from './SellerApps';
+export { default } from './SellerApps';

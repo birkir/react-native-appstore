@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* UenoNativeStarterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* UenoNativeStarterTests.m */; };
 		6D4E713C0CE8231C584F03A9 /* libPods-AppStoreCloneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD97C6C3D52BC138450A43E /* libPods-AppStoreCloneTests.a */; };
 		AC242EA5BAD33E490BF2AA1A /* libPods-AppStoreClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFDB818D9E51B0E81D50E5F9 /* libPods-AppStoreClone.a */; };
+		E3A131221FD87FA2007ABAF2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3A131211FD87FA2007ABAF2 /* GoogleService-Info.plist */; };
 		E3AAD4301F573DB200B7831D /* BuildDotenvConfig.ruby in Resources */ = {isa = PBXBuildFile; fileRef = E3AAD42B1F573DB200B7831D /* BuildDotenvConfig.ruby */; };
 		E3AAD4321F573DB200B7831D /* ReactNativeConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E3AAD42F1F573DB200B7831D /* ReactNativeConfig.m */; };
 		E3D5C6F51FBE07D70053D1CA /* SF-Pro-Display-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = E3D5C6DE1FBE07CB0053D1CA /* SF-Pro-Display-Black.otf */; };
@@ -88,6 +89,7 @@
 		2D02E47B1E0B4A5D006451C7 /* AppStoreClone-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AppStoreClone-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* AppStoreClone-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppStoreClone-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFDB818D9E51B0E81D50E5F9 /* libPods-AppStoreClone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AppStoreClone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3A131211FD87FA2007ABAF2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E3AAD42B1F573DB200B7831D /* BuildDotenvConfig.ruby */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BuildDotenvConfig.ruby; sourceTree = "<group>"; };
 		E3AAD42D1F573DB200B7831D /* GeneratedInfoPlistDotEnv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedInfoPlistDotEnv.h; sourceTree = "<group>"; };
 		E3AAD42E1F573DB200B7831D /* ReactNativeConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactNativeConfig.h; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		13B07FAE1A68108700A75B9A /* AppStoreClone */ = {
 			isa = PBXGroup;
 			children = (
+				E3A131211FD87FA2007ABAF2 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -487,6 +490,7 @@
 				E3D5C7081FBE07D70053D1CA /* SF-Pro-Text-BoldItalic.otf in Resources */,
 				E3D5C7101FBE07D70053D1CA /* SF-Pro-Text-RegularItalic.otf in Resources */,
 				E3D5C6FA1FBE07D70053D1CA /* SF-Pro-Display-HeavyItalic.otf in Resources */,
+				E3A131221FD87FA2007ABAF2 /* GoogleService-Info.plist in Resources */,
 				E3D5C6FF1FBE07D70053D1CA /* SF-Pro-Display-Regular.otf in Resources */,
 				E3D5C6F51FBE07D70053D1CA /* SF-Pro-Display-Black.otf in Resources */,
 				E3D5C70A1FBE07D70053D1CA /* SF-Pro-Text-HeavyItalic.otf in Resources */,

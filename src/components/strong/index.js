@@ -1,1 +1,1 @@
-export default from './Strong';
+export { default } from './Strong';

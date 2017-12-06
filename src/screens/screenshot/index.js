@@ -1,1 +1,1 @@
-export default from './Screenshot';
+export { default } from './Screenshot';
