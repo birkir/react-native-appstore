@@ -58,3 +58,4 @@ config.env.js
 GeneratedDotEnv.m
 GeneratedInfoPlistDotEnv.h
 .build
+sentry.properties
