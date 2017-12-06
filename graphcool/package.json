@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "algoliasearch": "3.24.6",
     "graphcool-lib": "0.1.4"
   }
 }

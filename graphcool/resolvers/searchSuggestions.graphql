@@ -1,0 +1,7 @@
+extend type Query {
+  searchSuggestions(term: String): SuggestionsPayload
+}
+
+type SuggestionsPayload {
+  suggestions: [String]!
+}

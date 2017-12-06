@@ -60,3 +60,4 @@ GeneratedInfoPlistDotEnv.h
 .build
 sentry.properties
 GoogleService-Info.plist
+.envrc
