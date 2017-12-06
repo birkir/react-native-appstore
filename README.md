@@ -1,3 +1,5 @@
+[![Build status](https://build.appcenter.ms/v0.1/apps/0f5ad96f-a6ae-4b7b-989d-d3371e126f52/branches/master/badge)](https://appcenter.ms)
+
 # App Store clone in react-native
 
 This sample project was intended to demonstrate the possibilities with react-native.

@@ -9,3 +9,8 @@ fi
 if [ ! -z "$GEN_SENTRY_PROPERTIES" ]; then
   echo $GEN_SENTRY_PROPERTIES | base64 --decode > ios/sentry.properties
 fi
+
+# Generate .env
+for KEY in $(cat .env_example | sed 's/\"/\\\"/g' | sed -n 's|\(.*\)=\(.*\)|\1|p'); do
+  echo "$KEY=$(printf '%s\n' "${!KEY}")" >> .env
+done
