@@ -7,5 +7,5 @@ fi
 
 # Generate ios/sentry.properties
 if [ ! -z "$GEN_SENTRY_PROPERTIES" ]; then
-  echo $GEN_SENTRY_PROPERTIES | base64 --decode > sentry.properties
+  echo $GEN_SENTRY_PROPERTIES | base64 --decode > ios/sentry.properties
 fi
