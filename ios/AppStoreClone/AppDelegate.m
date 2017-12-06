@@ -9,6 +9,7 @@
 
 #import "AppDelegate.h"
 #import "RCCManager.h"
+#import "RNSentry.h"
 
 #import <React/RCTLinkingManager.h>
 #import <React/RCTBundleURLProvider.h>
@@ -30,6 +31,7 @@
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   self.window.backgroundColor = [UIColor whiteColor];
   [[RCCManager sharedInstance] initBridgeWithBundleURL:jsCodeLocation launchOptions:launchOptions];
+  [RNSentry installWithBridge:[[RCCManager sharedInstance] getBridge]];
   
   return YES;
 }
