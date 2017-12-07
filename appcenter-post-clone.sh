@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 # Update NPM
-brew update
-brew install node
+brew install nvm
+nvm install 8
+node --version
 
 # Generate ios/AppStoreClone/GoogleService-Info.plist
 if [ ! -z "$GEN_GOOGLESERVICE_INFO_PLIST" ]; then
