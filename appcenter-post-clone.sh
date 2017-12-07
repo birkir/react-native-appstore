@@ -2,8 +2,8 @@
 
 # Update NPM
 brew update
-brew doctor
-brew upgrade node
+brew unlink node@6
+brew install node
 # brew install nvm
 # nvm install 8
 node --version
