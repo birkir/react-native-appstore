@@ -2,7 +2,8 @@
   "extends": "airbnb",
   "parser": "babel-eslint",
   "plugins": [
-    "react-native"
+    "react-native",
+    "jest"
   ],
   "rules": {
     "react/prefer-stateless-function": 0,
@@ -30,5 +31,8 @@
   "globals": {
     "fetch": true,
     "__DEV__": true
+  },
+  "env": {
+    "jest/globals": true
   }
 }

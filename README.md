@@ -1,5 +1,39 @@
 [![Build status](https://build.appcenter.ms/v0.1/apps/0f5ad96f-a6ae-4b7b-989d-d3371e126f52/branches/master/badge)](https://appcenter.ms)
 
+# E2E Testing
+
+This project uses detox to run end-to-end UI testing with jest as test runner under the hood. Some tooling is needed to get started, but the tests will also run on a CI.
+
+### Setup tools
+
+```bash
+brew tap wix/brew
+brew install --HEAD applesimutils
+npm install -g detox-cli
+```
+
+### Run the tests
+
+```bash
+yarn start
+detox build
+detox test
+```
+
+# Integration, Unit and Code Quality Testing
+
+Code is linted with eslint using airbnb's config and personal opinionated exceptions.
+
+```bash
+yarn lint
+```
+
+We use jest also for running unit tests with snapshots and enzyme for cases where we want more control.
+
+```bash
+yarn test
+```
+
 # App Store clone in react-native
 
 This sample project was intended to demonstrate the possibilities with react-native.

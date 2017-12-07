@@ -52,7 +52,7 @@ export default class Today extends Component {
   render() {
     const { top, isScrollEnabled, openIndex } = this.state;
     return (
-      <View style={styles.flex}>
+      <View style={styles.flex} testID="TODAY_HOST_VIEW">
         <SafeAreaView style={StyleSheet.absoluteFill}>
           <View onLayout={this.onLayout} />
         </SafeAreaView>

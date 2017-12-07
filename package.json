@@ -1,5 +1,5 @@
 {
-	"name": "UenoNativeStarter",
+	"name": "react-native-appstore",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -7,6 +7,7 @@
 		"reload-env": "sh ./scripts/dotenv.sh",
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
+		"lint": "eslint src",
 		"seed": "babel-node ./scripts/seed.js"
 	},
 	"eslintIgnore": [
@@ -46,19 +47,43 @@
 		"babel-plugin-module-resolver": "3.0.0",
 		"babel-preset-react-native": "4.0.0",
 		"babel-preset-react-native-stage-0": "1.0.1",
+		"detox": "6.0.2",
+		"enzyme": "3.2.0",
+		"enzyme-adapter-react-16": "1.1.0",
 		"eslint": "4.11.0",
 		"eslint-config-airbnb": "16.1.0",
 		"eslint-import-resolver-babel-module": "4.0.0-beta.3",
 		"eslint-plugin-import": "2.8.0",
+		"eslint-plugin-jest": "21.4.2",
 		"eslint-plugin-jsx-a11y": "6.0.2",
 		"eslint-plugin-react": "7.4.0",
 		"eslint-plugin-react-native": "3.1.0",
 		"faker": "4.1.0",
 		"jest": "21.2.1",
 		"node-fetch": "1.7.3",
+		"react-dom": "16.2.0",
+		"react-native-mock": "0.3.1",
 		"react-test-renderer": "16.1.0"
 	},
 	"jest": {
-		"preset": "react-native"
-	}
+		"preset": "react-native",
+		"setupFiles": [
+			"./scripts/jest.js"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.spec.js"
+    ]
+	},
+  "detox": {
+    "test-runner": "jest",
+    "runner-config": "e2e/config.json",
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/AppStoreClone.app",
+        "build": "xcodebuild -workspace ios/AppStoreClone.xcworkspace -scheme AppStoreClone -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7 Plus"
+      }
+    }
+  }
 }
