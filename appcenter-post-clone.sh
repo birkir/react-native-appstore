@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Update NPM
+npm install -g npm
+
 # Generate ios/AppStoreClone/GoogleService-Info.plist
 if [ ! -z "$GEN_GOOGLESERVICE_INFO_PLIST" ]; then
   echo $GEN_GOOGLESERVICE_INFO_PLIST | base64 --decode > ios/AppStoreClone/GoogleService-Info.plist
