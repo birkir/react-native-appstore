@@ -24,6 +24,7 @@ export default class Button extends PureComponent {
     horizontal: PropTypes.bool,
     align: PropTypes.oneOf(['left', 'center', 'right']),
     width: PropTypes.number,
+    circle: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -36,6 +37,7 @@ export default class Button extends PureComponent {
     horizontal: false,
     align: 'center',
     width: WIDTH,
+    circle: false,
   };
 
   state = {
@@ -125,10 +127,8 @@ export default class Button extends PureComponent {
       horizontal,
       align,
       width,
+      circle,
     } = this.props;
-
-    // TODO: Show image for the three-dots.
-    const circle = (typeof children === 'string' && children === '...');
 
     const animated = {
       spinner: {

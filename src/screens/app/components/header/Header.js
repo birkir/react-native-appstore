@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, Share } from 'react-native';
 import Button from 'components/button';
 import PropTypes from 'prop-types';
+import { autobind } from 'core-decorators';
 
 export default class Header extends PureComponent {
 
@@ -21,6 +22,13 @@ export default class Header extends PureComponent {
     title: undefined,
     subtitle: undefined,
     action: undefined,
+  }
+
+  @autobind
+  async onSharePress() {
+    const { title } = this.props;
+    const url = `https://google.com/?q=${encodeURIComponent(title)}`;
+    await Share.share({ title, url });
   }
 
   render() {
@@ -47,7 +55,13 @@ export default class Header extends PureComponent {
             >
               {action.label}
             </Button>
-            <Button blue>...</Button>
+            <Button blue circle onPress={this.onSharePress}>
+              <View style={styles.dots}>
+                <View style={styles.dot} />
+                <View style={styles.dot} />
+                <View style={styles.dot} />
+              </View>
+            </Button>
           </View>
         </View>
       </View>
@@ -95,4 +109,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
+  dots: {
+    position: 'absolute',
+    top: (28 / 2) - (4 / 2),
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+
+  dot: {
+    width: 4,
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'white',
+    marginHorizontal: 2,
+  },
 });
