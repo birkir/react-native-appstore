@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-# Update NPM
+# Update node
 brew update
 brew unlink node@6
 brew install node
-# brew install nvm
-# nvm install 8
 node --version
 
 # Generate ios/AppStoreClone/GoogleService-Info.plist
