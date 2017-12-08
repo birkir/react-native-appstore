@@ -1,0 +1,7 @@
+extend type Query {
+  search(term: String): SearchPayload
+}
+
+type SearchPayload {
+  results: Json
+}
