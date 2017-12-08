@@ -2,19 +2,32 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import ListItem from 'components/list-item';
+import CategoryRow from 'components/category-row';
 import Divider from 'components/divider';
+import { CATEGORY_SCREEN } from 'screens';
 import { topCategories } from 'graphql/queries/topCategories';
+import { autobind } from 'core-decorators';
 
 @topCategories
 export default class CategoriesList extends PureComponent {
 
   static propTypes = {
+    navigator: PropTypes.object.isRequired,
     data: PropTypes.object,
   }
 
   static defaultProps = {
     data: undefined,
+  }
+
+  @autobind
+  onCategoryPress({ id }) {
+    this.props.navigator.push({
+      screen: CATEGORY_SCREEN,
+      passProps: {
+        categoryId: id,
+      },
+    });
   }
 
   render() {
@@ -25,11 +38,11 @@ export default class CategoriesList extends PureComponent {
     return (
       <View>
         {items.map((item, i) => (
-          <ListItem
+          <CategoryRow
+            {...item}
             key={item.id}
-            label={item.title}
-            fontStyle={styles.fontStyle}
             divider={(i + 1) < items.length}
+            onPress={this.onCategoryPress}
           />
         ))}
         <View style={styles.spacing} />
@@ -42,13 +55,5 @@ export default class CategoriesList extends PureComponent {
 const styles = StyleSheet.create({
   spacing: {
     height: 20,
-  },
-
-  fontStyle: {
-    fontFamily: 'SFProText-Regular',
-    fontSize: 17,
-    color: '#007AFF',
-    letterSpacing: -0.41,
-    lineHeight: 22,
   },
 });

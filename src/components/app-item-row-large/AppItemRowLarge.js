@@ -1,5 +1,12 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Image, Text, TouchableWithoutFeedback, findNodeHandle } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  TouchableWithoutFeedback,
+  findNodeHandle,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
 import Divider from 'components/divider';

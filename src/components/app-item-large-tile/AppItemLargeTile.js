@@ -59,7 +59,9 @@ export default class AppItemLargeTile extends PureComponent {
             <Image source={{ uri: imageUrl }} style={styles.card__overlay} />
           </View>
           <View style={styles.content}>
-            <Text style={styles.title}>Starter pack for <Text style={styles.blue}>Candy Crush Saga</Text></Text>
+            <Text style={styles.title}>
+              Starter pack for <Text style={styles.blue}>Candy Crush Saga</Text>
+            </Text>
             <Text style={styles.subtitle}>20 goldbars, 2 hours unlimited life & boosters</Text>
             <View style={styles.button}>
               <Button {...action}>

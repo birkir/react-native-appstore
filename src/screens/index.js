@@ -1,7 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 import { toJS } from 'mobx';
-import SplashScreen from './splash';
 import TodayScreen from './today';
+import CategoriesScreen from './categories';
 import CollectionsScreen, {
   SellerCollectionsScreen,
 } from './collections';
@@ -17,8 +17,8 @@ import SearchScreen from './search';
 
 // Set screen constants
 export const Screens = new Map();
-export const SPLASH_SCREEN = 'appStoreClone.SplashScreen';
 export const TODAY_SCREEN = 'appStoreClone.TodayScreen';
+export const CATEGORIES_SCREEN = 'appStoreClone.CategoriesScreen';
 export const COLLECTIONS_SCREEN = 'appStoreClone.CollectionsScreen';
 export const SELLER_COLLECTIONS_SCREEN = 'appStoreClone.SellerCollectionsScreen';
 export const COLLECTION_SCREEN = 'appStoreClone.CollectionScreen';
@@ -33,8 +33,8 @@ export const UPDATES_SCREEN = 'appStoreClone.UpdatesScreen';
 export const SEARCH_SCREEN = 'appStoreClone.SearchScreen';
 
 // Resolve screen constants to imported class
-Screens.set(SPLASH_SCREEN, () => SplashScreen);
 Screens.set(TODAY_SCREEN, () => TodayScreen);
+Screens.set(CATEGORIES_SCREEN, () => CategoriesScreen);
 Screens.set(COLLECTIONS_SCREEN, () => CollectionsScreen);
 Screens.set(SELLER_COLLECTIONS_SCREEN, () => SellerCollectionsScreen);
 Screens.set(COLLECTION_SCREEN, () => CollectionScreen);
