@@ -8,12 +8,22 @@ functions:
       code:
         src: hooks/afterReviewCreate.js
 
-  search:
+  searchSuggestions:
     type: resolver
     schema: resolvers/searchSuggestions.graphql
     handler:
       code:
         src: resolvers/searchSuggestions.js
+        environment:
+          APP_ID: ${env:ALGOLIA_APP_ID}
+          API_KEY: ${env:ALGOLIA_API_KEY}
+
+  search:
+    type: resolver
+    schema: resolvers/search.graphql
+    handler:
+      code:
+        src: resolvers/search.js
         environment:
           APP_ID: ${env:ALGOLIA_APP_ID}
           API_KEY: ${env:ALGOLIA_API_KEY}
