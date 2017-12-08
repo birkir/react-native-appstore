@@ -24,8 +24,4 @@ target 'AppStoreClone' do
     'RCTPushNotification',
     'DevSupport',
   ]
-
-  target 'AppStoreCloneTests' do
-    inherit! :search_paths
-  end
 end

@@ -252,7 +252,6 @@
 		44C8AC2C8D6B5CAD361B5B435CA1EB4C /* RNFirebaseMessaging.h in Headers */ = {isa = PBXBuildFile; fileRef = B2613F17008B00F1EADB6834D7901F3A /* RNFirebaseMessaging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		44D73C7B5AA112EB80E5AFB4CEC1D0B0 /* JWTCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 28C33EB3BF022D11283FD8B69090BFBF /* JWTCoding.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		4609C96E30AB2098B181DB696EC8251E /* KSCrashMonitor_CPPException.h in Headers */ = {isa = PBXBuildFile; fileRef = C8ECB2571EC6326412A7E6B229837393 /* KSCrashMonitor_CPPException.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		465AE28133AA9F6322B6FF067775E6FE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D49E11612F72EFD1166EDB7D404CF397 /* Foundation.framework */; };
 		46C12AAEE97AAB392516F3C2FAD2F1BD /* RCTMaskedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5175E63F03056A3ED982E491038A0658 /* RCTMaskedView.m */; };
 		46D6C1C5259DABF3009A45FFE3473EAF /* RCTHTTPRequestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = EFA8EB4D1D779B4F372B8648DA4CC91D /* RCTHTTPRequestHandler.mm */; };
 		4717AB4ACA0A43FF136D0F58BF0C65CE /* RCTReloadCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F60EC855AAA5158A9C1A24F71F65688 /* RCTReloadCommand.m */; };
@@ -476,7 +475,7 @@
 		81D92A1A3BD00FE2935B073420498444 /* RNFirebaseRemoteConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 2644E6E319A20F2563D49B3052E9E4B1 /* RNFirebaseRemoteConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		827AC9470BFF345CD4950475C1A97B0E /* RNFirebaseLinks.h in Headers */ = {isa = PBXBuildFile; fileRef = B130B440C8390592D4A9E13BD6561836 /* RNFirebaseLinks.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82A07E36C054849C14AD9B9A4A49A144 /* SentryRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDBB0927E1643838AB2EFA78184B1D6 /* SentryRequestOperation.m */; };
-		8347DF85F1C6B41F8C264F3727B213F1 /* Pods-AppStoreClone-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9780AD6412499302C56ED46AA25486 /* Pods-AppStoreClone-dummy.m */; };
+		8347DF85F1C6B41F8C264F3727B213F1 /* Pods-AppStoreClone-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6685DA2D81CA262FA091EB021F217D37 /* Pods-AppStoreClone-dummy.m */; };
 		837A1FE4CD9D25F915E036F9E4AE875A /* RCTJSCSamplingProfiler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ED7CEF61D14CA1E254642084DE3B20A /* RCTJSCSamplingProfiler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		839F79560A35A8E08BBD297B6DDD865E /* RCTReconnectingWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 70F71C677D19E4662976A40BEAE1EC1C /* RCTReconnectingWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83E0131202CF2C857DABE4DB494849EF /* RCTScrollContentShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE9512B195615D6744158AEF84F600F1 /* RCTScrollContentShadowView.m */; };
@@ -742,7 +741,6 @@
 		CA4E1EEF7A00A541DEE2C5319849086D /* RCTModuleData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B3281C8540D01015AED9A6077DD765E /* RCTModuleData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CA7B399C4034759739290D62AC3FEC84 /* MF_Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5272D0E2FF580145B51CD66140558411 /* MF_Base64Additions.m */; };
 		CA9D2E30AA96386ECD002427197F28EA /* RCCNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7175DCF387B2835538468E6713F14B64 /* RCCNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CAB41C5EE86BC46313F05E6C1C63FC3A /* Pods-AppStoreCloneTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C2A30338D19719B93222A0C6563CF1 /* Pods-AppStoreCloneTests-dummy.m */; };
 		CAB4D950702C3F168DEAD63354DCCEAA /* KSCrashMonitor_Zombie.c in Sources */ = {isa = PBXBuildFile; fileRef = C6AC3CAF6F254BD970DDAA01F7B72297 /* KSCrashMonitor_Zombie.c */; };
 		CB324F1B80A9A015DB00FBCBBEF627C7 /* RCTNativeAnimatedNodesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA5C75F8AB3E6792535FE4303A29536 /* RCTNativeAnimatedNodesManager.m */; };
 		CBAF70B3799291522193DB13CCFDF1E1 /* KSCrashMonitor_Signal.c in Sources */ = {isa = PBXBuildFile; fileRef = 316D2467009EBC0DDDC82BCC71EE3A0F /* KSCrashMonitor_Signal.c */; };
@@ -1134,12 +1132,9 @@
 		06FFE54B07F58688EEB74F5635539B83 /* InspectorInterfaces.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = InspectorInterfaces.h; path = ReactCommon/jschelpers/InspectorInterfaces.h; sourceTree = "<group>"; };
 		07D9188EB3B213758D84BDF50013B76C /* Wrappers.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Wrappers.pbobjc.h; path = objectivec/google/protobuf/Wrappers.pbobjc.h; sourceTree = "<group>"; };
 		07F1BFB595712A14D5CD6E6DF8236933 /* RCTSRWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTSRWebSocket.m; path = Libraries/WebSocket/RCTSRWebSocket.m; sourceTree = "<group>"; };
-		084FBD02C1B5F138D90D136EBBC250F4 /* libreact-native-blur.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libreact-native-blur.a"; path = "libreact-native-blur.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08A7D6ED2DEF85B4B6C64D7D9A7422C5 /* RCTSafeAreaShadowView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTSafeAreaShadowView.m; sourceTree = "<group>"; };
 		08B3A85180567C62AE63548EF57B414F /* RCTClipboard.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTClipboard.h; sourceTree = "<group>"; };
-		08C2A30338D19719B93222A0C6563CF1 /* Pods-AppStoreCloneTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AppStoreCloneTests-dummy.m"; sourceTree = "<group>"; };
 		0987FFCB4A3C1F7ADB6525917260B0A3 /* RCTTextViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTTextViewManager.h; path = Libraries/Text/RCTTextViewManager.h; sourceTree = "<group>"; };
-		0A01C9CD997C3B8A8C94BB5E3FA7DE7C /* libProtobuf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libProtobuf.a; path = libProtobuf.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A380C30DE66B83A0F157B1515539751 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		0B4DFABA3E6844EEC6B26C195844166F /* RNFirebaseDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNFirebaseDatabase.h; sourceTree = "<group>"; };
 		0BCE76B7C8A929CBC5878D1DAA024FB8 /* RCTNetworkTask.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTNetworkTask.h; path = Libraries/Network/RCTNetworkTask.h; sourceTree = "<group>"; };
@@ -1152,6 +1147,7 @@
 		0DBE48BFD7FC452CCF3F23B6491D06F1 /* GTMSessionFetcher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GTMSessionFetcher-dummy.m"; sourceTree = "<group>"; };
 		0E1EA71A80E4CC1BD695C9A569790DD9 /* SentryKSCrashReportSink.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SentryKSCrashReportSink.h; path = Sources/Sentry/include/SentryKSCrashReportSink.h; sourceTree = "<group>"; };
 		0E5F00E9CD014F07A55441A7B4E04B06 /* JWTAlgorithmDataHolder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = JWTAlgorithmDataHolder.m; sourceTree = "<group>"; };
+		0E6EA5FEDAF7A218A4184A2A2C4AC90A /* libKSCrash.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libKSCrash.a; path = libKSCrash.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E89A000BEAFE866795B1C13CF32EB4D /* GTMNSData+zlib.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "GTMNSData+zlib.m"; path = "Foundation/GTMNSData+zlib.m"; sourceTree = "<group>"; };
 		0F6D26F53EB8C0455FAB808D68FA872D /* KSDemangle_CPP.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSDemangle_CPP.h; path = Source/KSCrash/Recording/Tools/KSDemangle_CPP.h; sourceTree = "<group>"; };
 		0F78D2503926BB8FF304228F2F1A242A /* RCTBackedTextInputDelegateAdapter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTBackedTextInputDelegateAdapter.h; path = Libraries/Text/RCTBackedTextInputDelegateAdapter.h; sourceTree = "<group>"; };
@@ -1172,7 +1168,6 @@
 		128C13CB2C9ADDDE4E42F39C5C8C1D04 /* SentryBreadcrumb.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryBreadcrumb.m; path = Sources/Sentry/SentryBreadcrumb.m; sourceTree = "<group>"; };
 		1373A1D72BAB7ED648711641A7CDE067 /* KSSignalInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSSignalInfo.h; path = Source/KSCrash/Recording/Tools/KSSignalInfo.h; sourceTree = "<group>"; };
 		137BA29C4AD24F5253628C3BADEFF117 /* GPBUnknownFieldSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPBUnknownFieldSet.m; path = objectivec/GPBUnknownFieldSet.m; sourceTree = "<group>"; };
-		1424379E65AA959C454C6E55641A9252 /* libPods-AppStoreCloneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-AppStoreCloneTests.a"; path = "libPods-AppStoreCloneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1424DD7C29C0D1C26CC8708549E2E482 /* Struct.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Struct.pbobjc.h; path = objectivec/google/protobuf/Struct.pbobjc.h; sourceTree = "<group>"; };
 		1520A69BA00381712AC773F00BFDF927 /* FirebasePerformance.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebasePerformance.framework; path = Frameworks/FirebasePerformance.framework; sourceTree = "<group>"; };
 		15B23A37091CFDA22A3DBBAB6DAAAB61 /* SentryClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SentryClient.h; path = Sources/Sentry/include/SentryClient.h; sourceTree = "<group>"; };
@@ -1211,6 +1206,7 @@
 		1DFEA7087CE22A2B60A7E783EECB7C86 /* RCTTextInput.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTTextInput.h; path = Libraries/Text/RCTTextInput.h; sourceTree = "<group>"; };
 		1E0510D6AA9C83171EB7F1ED998A40A4 /* KSCrashReportFilterBasic.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KSCrashReportFilterBasic.m; path = Source/KSCrash/Reporting/Filters/KSCrashReportFilterBasic.m; sourceTree = "<group>"; };
 		1E16F100A3AC89CAE049C342F1FD9709 /* RCCTabBarController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCCTabBarController.h; path = ios/RCCTabBarController.h; sourceTree = "<group>"; };
+		1E3717756EB5748E9CCD4493F5B34685 /* libreact-native-navigation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libreact-native-navigation.a"; path = "libreact-native-navigation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E73570395D7A93FD8AFB78B8A704465 /* pwd2key.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pwd2key.h; sourceTree = "<group>"; };
 		1F17C967DDE58FBBD87EB66361E8D657 /* RCTWebSocketExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTWebSocketExecutor.h; path = Libraries/WebSocket/RCTWebSocketExecutor.h; sourceTree = "<group>"; };
 		1F20A63E18D007028012B5C86A9432E5 /* RNFirebaseAuth.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNFirebaseAuth.m; sourceTree = "<group>"; };
@@ -1223,7 +1219,6 @@
 		2186890E38EDAD4C06BB1A0BB50B70BF /* RNFirebaseAdMob.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNFirebaseAdMob.m; sourceTree = "<group>"; };
 		21A6E141E9A2D31BA6BA0A05855294BB /* RCTClipboard.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTClipboard.m; sourceTree = "<group>"; };
 		21C7F89BE3DAB22B35C718FDE1CF69AD /* RCTAssert.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTAssert.h; sourceTree = "<group>"; };
-		21CD6ECAA773985A0A84D0C51D487D19 /* libyoga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libyoga.a; path = libyoga.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2314A75AC84D1FF6781C5A9C8C211BD7 /* RCTTouchEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTTouchEvent.h; sourceTree = "<group>"; };
 		234261A2DA1FAEAF7CBA4B0D8F4C892C /* JWTAlgorithmNone.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = JWTAlgorithmNone.m; sourceTree = "<group>"; };
 		23B11E71E3F59E6BBB48ED8638147C69 /* JWTAlgorithmESBase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = JWTAlgorithmESBase.m; sourceTree = "<group>"; };
@@ -1243,7 +1238,6 @@
 		28561DFF7E836C777F388F57E759278F /* RCTRefreshControl.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTRefreshControl.m; sourceTree = "<group>"; };
 		28B7F28EB608E3F8289CAD47F62FD861 /* SentryLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryLog.m; path = Sources/Sentry/SentryLog.m; sourceTree = "<group>"; };
 		28C33EB3BF022D11283FD8B69090BFBF /* JWTCoding.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JWTCoding.h; sourceTree = "<group>"; };
-		290AD33C33FE458BB440E0DA3D406AA6 /* libreact-native-navigation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libreact-native-navigation.a"; path = "libreact-native-navigation.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2947245708C78C527A8E2CCC53873D14 /* KSStackCursor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSStackCursor.h; path = Source/KSCrash/Recording/Tools/KSStackCursor.h; sourceTree = "<group>"; };
 		295A89D6B9AD129C34C0BE03957204C2 /* RCTSamplingProfilerPackagerMethod.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTSamplingProfilerPackagerMethod.mm; sourceTree = "<group>"; };
 		2A33CDB36D68FA395D013126820E4B5A /* CodePushErrorUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CodePushErrorUtils.m; path = ios/CodePush/CodePushErrorUtils.m; sourceTree = "<group>"; };
@@ -1275,7 +1269,6 @@
 		31AD068434D28F02C11938C06549D488 /* RCTTextManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTTextManager.m; path = Libraries/Text/RCTTextManager.m; sourceTree = "<group>"; };
 		321A5C720A66B6C6DE2518A70C8531E8 /* SentryException.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryException.m; path = Sources/Sentry/SentryException.m; sourceTree = "<group>"; };
 		327006DC3C5ABF26FB8C33B6246D89BB /* RCCManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCCManager.h; path = ios/RCCManager.h; sourceTree = "<group>"; };
-		32B1E15C1A7F777010DD0EBBBF427256 /* Pods-AppStoreCloneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppStoreCloneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		32DF9B93E2CF11CE45C4113AED68E156 /* RCTLinkingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTLinkingManager.h; path = Libraries/LinkingIOS/RCTLinkingManager.h; sourceTree = "<group>"; };
 		32EF0AAEA284F2B658DF3D618EABED8D /* RCCCustomBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCCCustomBarButtonItem.m; path = ios/RCCCustomBarButtonItem.m; sourceTree = "<group>"; };
 		32FA0943E55383EFB8EE077A4A47D307 /* RCTI18nManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTI18nManager.h; sourceTree = "<group>"; };
@@ -1303,6 +1296,7 @@
 		373BE14F0C8158D23442F461B060DA0B /* RNFirebasePerformance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNFirebasePerformance.h; sourceTree = "<group>"; };
 		3749E7FCAF13D9BB3A28B1341503FDCD /* RCTNativeAnimatedModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTNativeAnimatedModule.h; path = Libraries/NativeAnimation/RCTNativeAnimatedModule.h; sourceTree = "<group>"; };
 		374A23B00A2A8B5E003C0C19DD05EF19 /* KSCrashDoctor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSCrashDoctor.h; path = Source/KSCrash/Recording/KSCrashDoctor.h; sourceTree = "<group>"; };
+		375042F6BD20EC05C19CD2996EF2C572 /* libGTMSessionFetcher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libGTMSessionFetcher.a; path = libGTMSessionFetcher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		37B3CF0DB9C24B886A86DB1A235DBF28 /* RCTEventEmitter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTEventEmitter.h; sourceTree = "<group>"; };
 		37BC4F67A02F9C4FC5CB616868B39EF6 /* SentryAsynchronousOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SentryAsynchronousOperation.h; path = Sources/Sentry/include/SentryAsynchronousOperation.h; sourceTree = "<group>"; };
 		37EE49ECCCD9B986D7F62854650A3F15 /* GPBProtocolBuffers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBProtocolBuffers.h; path = objectivec/GPBProtocolBuffers.h; sourceTree = "<group>"; };
@@ -1346,10 +1340,11 @@
 		403B41F70ECFE9222C0023B9E415A4DB /* RCCDrawerController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCCDrawerController.h; sourceTree = "<group>"; };
 		4046A99D85134BA9FFA12A1C04ABF081 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
 		404F1D975296D2152F88FCDAA452303B /* RCTRawTextManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTRawTextManager.h; path = Libraries/Text/RCTRawTextManager.h; sourceTree = "<group>"; };
-		40639429C0043BC6C70564E535F88E51 /* Pods-AppStoreCloneTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AppStoreCloneTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		406FD71C89AFA4A0421BF54632D019A6 /* KSVarArgs.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSVarArgs.h; path = Source/KSCrash/Reporting/Filters/Tools/KSVarArgs.h; sourceTree = "<group>"; };
+		4080093F07DDF406A8A6017F584462B8 /* Pods-AppStoreClone-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AppStoreClone-resources.sh"; sourceTree = "<group>"; };
 		40A237AFF01B2392D43B9B847E3B509E /* RCTAsyncLocalStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTAsyncLocalStorage.h; sourceTree = "<group>"; };
 		40BBBA66AD01C23E0BA3C445462587C6 /* BlurViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = BlurViewManager.m; path = ios/BlurViewManager.m; sourceTree = "<group>"; };
+		40C5A9CE9402FCEEFA9E68F9A229A52A /* Pods-AppStoreClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppStoreClone.release.xcconfig"; sourceTree = "<group>"; };
 		41289EC37DA515C07800518533FAA5A2 /* RCTStatusBarManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTStatusBarManager.m; sourceTree = "<group>"; };
 		419D77D6A777733CCA185AE7381984D3 /* RNFirebaseRemoteConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNFirebaseRemoteConfig.m; sourceTree = "<group>"; };
 		41DF8353ECDF4F73A5EA2C7B70E54540 /* Punycode.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Punycode.cpp; path = Source/KSCrash/swift/Basic/Punycode.cpp; sourceTree = "<group>"; };
@@ -1410,7 +1405,6 @@
 		4F670AEB9E43714DA357D69551CD44D0 /* RCCViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCCViewController.h; path = ios/RCCViewController.h; sourceTree = "<group>"; };
 		4F9AAD5729C4C1065A8733B2402FD7C7 /* Api.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Api.pbobjc.m; path = objectivec/google/protobuf/Api.pbobjc.m; sourceTree = "<group>"; };
 		4FCD651090A86040AC69C4EA576E06B8 /* Any.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Any.pbobjc.m; path = objectivec/google/protobuf/Any.pbobjc.m; sourceTree = "<group>"; };
-		4FD5C87D1B2AA1C31F03A37E4476A6C8 /* libPods-AppStoreClone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-AppStoreClone.a"; path = "libPods-AppStoreClone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		508C5ABEAD6F52793EF8848729F4FF00 /* SentryDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SentryDefines.h; path = Sources/Sentry/include/SentryDefines.h; sourceTree = "<group>"; };
 		50A6B6C50B482C7628CE939529DCD446 /* react-native-navigation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "react-native-navigation.xcconfig"; sourceTree = "<group>"; };
 		50ABEB992703D17BD53299CDBAEBDC9D /* RCTAlertManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTAlertManager.m; sourceTree = "<group>"; };
@@ -1437,19 +1431,17 @@
 		550903C3AB70D4130A3CF4C1E5DE6B00 /* KSMemory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSMemory.h; path = Source/KSCrash/Recording/Tools/KSMemory.h; sourceTree = "<group>"; };
 		55A400D658F8A49722151AF97FA1C03B /* JWTClaimsSetSerializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JWTClaimsSetSerializer.h; sourceTree = "<group>"; };
 		55D15F5EC5DF0966CF9A31FC08585F45 /* KSStackCursor.c */ = {isa = PBXFileReference; includeInIndex = 1; name = KSStackCursor.c; path = Source/KSCrash/Recording/Tools/KSStackCursor.c; sourceTree = "<group>"; };
+		55DB1006E270FF8BB1938AD86CA9FFC3 /* Pods-AppStoreClone-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AppStoreClone-frameworks.sh"; sourceTree = "<group>"; };
 		56215CA33F05E27186898E8989DD46FC /* react-native-navigation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "react-native-navigation-prefix.pch"; sourceTree = "<group>"; };
 		5653E1BC76807C75C5EAADF48962CB58 /* KSJSONCodecObjC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSJSONCodecObjC.h; path = Source/KSCrash/Recording/Tools/KSJSONCodecObjC.h; sourceTree = "<group>"; };
 		56662083684FC7349F81CAAE6A6408D8 /* GPBUnknownField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBUnknownField.h; path = objectivec/GPBUnknownField.h; sourceTree = "<group>"; };
-		5668BE7EA278DC1075599209A802AE7E /* Pods-AppStoreCloneTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AppStoreCloneTests-resources.sh"; sourceTree = "<group>"; };
 		5688E784F3E798FB98F81D43EBEC9F3C /* RCCManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCCManager.m; path = ios/RCCManager.m; sourceTree = "<group>"; };
 		56D43900A36A5C70B2E6C72CB8B9551B /* RCTImageShadowView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTImageShadowView.m; path = Libraries/Image/RCTImageShadowView.m; sourceTree = "<group>"; };
 		5739E443AE8D059620CD4B919334FF44 /* RCTProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTProfile.h; sourceTree = "<group>"; };
 		5774BFD40D0346784A320CF7C412F1E7 /* RCTModuleMethod.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTModuleMethod.mm; sourceTree = "<group>"; };
 		57ED441035E80338B367C035AB51B2B8 /* RCTImageLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTImageLoader.m; path = Libraries/Image/RCTImageLoader.m; sourceTree = "<group>"; };
 		57F4AD42335D99A07F8F61CC0768AA99 /* JWTCryptoSecurity.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JWTCryptoSecurity.h; sourceTree = "<group>"; };
-		5832BC972C2561B0017537DD90CBD21B /* Pods-AppStoreClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppStoreClone.release.xcconfig"; sourceTree = "<group>"; };
 		586C29BE6A469C2DF338532366265474 /* GPBUnknownFieldSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBUnknownFieldSet.h; path = objectivec/GPBUnknownFieldSet.h; sourceTree = "<group>"; };
-		58DC33323DD0B1C1631273750D99E1F1 /* libSentry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSentry.a; path = libSentry.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		590DC33F4D58F2B4D17FC095BE433AC0 /* RCTBridgeDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTBridgeDelegate.h; sourceTree = "<group>"; };
 		593EFB087CA7EC58A36C251DFCFDB2A4 /* KSCrashInstallation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KSCrashInstallation.m; path = Source/KSCrash/Installations/KSCrashInstallation.m; sourceTree = "<group>"; };
 		595B6E5BDFDB41A6F045D2861D2B48C4 /* SentryBreadcrumbStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryBreadcrumbStore.m; path = Sources/Sentry/SentryBreadcrumbStore.m; sourceTree = "<group>"; };
@@ -1475,7 +1467,6 @@
 		5EF8DC968680C00683D148F59E2E05B6 /* RCTNetworking.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RCTNetworking.mm; path = Libraries/Network/RCTNetworking.mm; sourceTree = "<group>"; };
 		5F50D2DF0A08CB1C5B6EEDBBE4A482D8 /* JWTAlgorithmFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JWTAlgorithmFactory.h; sourceTree = "<group>"; };
 		602775A43AFAF7FA5CC9701E4424D339 /* RCTSwitchManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTSwitchManager.m; sourceTree = "<group>"; };
-		60592E4C42D88003A77CF43CFCAAC45B /* Pods-AppStoreCloneTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AppStoreCloneTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		60937B3FB8EA6A26F5E0AE037D4CE719 /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
 		6096BFA4C188083A5A763AC41A09CEBC /* RCTScrollView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTScrollView.h; sourceTree = "<group>"; };
 		60A121D04945FC30E8B6B3B6A67FFA2D /* RCTJSCExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTJSCExecutor.h; sourceTree = "<group>"; };
@@ -1511,6 +1502,7 @@
 		65FD259C1BDE731B5B12C92EBD19882E /* RCTURLRequestHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTURLRequestHandler.h; sourceTree = "<group>"; };
 		661D956D6CB8E044312FA7534DF0A7AE /* RCTProfileTrampoline-arm.S */ = {isa = PBXFileReference; includeInIndex = 1; path = "RCTProfileTrampoline-arm.S"; sourceTree = "<group>"; };
 		666E04123D1AA6987B27BA397C902715 /* RCCLightBox.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCCLightBox.m; path = ios/RCCLightBox.m; sourceTree = "<group>"; };
+		6685DA2D81CA262FA091EB021F217D37 /* Pods-AppStoreClone-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AppStoreClone-dummy.m"; sourceTree = "<group>"; };
 		66953958726665A4AC59DACB25DFA6E1 /* RCTSlider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTSlider.m; sourceTree = "<group>"; };
 		669AFBBDF95AA73E30242CA97A02AEAD /* RCTProfile.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTProfile.m; sourceTree = "<group>"; };
 		66FE0181B66C3B325DCDFD8211D7C387 /* GPBProtocolBuffers_RuntimeSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBProtocolBuffers_RuntimeSupport.h; path = objectivec/GPBProtocolBuffers_RuntimeSupport.h; sourceTree = "<group>"; };
@@ -1518,6 +1510,7 @@
 		6742BABC1FEC01589220363FCB236D51 /* RCTJSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTJSStackFrame.h; sourceTree = "<group>"; };
 		679A649ED1BA34B2870DC0F7545D3E81 /* Yoga.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Yoga.h; path = yoga/Yoga.h; sourceTree = "<group>"; };
 		679C8538B039C0A9578460B79C07FD4A /* KSCPU_arm64.c */ = {isa = PBXFileReference; includeInIndex = 1; name = KSCPU_arm64.c; path = Source/KSCrash/Recording/Tools/KSCPU_arm64.c; sourceTree = "<group>"; };
+		67BEA244344B0B78C476259047AC29F4 /* libreact-native-blur.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libreact-native-blur.a"; path = "libreact-native-blur.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		682D23CAE3BF4107FF2A2DCE7E16D9D8 /* react-native-blur-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "react-native-blur-dummy.m"; sourceTree = "<group>"; };
 		682DA5CDD0C69181FBC84B16FE60FD2F /* GTMSessionFetcherLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GTMSessionFetcherLogging.h; path = Source/GTMSessionFetcherLogging.h; sourceTree = "<group>"; };
 		683C6F220B9810DC9CE34AA31955EF1F /* SentryClient+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SentryClient+Internal.h"; path = "Sources/Sentry/include/SentryClient+Internal.h"; sourceTree = "<group>"; };
@@ -1528,9 +1521,9 @@
 		69A327E9668864BBECEF444F50D3B0FD /* RCTTextView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTTextView.h; path = Libraries/Text/RCTTextView.h; sourceTree = "<group>"; };
 		69A4348A9FC14EAF9FF7FE8F03503080 /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
 		69AB69A266CE98325848CC7DE2D276B8 /* CodePushUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CodePushUtils.m; path = ios/CodePush/CodePushUtils.m; sourceTree = "<group>"; };
-		6A77CA1B6864665B9E114D715AD960C2 /* Pods-AppStoreClone-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AppStoreClone-resources.sh"; sourceTree = "<group>"; };
 		6AFF7AB3A07F82D8F67E30D97413EC50 /* RCTLocalAssetImageLoader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTLocalAssetImageLoader.m; path = Libraries/Image/RCTLocalAssetImageLoader.m; sourceTree = "<group>"; };
 		6B124E185983BECE0CA5A5020D8B3D33 /* RCTTabBarItemManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTTabBarItemManager.m; sourceTree = "<group>"; };
+		6B5E9FB3057A2DCF6440F64B5092B704 /* Pods-AppStoreClone-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AppStoreClone-acknowledgements.plist"; sourceTree = "<group>"; };
 		6B62E210B30EDB88B249DF723324AFCF /* RCTPickerManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTPickerManager.m; sourceTree = "<group>"; };
 		6B7CCE32C4156EE8A344DB3F9B4ADC09 /* Optional.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Optional.h; path = Source/KSCrash/llvm/ADT/Optional.h; sourceTree = "<group>"; };
 		6BAEC58111FC7C6C376770B3AF8BE787 /* RNFirebaseAdMobBannerManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNFirebaseAdMobBannerManager.m; sourceTree = "<group>"; };
@@ -1576,6 +1569,7 @@
 		75CB78544DBEC7376C5FC927F0B78D6F /* JSCWrapper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSCWrapper.h; path = ReactCommon/jschelpers/JSCWrapper.h; sourceTree = "<group>"; };
 		75E1BCEBD18359D550D183E79CB7C688 /* RCTUIManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTUIManager.m; sourceTree = "<group>"; };
 		761090B5EB8BBAA7BDB37332DA3DE8EA /* JWTCoding+VersionOne.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JWTCoding+VersionOne.h"; sourceTree = "<group>"; };
+		762A8D27D4982F1CA3518F2814A86F08 /* Pods-AppStoreClone-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AppStoreClone-acknowledgements.markdown"; sourceTree = "<group>"; };
 		76609A390168BC6ABBBE7E12D1086585 /* RCTAsyncLocalStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTAsyncLocalStorage.m; sourceTree = "<group>"; };
 		76AA9140E942B92D592EE7259AE26D64 /* RCTSliderManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSliderManager.h; sourceTree = "<group>"; };
 		76BB7AE56D962AA95629CB96ED7E1295 /* RCTSwitchManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSwitchManager.h; sourceTree = "<group>"; };
@@ -1586,7 +1580,6 @@
 		786ED74F66A0A9905AA5A3CFF0754CA1 /* RCTPackagerConnectionBridgeConfig.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTPackagerConnectionBridgeConfig.m; sourceTree = "<group>"; };
 		78734971E50E29D903A00C3B289CD83B /* RNFirebaseFirestoreCollectionReference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNFirebaseFirestoreCollectionReference.h; sourceTree = "<group>"; };
 		787AADF529A63E8A9260E8287BDFC8D2 /* RCTPointerEvents.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTPointerEvents.h; sourceTree = "<group>"; };
-		78ACCFE31B67539C0517C54E9482B418 /* Pods-AppStoreClone-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AppStoreClone-acknowledgements.plist"; sourceTree = "<group>"; };
 		78E32D4818335559E1C9F1E7C3DC86F6 /* GPBUnknownField_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBUnknownField_PackagePrivate.h; path = objectivec/GPBUnknownField_PackagePrivate.h; sourceTree = "<group>"; };
 		790AFFBA6B4B34C64AEAFDABCD1DE271 /* SentryDebugMeta.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryDebugMeta.m; path = Sources/Sentry/SentryDebugMeta.m; sourceTree = "<group>"; };
 		790B9B54DFE77534F8BF9D64286AD379 /* fileenc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = fileenc.h; sourceTree = "<group>"; };
@@ -1608,6 +1601,7 @@
 		80DF0C8B0244A6894F3E4486FEB27A64 /* KSDate.c */ = {isa = PBXFileReference; includeInIndex = 1; name = KSDate.c; path = Source/KSCrash/Recording/Tools/KSDate.c; sourceTree = "<group>"; };
 		80F3B82EE2819EB3ADE240D4BEC0ACE7 /* JWTCoding.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = JWTCoding.m; sourceTree = "<group>"; };
 		8144CA75FC7648D5BBA2597207CD108B /* RNFirebaseFirestoreCollectionReference.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNFirebaseFirestoreCollectionReference.m; sourceTree = "<group>"; };
+		815A8E2608D759D6981260FBB4E472EE /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRNFirebase.a; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		81B722C41BC44D15F061E7BBBA7C0876 /* RCTActivityIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTActivityIndicatorView.h; sourceTree = "<group>"; };
 		81D48788F98145EC73E39235E506C901 /* KSCrashReport.c */ = {isa = PBXFileReference; includeInIndex = 1; name = KSCrashReport.c; path = Source/KSCrash/Recording/KSCrashReport.c; sourceTree = "<group>"; };
 		82BD930127A240F440E3791A6801293E /* SentryRequestOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SentryRequestOperation.h; path = Sources/Sentry/include/SentryRequestOperation.h; sourceTree = "<group>"; };
@@ -1659,7 +1653,6 @@
 		8EE9B47C365CEB6293D2D96F3449EE59 /* GPBMessage_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBMessage_PackagePrivate.h; path = objectivec/GPBMessage_PackagePrivate.h; sourceTree = "<group>"; };
 		8EF4A44B686571183EB4851B74E0B381 /* RNFirebaseAdMobRewardedVideo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNFirebaseAdMobRewardedVideo.h; sourceTree = "<group>"; };
 		8F1519AA941F449CBCF6D406D4B7CC92 /* Wrappers.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Wrappers.pbobjc.m; path = objectivec/google/protobuf/Wrappers.pbobjc.m; sourceTree = "<group>"; };
-		8F1FBCD9C3B6DEDF84629114B35616B3 /* Pods-AppStoreClone-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AppStoreClone-acknowledgements.markdown"; sourceTree = "<group>"; };
 		8F29429B9BB8D7DF57BF1892B6D96046 /* aestab.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = aestab.h; sourceTree = "<group>"; };
 		8FC7B77D79D91AFC61E93B96A42788C4 /* fishhook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = Libraries/fishhook/fishhook.h; sourceTree = "<group>"; };
 		8FC8164B5D848038566273B64941873B /* nanopb.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = nanopb.xcconfig; sourceTree = "<group>"; };
@@ -1730,7 +1723,6 @@
 		A0335CEBBE4A4F42947BA509DA388AFF /* RCTShadowView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTShadowView.m; sourceTree = "<group>"; };
 		A0EB5B5964DCBE831CDE510ECEE1BE55 /* fishhook.c */ = {isa = PBXFileReference; includeInIndex = 1; name = fishhook.c; path = Libraries/fishhook/fishhook.c; sourceTree = "<group>"; };
 		A10C7F9AEF451E38A68EF59AB013F213 /* NSError+SimpleConstructor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSError+SimpleConstructor.h"; path = "Source/KSCrash/Recording/Tools/NSError+SimpleConstructor.h"; sourceTree = "<group>"; };
-		A118DBEA19C6F7CEE562B5FB668A683E /* libKSCrash.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libKSCrash.a; path = libKSCrash.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A14335664A735024C7C22E678BAFDC5A /* JWTClaimsSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JWTClaimsSet.h; sourceTree = "<group>"; };
 		A1BEB9C390CF4DAC1D16A0EB6DCA0410 /* RNFirebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RNFirebase.h; path = ios/RNFirebase/RNFirebase.h; sourceTree = "<group>"; };
 		A1D45DD47BFCB58E5EB763DD43BCD313 /* UIViewController+Rotation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Rotation.m"; path = "ios/UIViewController+Rotation.m"; sourceTree = "<group>"; };
@@ -1767,8 +1759,8 @@
 		A9B3C78EAB805ABB86C32515CB65940F /* RCTComponentData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTComponentData.h; sourceTree = "<group>"; };
 		A9ED557B6960F0B21D12FC0E7BC218F0 /* RCTConvert.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTConvert.m; sourceTree = "<group>"; };
 		AA200FB9B8E56BDC5CF0C6C8B8F0AB9D /* RCTTextView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTTextView.m; path = Libraries/Text/RCTTextView.m; sourceTree = "<group>"; };
+		AA3C42580D2FF04CA497005F927AB898 /* libProtobuf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libProtobuf.a; path = libProtobuf.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA725A5D31AE6A145B9F3AC9FADC354F /* entropy.c */ = {isa = PBXFileReference; includeInIndex = 1; path = entropy.c; sourceTree = "<group>"; };
-		AAAB75491C34F43205BA66E8D5D47D4A /* Pods-AppStoreClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppStoreClone.debug.xcconfig"; sourceTree = "<group>"; };
 		AB2FBE2D41D05AA16F27C2536BD872B7 /* RCTPackagerConnectionConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTPackagerConnectionConfig.h; sourceTree = "<group>"; };
 		AB930B09488F0E8D4075E87CB39E866A /* SentryReactNative-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SentryReactNative-dummy.m"; sourceTree = "<group>"; };
 		AC7820FD126E7D762CDDE4EF826F6915 /* RCTViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTViewManager.h; sourceTree = "<group>"; };
@@ -1792,10 +1784,9 @@
 		B2465FF50778513930806CC79F334BD4 /* KSCPU_Apple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSCPU_Apple.h; path = Source/KSCrash/Recording/Tools/KSCPU_Apple.h; sourceTree = "<group>"; };
 		B2613F17008B00F1EADB6834D7901F3A /* RNFirebaseMessaging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNFirebaseMessaging.h; sourceTree = "<group>"; };
 		B2647C9FD453BF9B5DB2A50F72265E13 /* RCTImageBlurUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTImageBlurUtils.m; path = Libraries/Image/RCTImageBlurUtils.m; sourceTree = "<group>"; };
+		B2C34BABAA62BF9ECED1A759A127BD22 /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libReact.a; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B385899542AAF0906137758C5270C193 /* RCTConvert+CodePushUpdateState.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "RCTConvert+CodePushUpdateState.m"; path = "ios/CodePush/RCTConvert+CodePushUpdateState.m"; sourceTree = "<group>"; };
-		B3F86B186552400B01663A5E6A5E5CE3 /* Pods-AppStoreCloneTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AppStoreCloneTests-frameworks.sh"; sourceTree = "<group>"; };
 		B433F798423622094F66C6E89FBDEEB3 /* SentryKSCrashReportSink.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryKSCrashReportSink.m; path = Sources/Sentry/SentryKSCrashReportSink.m; sourceTree = "<group>"; };
-		B4824E7D3B1E66EBE7CEEAB8AB8430B3 /* libnanopb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libnanopb.a; path = libnanopb.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B49B0D41AF09F91107B1EC52059F2FB1 /* SentryException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SentryException.h; path = Sources/Sentry/include/SentryException.h; sourceTree = "<group>"; };
 		B4A1DA3A3D2F8C32AFADF52653794F5F /* NSDate+Extras.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+Extras.h"; path = "Sources/Sentry/include/NSDate+Extras.h"; sourceTree = "<group>"; };
 		B4D13AB642F8144E151A237BF59CA748 /* KSDemangle_Swift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSDemangle_Swift.h; path = Source/KSCrash/Recording/Tools/KSDemangle_Swift.h; sourceTree = "<group>"; };
@@ -1804,7 +1795,6 @@
 		B556CBF257075B7FF4B0D9E8896101AA /* RCTConvert+UIBarButtonSystemItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+UIBarButtonSystemItem.h"; sourceTree = "<group>"; };
 		B58631402C285E57D78E7FB4A47F33DB /* Protobuf-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Protobuf-prefix.pch"; sourceTree = "<group>"; };
 		B5CB5CA4697B742F4ED693A0791D2F53 /* RCTProfileTrampoline-i386.S */ = {isa = PBXFileReference; includeInIndex = 1; path = "RCTProfileTrampoline-i386.S"; sourceTree = "<group>"; };
-		B5FF38D38B91903DB2C316EE374D7AC8 /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCodePush.a; path = libCodePush.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6989A7796E08A3640A3AB3B17445DEE /* RCTImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTImageView.m; path = Libraries/Image/RCTImageView.m; sourceTree = "<group>"; };
 		B6AE8C675A4AC4954B6B8509EEB68905 /* RCTImageViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTImageViewManager.h; path = Libraries/Image/RCTImageViewManager.h; sourceTree = "<group>"; };
 		B6F0A8E7CF7C5923C2686FCF9D63A85C /* SentrySwizzle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentrySwizzle.m; path = Sources/Sentry/SentrySwizzle.m; sourceTree = "<group>"; };
@@ -1818,10 +1808,8 @@
 		B854E2C9D3866AF46768887BC946CBE5 /* RCTImageSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTImageSource.h; sourceTree = "<group>"; };
 		B93C740D47B4AB686A2D1E4EFD60C06A /* RCTI18nUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTI18nUtil.m; sourceTree = "<group>"; };
 		B990EFB4DA1EF2CB285B7557704FB6AE /* RCTShadowView+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RCTShadowView+Internal.h"; sourceTree = "<group>"; };
-		B9C19288087E16714F9E9026000617C8 /* libSentryReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSentryReactNative.a; path = libSentryReactNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA51A335DE4A1DACD4F101B13CFCCA75 /* RCTBorderDrawing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTBorderDrawing.m; sourceTree = "<group>"; };
 		BA881736E33A3C699AC7C5D33DB2468E /* RCTModalHostViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTModalHostViewController.m; sourceTree = "<group>"; };
-		BAF8A54186DBF74C768CD855EAA28115 /* libGTMSessionFetcher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libGTMSessionFetcher.a; path = libGTMSessionFetcher.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB196F42934B05D7DECD5430399F218D /* SentryQueueableRequestManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryQueueableRequestManager.m; path = Sources/Sentry/SentryQueueableRequestManager.m; sourceTree = "<group>"; };
 		BB62F50E32522B918D72A0B94A0829F4 /* RCTDeviceInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTDeviceInfo.h; sourceTree = "<group>"; };
 		BBB6EF4E57FDB8D9ED4A734F10DE6B7A /* RCTActivityIndicatorViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTActivityIndicatorViewManager.m; sourceTree = "<group>"; };
@@ -1837,11 +1825,11 @@
 		BDFCF0F04C18CB3DDC7C9A331C31E91D /* KSID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSID.h; path = Source/KSCrash/Recording/Tools/KSID.h; sourceTree = "<group>"; };
 		BE9512B195615D6744158AEF84F600F1 /* RCTScrollContentShadowView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTScrollContentShadowView.m; sourceTree = "<group>"; };
 		BEAEA6CBE5FDBCA6571E61E630BAB05E /* RNFirebaseAdMobNativeExpressManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNFirebaseAdMobNativeExpressManager.m; sourceTree = "<group>"; };
-		BF0B530936D8437178E5F4C410B652CA /* Pods-AppStoreClone-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AppStoreClone-frameworks.sh"; sourceTree = "<group>"; };
 		BF2AA765AB47E6DC53FCD7E1D2A5AB1A /* SentryContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryContext.m; path = Sources/Sentry/SentryContext.m; sourceTree = "<group>"; };
 		BF42110D3D7173D8507738C93222E75F /* RCTTouchHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTTouchHandler.h; sourceTree = "<group>"; };
 		BFD162B88DEE796F42E4EE4121CF871A /* UIViewController+Rotation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Rotation.h"; path = "ios/UIViewController+Rotation.h"; sourceTree = "<group>"; };
 		C043D8F15ACF8A4F03F529E84B17CAFF /* mztools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		C047166B77D8025CC2A28DF48D523396 /* libSentryReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSentryReactNative.a; path = libSentryReactNative.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13596747FB310246F70B29DE1EA3A00 /* KSCString.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSCString.h; path = Source/KSCrash/Reporting/Tools/KSCString.h; sourceTree = "<group>"; };
 		C14B027B7123D8C22024B55FA900DBBE /* KSCrashMonitor_User.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSCrashMonitor_User.h; path = Source/KSCrash/Recording/Monitors/KSCrashMonitor_User.h; sourceTree = "<group>"; };
 		C1E2BBB9944EAC0EE0876D30FF10C14E /* YGNodeList.c */ = {isa = PBXFileReference; includeInIndex = 1; name = YGNodeList.c; path = yoga/YGNodeList.c; sourceTree = "<group>"; };
@@ -1852,7 +1840,6 @@
 		C2AAF25E56D5CAFC384ACC5BE006D611 /* RNFirebaseAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNFirebaseAnalytics.h; sourceTree = "<group>"; };
 		C337DFC96804C3F55511D31A2993029F /* SentryUser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryUser.m; path = Sources/Sentry/SentryUser.m; sourceTree = "<group>"; };
 		C3471FF5D8B940FDF6585B505D2AEB83 /* GPBExtensionInternals.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBExtensionInternals.h; path = objectivec/GPBExtensionInternals.h; sourceTree = "<group>"; };
-		C34A364183496F5CC3D2A31E3376C01C /* Pods-AppStoreCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppStoreCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		C350B93AE16893599FAB5A1771AB4D76 /* zip.c */ = {isa = PBXFileReference; includeInIndex = 1; path = zip.c; sourceTree = "<group>"; };
 		C3B96D91AC5F4D5C8417952B6B62BFAC /* RCCToolBar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCCToolBar.h; sourceTree = "<group>"; };
 		C3DC22BCB89FBC9257261D5196B91A40 /* RCTKeyboardObserver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTKeyboardObserver.m; sourceTree = "<group>"; };
@@ -1873,9 +1860,11 @@
 		C7508DF2A28FC4D627F94A2F971E9676 /* RCTScrollableProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTScrollableProtocol.h; sourceTree = "<group>"; };
 		C7864D686792F8BE080AE28C51CFCDFA /* RCTModalHostViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTModalHostViewManager.h; sourceTree = "<group>"; };
 		C82243EE6CD737C1AF3273ED5AD3B2CD /* llvm-config.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "llvm-config.h"; path = "Source/KSCrash/llvm/Config/llvm-config.h"; sourceTree = "<group>"; };
+		C82EBBAE81C68A98EDD2FE7C2210BBD7 /* libSentry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSentry.a; path = libSentry.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C82F9A4498F4DF47E50644437DDD3461 /* KSObjCApple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSObjCApple.h; path = Source/KSCrash/Recording/Tools/KSObjCApple.h; sourceTree = "<group>"; };
 		C8CE5C2AEA36D7CB80E63C5A1AFA833B /* KSCrashMonitor_System.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSCrashMonitor_System.h; path = Source/KSCrash/Recording/Monitors/KSCrashMonitor_System.h; sourceTree = "<group>"; };
 		C8ECB2571EC6326412A7E6B229837393 /* KSCrashMonitor_CPPException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = KSCrashMonitor_CPPException.h; path = Source/KSCrash/Recording/Monitors/KSCrashMonitor_CPPException.h; sourceTree = "<group>"; };
+		C8F5C5A11749C10C547619AAE5645BD7 /* Pods-AppStoreClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AppStoreClone.debug.xcconfig"; sourceTree = "<group>"; };
 		C9033175888B127BD8B00D17072129BF /* React-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "React-dummy.m"; sourceTree = "<group>"; };
 		C92A434342333C7EF1CC02D120C8B5A9 /* crypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		C933335B4B1CFA27B17A2689C9D9FB24 /* RCTFPSGraph.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTFPSGraph.h; sourceTree = "<group>"; };
@@ -1897,7 +1886,6 @@
 		CE5A6DE4771096B0665BC5A40D875A0F /* RCTUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTUtils.h; sourceTree = "<group>"; };
 		CE65D6E5A47C20CE7AF92282F95C19CE /* NativeExpressComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NativeExpressComponent.m; sourceTree = "<group>"; };
 		CE77742DFC6259DC530BA904FE83E393 /* SentryError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SentryError.m; path = Sources/Sentry/SentryError.m; sourceTree = "<group>"; };
-		D02C35D372CE3460999889E77E610A90 /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRNFirebase.a; path = libRNFirebase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D047754D216DD2E9C0E51A008DB952D1 /* RCTJavaScriptExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTJavaScriptExecutor.h; sourceTree = "<group>"; };
 		D093E12BD031BFE951F88A9B6CAEE331 /* FieldMask.pbobjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FieldMask.pbobjc.m; path = objectivec/google/protobuf/FieldMask.pbobjc.m; sourceTree = "<group>"; };
 		D135F0F9AE1567499B51E82B86AD54A6 /* RCTKeyboardObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTKeyboardObserver.h; sourceTree = "<group>"; };
@@ -1912,6 +1900,7 @@
 		D3A16A41D4724502ECB5CFB556ED2CCB /* KSCrashCachedData.c */ = {isa = PBXFileReference; includeInIndex = 1; name = KSCrashCachedData.c; path = Source/KSCrash/Recording/KSCrashCachedData.c; sourceTree = "<group>"; };
 		D433C8A9DA36ADE4E1C9B1E980CA6017 /* pb_encode.c */ = {isa = PBXFileReference; includeInIndex = 1; path = pb_encode.c; sourceTree = "<group>"; };
 		D466B0B8D8A48AB2F10545FB91C8B139 /* RCTStyleAnimatedNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTStyleAnimatedNode.h; sourceTree = "<group>"; };
+		D4875BD82B3C7B109D87AFF6FBD6F674 /* libnanopb.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libnanopb.a; path = libnanopb.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4933A909B0304CB4B88896E71FB7577 /* Yoga.c */ = {isa = PBXFileReference; includeInIndex = 1; name = Yoga.c; path = yoga/Yoga.c; sourceTree = "<group>"; };
 		D494E962E9DCD00B42D797D8617AEE74 /* KSCPU.c */ = {isa = PBXFileReference; includeInIndex = 1; name = KSCPU.c; path = Source/KSCrash/Recording/Tools/KSCPU.c; sourceTree = "<group>"; };
 		D49E11612F72EFD1166EDB7D404CF397 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -1946,13 +1935,13 @@
 		DA49B11956EA9AFA6F982E4157EDADEE /* RCTSafeAreaView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTSafeAreaView.m; sourceTree = "<group>"; };
 		DADCFF85A0B5826A0E672AC73889F972 /* RCTModalHostView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTModalHostView.h; sourceTree = "<group>"; };
 		DB0117EB8D8D845F2ECF326144F29624 /* RCTLocalAssetImageLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTLocalAssetImageLoader.h; path = Libraries/Image/RCTLocalAssetImageLoader.h; sourceTree = "<group>"; };
+		DB0291FDB447AA8CF709F06D78CB7EBE /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCodePush.a; path = libCodePush.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB1B73D5E147CB4933439EE63526E5FB /* react-native-blur.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "react-native-blur.xcconfig"; sourceTree = "<group>"; };
 		DB1B9F7522CBD31ED35269F2816A8BBD /* nanopb-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "nanopb-dummy.m"; sourceTree = "<group>"; };
 		DB3BF7339E3C6617DD2DA50BFAF7E69A /* RCTText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTText.h; path = Libraries/Text/RCTText.h; sourceTree = "<group>"; };
 		DB63B982E812C2364BEFBCD779058A7E /* Api.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Api.pbobjc.h; path = objectivec/google/protobuf/Api.pbobjc.h; sourceTree = "<group>"; };
 		DB778825893B350A4A0B7044A888968C /* RCTFrameAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTFrameAnimation.h; sourceTree = "<group>"; };
 		DC295B56E1A722DDCE224DF5ABA7247C /* GPBDictionary.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPBDictionary.m; path = objectivec/GPBDictionary.m; sourceTree = "<group>"; };
-		DC9780AD6412499302C56ED46AA25486 /* Pods-AppStoreClone-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AppStoreClone-dummy.m"; sourceTree = "<group>"; };
 		DCCE333B3F683BD8D9A05079130E28C6 /* RCTScrollContentShadowView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTScrollContentShadowView.h; sourceTree = "<group>"; };
 		DCEA41CDABA8725BE5CB156D53EB050F /* RCTFontAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTFontAttributes.h; path = Libraries/Text/RCTFontAttributes.h; sourceTree = "<group>"; };
 		DCFB20E386FE2DE5E8B779365927EBC7 /* pb.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = pb.h; sourceTree = "<group>"; };
@@ -1972,7 +1961,6 @@
 		E03EA74B474B2FA03101188C3BB20F51 /* RNFirebaseDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNFirebaseDatabase.m; sourceTree = "<group>"; };
 		E0482D09F1EE10145AEA52C9BE7C366A /* RCTInterpolationAnimatedNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTInterpolationAnimatedNode.m; sourceTree = "<group>"; };
 		E0AA3DB7D33834F6A4973F12DDF7B84A /* KSCrash.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KSCrash.xcconfig; sourceTree = "<group>"; };
-		E0C9AAA10A0A274193F614400019A9C8 /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libReact.a; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0DACD335803EEF5FE031C906D0B3178 /* RCTRefreshControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTRefreshControl.h; sourceTree = "<group>"; };
 		E11805B3867EC6CB0A19A6DCDB67ED22 /* KSCrashMonitor_CPPException.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = KSCrashMonitor_CPPException.cpp; path = Source/KSCrash/Recording/Monitors/KSCrashMonitor_CPPException.cpp; sourceTree = "<group>"; };
 		E147C828ED72D0D6FE8ABB0FFED41699 /* RCTInspectorPackagerConnection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTInspectorPackagerConnection.h; sourceTree = "<group>"; };
@@ -2011,8 +1999,10 @@
 		EC8E017EE3BB739DC077519A397029F2 /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
 		ECC68402A239BE4926C2E0366D58C65C /* RCTPackagerConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTPackagerConnection.m; sourceTree = "<group>"; };
 		ED1632DD08085DD20B1DB78D22F405EC /* RCTSegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSegmentedControl.h; sourceTree = "<group>"; };
+		ED3FAAA587538C3E77C1269697AC9690 /* libPods-AppStoreClone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-AppStoreClone.a"; path = "libPods-AppStoreClone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED942397E330DA041BE07A548AE1C756 /* RCTPropsAnimatedNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTPropsAnimatedNode.m; sourceTree = "<group>"; };
 		EDB44A488480D9E0214CE831049B3078 /* RCTActivityIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTActivityIndicatorView.m; sourceTree = "<group>"; };
+		EDCE40D254BFCF044ADB3772E8E3C631 /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libGoogleToolboxForMac.a; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDCFC28BBFCF62F1C9CC2CF27A6DB5A3 /* RCTDataRequestHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTDataRequestHandler.h; path = Libraries/Network/RCTDataRequestHandler.h; sourceTree = "<group>"; };
 		EE305ADB491736800B2C1C6C0DF71B39 /* KSCrashMonitor_Deadlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = KSCrashMonitor_Deadlock.m; path = Source/KSCrash/Recording/Monitors/KSCrashMonitor_Deadlock.m; sourceTree = "<group>"; };
 		EE30EECC3FA0C948ED8EA4466B93650E /* SSZipArchive.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = ios/CodePush/SSZipArchive/SSZipArchive.h; sourceTree = "<group>"; };
@@ -2035,7 +2025,6 @@
 		F1DC93BD0827A41A82DBCD79E0BD999F /* YGMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGMacros.h; path = yoga/YGMacros.h; sourceTree = "<group>"; };
 		F27E70B77D53FFE060DFBD4633A1A33E /* RNFirebaseDatabaseReference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNFirebaseDatabaseReference.h; sourceTree = "<group>"; };
 		F2E7BC07BE4FC0CF36CB10FAC85FB8B5 /* Demangle.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Demangle.cpp; path = Source/KSCrash/swift/Basic/Demangle.cpp; sourceTree = "<group>"; };
-		F3508E384CFD34200B171EDFF8092290 /* libGoogleToolboxForMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libGoogleToolboxForMac.a; path = libGoogleToolboxForMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F351936B94EF8E3A402321457016E353 /* RCTShadowRawText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTShadowRawText.h; path = Libraries/Text/RCTShadowRawText.h; sourceTree = "<group>"; };
 		F4B678FFB7C9FE40BA55045022C60199 /* JWTCoding+VersionThree.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JWTCoding+VersionThree.h"; sourceTree = "<group>"; };
 		F4CDBDA6934B3939993B8E6B739DF560 /* RCTRootView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTRootView.m; sourceTree = "<group>"; };
@@ -2075,6 +2064,7 @@
 		FC5C025B46591BFE857B39397FC05BF6 /* RCTInspectorPackagerConnection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTInspectorPackagerConnection.m; sourceTree = "<group>"; };
 		FC7CABA96445A2E892E7CFEF6801923A /* RCTLinkingManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTLinkingManager.m; path = Libraries/LinkingIOS/RCTLinkingManager.m; sourceTree = "<group>"; };
 		FD0A6CA13F82743BAD9E28A967C1DED9 /* RCTInspectorDevServerHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTInspectorDevServerHelper.h; sourceTree = "<group>"; };
+		FD10E3E372C9384E87B67606760580A6 /* libyoga.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libyoga.a; path = libyoga.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE1CB3990A582D73DE2DDF9EBB53E446 /* JWTCoding+ResultTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JWTCoding+ResultTypes.h"; sourceTree = "<group>"; };
 		FEBCF34B19D7C2415B140E43F869E837 /* RCTWebSocketExecutor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTWebSocketExecutor.m; path = Libraries/WebSocket/RCTWebSocketExecutor.m; sourceTree = "<group>"; };
 		FF68D356E7F4D5F9C25484143B58F696 /* NSData+Compression.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSData+Compression.h"; path = "Sources/Sentry/include/NSData+Compression.h"; sourceTree = "<group>"; };
@@ -2120,14 +2110,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0C080F185B864BD6E28DA14BF650B67 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2BF3A3E372341DDBEC68E0F4CE728904 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				465AE28133AA9F6322B6FF067775E6FE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2339,6 +2321,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		22B954DC40BB14B4BBC513272060783F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DB0291FDB447AA8CF709F06D78CB7EBE /* libCodePush.a */,
+				EDCE40D254BFCF044ADB3772E8E3C631 /* libGoogleToolboxForMac.a */,
+				375042F6BD20EC05C19CD2996EF2C572 /* libGTMSessionFetcher.a */,
+				0E6EA5FEDAF7A218A4184A2A2C4AC90A /* libKSCrash.a */,
+				D4875BD82B3C7B109D87AFF6FBD6F674 /* libnanopb.a */,
+				ED3FAAA587538C3E77C1269697AC9690 /* libPods-AppStoreClone.a */,
+				AA3C42580D2FF04CA497005F927AB898 /* libProtobuf.a */,
+				B2C34BABAA62BF9ECED1A759A127BD22 /* libReact.a */,
+				67BEA244344B0B78C476259047AC29F4 /* libreact-native-blur.a */,
+				1E3717756EB5748E9CCD4493F5B34685 /* libreact-native-navigation.a */,
+				815A8E2608D759D6981260FBB4E472EE /* libRNFirebase.a */,
+				C82EBBAE81C68A98EDD2FE7C2210BBD7 /* libSentry.a */,
+				C047166B77D8025CC2A28DF48D523396 /* libSentryReactNative.a */,
+				FD10E3E372C9384E87B67606760580A6 /* libyoga.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		28EBEC408B3598DACCA9FC8345892D75 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -2348,6 +2351,21 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/GoogleToolboxForMac";
+			sourceTree = "<group>";
+		};
+		2D4B71337173A77CA11F84B4454F8A33 /* Pods-AppStoreClone */ = {
+			isa = PBXGroup;
+			children = (
+				762A8D27D4982F1CA3518F2814A86F08 /* Pods-AppStoreClone-acknowledgements.markdown */,
+				6B5E9FB3057A2DCF6440F64B5092B704 /* Pods-AppStoreClone-acknowledgements.plist */,
+				6685DA2D81CA262FA091EB021F217D37 /* Pods-AppStoreClone-dummy.m */,
+				55DB1006E270FF8BB1938AD86CA9FFC3 /* Pods-AppStoreClone-frameworks.sh */,
+				4080093F07DDF406A8A6017F584462B8 /* Pods-AppStoreClone-resources.sh */,
+				C8F5C5A11749C10C547619AAE5645BD7 /* Pods-AppStoreClone.debug.xcconfig */,
+				40C5A9CE9402FCEEFA9E68F9A229A52A /* Pods-AppStoreClone.release.xcconfig */,
+			);
+			name = "Pods-AppStoreClone";
+			path = "Target Support Files/Pods-AppStoreClone";
 			sourceTree = "<group>";
 		};
 		2D7943A43B502CFCF9BF36F81F93AFE4 /* Pods */ = {
@@ -2477,6 +2495,14 @@
 				B4D39C74F6A999400ACD55EDAC3E4F53 /* FirebaseAnalytics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4613CD2B612AADDC6B8C745202075A0A /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D4B71337173A77CA11F84B4454F8A33 /* Pods-AppStoreClone */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		47BCA057D3F0DDF3EE78BF233F4A1D24 /* RCTImage */ = {
@@ -2679,28 +2705,6 @@
 			path = React/Base;
 			sourceTree = "<group>";
 		};
-		54EB4ACEC113DEE0A56AC496FD98975D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B5FF38D38B91903DB2C316EE374D7AC8 /* libCodePush.a */,
-				F3508E384CFD34200B171EDFF8092290 /* libGoogleToolboxForMac.a */,
-				BAF8A54186DBF74C768CD855EAA28115 /* libGTMSessionFetcher.a */,
-				A118DBEA19C6F7CEE562B5FB668A683E /* libKSCrash.a */,
-				B4824E7D3B1E66EBE7CEEAB8AB8430B3 /* libnanopb.a */,
-				4FD5C87D1B2AA1C31F03A37E4476A6C8 /* libPods-AppStoreClone.a */,
-				1424379E65AA959C454C6E55641A9252 /* libPods-AppStoreCloneTests.a */,
-				0A01C9CD997C3B8A8C94BB5E3FA7DE7C /* libProtobuf.a */,
-				E0C9AAA10A0A274193F614400019A9C8 /* libReact.a */,
-				084FBD02C1B5F138D90D136EBBC250F4 /* libreact-native-blur.a */,
-				290AD33C33FE458BB440E0DA3D406AA6 /* libreact-native-navigation.a */,
-				D02C35D372CE3460999889E77E610A90 /* libRNFirebase.a */,
-				58DC33323DD0B1C1631273750D99E1F1 /* libSentry.a */,
-				B9C19288087E16714F9E9026000617C8 /* libSentryReactNative.a */,
-				21CD6ECAA773985A0A84D0C51D487D19 /* libyoga.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		57EDF543964355CDDA8787526ECFAC67 /* storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -2759,21 +2763,6 @@
 			path = "../../node_modules/react-native";
 			sourceTree = "<group>";
 		};
-		5AB118A8E0B873D020848AC4C3443067 /* Pods-AppStoreCloneTests */ = {
-			isa = PBXGroup;
-			children = (
-				40639429C0043BC6C70564E535F88E51 /* Pods-AppStoreCloneTests-acknowledgements.markdown */,
-				60592E4C42D88003A77CF43CFCAAC45B /* Pods-AppStoreCloneTests-acknowledgements.plist */,
-				08C2A30338D19719B93222A0C6563CF1 /* Pods-AppStoreCloneTests-dummy.m */,
-				B3F86B186552400B01663A5E6A5E5CE3 /* Pods-AppStoreCloneTests-frameworks.sh */,
-				5668BE7EA278DC1075599209A802AE7E /* Pods-AppStoreCloneTests-resources.sh */,
-				32B1E15C1A7F777010DD0EBBBF427256 /* Pods-AppStoreCloneTests.debug.xcconfig */,
-				C34A364183496F5CC3D2A31E3376C01C /* Pods-AppStoreCloneTests.release.xcconfig */,
-			);
-			name = "Pods-AppStoreCloneTests";
-			path = "Target Support Files/Pods-AppStoreCloneTests";
-			sourceTree = "<group>";
-		};
 		607F8395964E706D21ABC3AF32017C60 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -2827,15 +2816,6 @@
 			);
 			name = RCCToolBar;
 			path = ios/RCCToolBar;
-			sourceTree = "<group>";
-		};
-		67C2C921B29A64303B2CBB6131BC0AD8 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				92BD02B24463C4803ED721820E91E45A /* Pods-AppStoreClone */,
-				5AB118A8E0B873D020848AC4C3443067 /* Pods-AppStoreCloneTests */,
-			);
-			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		67E4EFD4E67D29E8932E639D713BE369 /* RCTAnimation */ = {
@@ -3030,8 +3010,8 @@
 				BE3FA5E40ABEE8C24FEAEEFACD4E2BE5 /* Development Pods */,
 				14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */,
 				2D7943A43B502CFCF9BF36F81F93AFE4 /* Pods */,
-				54EB4ACEC113DEE0A56AC496FD98975D /* Products */,
-				67C2C921B29A64303B2CBB6131BC0AD8 /* Targets Support Files */,
+				22B954DC40BB14B4BBC513272060783F /* Products */,
+				4613CD2B612AADDC6B8C745202075A0A /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3114,21 +3094,6 @@
 			);
 			name = GTMSessionFetcher;
 			path = GTMSessionFetcher;
-			sourceTree = "<group>";
-		};
-		92BD02B24463C4803ED721820E91E45A /* Pods-AppStoreClone */ = {
-			isa = PBXGroup;
-			children = (
-				8F1FBCD9C3B6DEDF84629114B35616B3 /* Pods-AppStoreClone-acknowledgements.markdown */,
-				78ACCFE31B67539C0517C54E9482B418 /* Pods-AppStoreClone-acknowledgements.plist */,
-				DC9780AD6412499302C56ED46AA25486 /* Pods-AppStoreClone-dummy.m */,
-				BF0B530936D8437178E5F4C410B652CA /* Pods-AppStoreClone-frameworks.sh */,
-				6A77CA1B6864665B9E114D715AD960C2 /* Pods-AppStoreClone-resources.sh */,
-				AAAB75491C34F43205BA66E8D5D47D4A /* Pods-AppStoreClone.debug.xcconfig */,
-				5832BC972C2561B0017537DD90CBD21B /* Pods-AppStoreClone.release.xcconfig */,
-			);
-			name = "Pods-AppStoreClone";
-			path = "Target Support Files/Pods-AppStoreClone";
 			sourceTree = "<group>";
 		};
 		94BD6C94FC7ABE8EF372132E9D55DFF9 /* links */ = {
@@ -4818,7 +4783,7 @@
 			);
 			name = RNFirebase;
 			productName = RNFirebase;
-			productReference = D02C35D372CE3460999889E77E610A90 /* libRNFirebase.a */;
+			productReference = 815A8E2608D759D6981260FBB4E472EE /* libRNFirebase.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		16E66C0EB5B22B357B9F51FB817C379D /* KSCrash */ = {
@@ -4835,7 +4800,7 @@
 			);
 			name = KSCrash;
 			productName = KSCrash;
-			productReference = A118DBEA19C6F7CEE562B5FB668A683E /* libKSCrash.a */;
+			productReference = 0E6EA5FEDAF7A218A4184A2A2C4AC90A /* libKSCrash.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		2A2F09D6C20B7EBC8B768E2214FD3A3F /* react-native-navigation */ = {
@@ -4853,7 +4818,7 @@
 			);
 			name = "react-native-navigation";
 			productName = "react-native-navigation";
-			productReference = 290AD33C33FE458BB440E0DA3D406AA6 /* libreact-native-navigation.a */;
+			productReference = 1E3717756EB5748E9CCD4493F5B34685 /* libreact-native-navigation.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		33AD808E65E3C6A1382397A3C3EBDE9D /* Pods-AppStoreClone */ = {
@@ -4882,7 +4847,7 @@
 			);
 			name = "Pods-AppStoreClone";
 			productName = "Pods-AppStoreClone";
-			productReference = 4FD5C87D1B2AA1C31F03A37E4476A6C8 /* libPods-AppStoreClone.a */;
+			productReference = ED3FAAA587538C3E77C1269697AC9690 /* libPods-AppStoreClone.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		3410CB1D3151AA789D55FF705297F7EE /* Protobuf */ = {
@@ -4899,7 +4864,7 @@
 			);
 			name = Protobuf;
 			productName = Protobuf;
-			productReference = 0A01C9CD997C3B8A8C94BB5E3FA7DE7C /* libProtobuf.a */;
+			productReference = AA3C42580D2FF04CA497005F927AB898 /* libProtobuf.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		66A09CB7860DAA35B7707CEA8C77F185 /* react-native-blur */ = {
@@ -4917,7 +4882,7 @@
 			);
 			name = "react-native-blur";
 			productName = "react-native-blur";
-			productReference = 084FBD02C1B5F138D90D136EBBC250F4 /* libreact-native-blur.a */;
+			productReference = 67BEA244344B0B78C476259047AC29F4 /* libreact-native-blur.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		6DD91AE503535F83114C49503A16F392 /* Sentry */ = {
@@ -4935,7 +4900,7 @@
 			);
 			name = Sentry;
 			productName = Sentry;
-			productReference = 58DC33323DD0B1C1631273750D99E1F1 /* libSentry.a */;
+			productReference = C82EBBAE81C68A98EDD2FE7C2210BBD7 /* libSentry.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		74ADF5FECC8AEB94EBC499D25B5F3963 /* CodePush */ = {
@@ -4953,23 +4918,7 @@
 			);
 			name = CodePush;
 			productName = CodePush;
-			productReference = B5FF38D38B91903DB2C316EE374D7AC8 /* libCodePush.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		7A06F176B3A6D726D8427CE12511C0B4 /* Pods-AppStoreCloneTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 412B04B3472261ACEC6EF5A2DC5E6F89 /* Build configuration list for PBXNativeTarget "Pods-AppStoreCloneTests" */;
-			buildPhases = (
-				0E4C9D9BBBEBE61B408D4B41B4B76FEE /* Sources */,
-				2BF3A3E372341DDBEC68E0F4CE728904 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-AppStoreCloneTests";
-			productName = "Pods-AppStoreCloneTests";
-			productReference = 1424379E65AA959C454C6E55641A9252 /* libPods-AppStoreCloneTests.a */;
+			productReference = DB0291FDB447AA8CF709F06D78CB7EBE /* libCodePush.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		8E93300A9BE638B872D8BC8A360B233B /* yoga */ = {
@@ -4986,7 +4935,7 @@
 			);
 			name = yoga;
 			productName = yoga;
-			productReference = 21CD6ECAA773985A0A84D0C51D487D19 /* libyoga.a */;
+			productReference = FD10E3E372C9384E87B67606760580A6 /* libyoga.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		A3B20EB6698844C6DD7994637E08B992 /* SentryReactNative */ = {
@@ -5006,7 +4955,7 @@
 			);
 			name = SentryReactNative;
 			productName = SentryReactNative;
-			productReference = B9C19288087E16714F9E9026000617C8 /* libSentryReactNative.a */;
+			productReference = C047166B77D8025CC2A28DF48D523396 /* libSentryReactNative.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		BA504C8BF6662733AB8AE6004502E819 /* React */ = {
@@ -5024,7 +4973,7 @@
 			);
 			name = React;
 			productName = React;
-			productReference = E0C9AAA10A0A274193F614400019A9C8 /* libReact.a */;
+			productReference = B2C34BABAA62BF9ECED1A759A127BD22 /* libReact.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		CF4B35B9FC819386EB09219BC91827D7 /* nanopb */ = {
@@ -5041,7 +4990,7 @@
 			);
 			name = nanopb;
 			productName = nanopb;
-			productReference = B4824E7D3B1E66EBE7CEEAB8AB8430B3 /* libnanopb.a */;
+			productReference = D4875BD82B3C7B109D87AFF6FBD6F674 /* libnanopb.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		DE868725B18AE240E550C5515AE66BC4 /* GTMSessionFetcher */ = {
@@ -5058,7 +5007,7 @@
 			);
 			name = GTMSessionFetcher;
 			productName = GTMSessionFetcher;
-			productReference = BAF8A54186DBF74C768CD855EAA28115 /* libGTMSessionFetcher.a */;
+			productReference = 375042F6BD20EC05C19CD2996EF2C572 /* libGTMSessionFetcher.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		FA9D13261AF395CF5D54BB3203DF2A6E /* GoogleToolboxForMac */ = {
@@ -5075,7 +5024,7 @@
 			);
 			name = GoogleToolboxForMac;
 			productName = GoogleToolboxForMac;
-			productReference = F3508E384CFD34200B171EDFF8092290 /* libGoogleToolboxForMac.a */;
+			productReference = EDCE40D254BFCF044ADB3772E8E3C631 /* libGoogleToolboxForMac.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -5095,7 +5044,7 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 54EB4ACEC113DEE0A56AC496FD98975D /* Products */;
+			productRefGroup = 22B954DC40BB14B4BBC513272060783F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -5105,7 +5054,6 @@
 				16E66C0EB5B22B357B9F51FB817C379D /* KSCrash */,
 				CF4B35B9FC819386EB09219BC91827D7 /* nanopb */,
 				33AD808E65E3C6A1382397A3C3EBDE9D /* Pods-AppStoreClone */,
-				7A06F176B3A6D726D8427CE12511C0B4 /* Pods-AppStoreCloneTests */,
 				3410CB1D3151AA789D55FF705297F7EE /* Protobuf */,
 				BA504C8BF6662733AB8AE6004502E819 /* React */,
 				66A09CB7860DAA35B7707CEA8C77F185 /* react-native-blur */,
@@ -5146,14 +5094,6 @@
 				2E21128416CFF0032CB0B3A4F97D6677 /* RNFirebaseRemoteConfig.m in Sources */,
 				115132140B3E226C91D76D47444ED55D /* RNFirebaseStorage.m in Sources */,
 				88F08D3D4732EE8EED26B7982A2A14C6 /* RNFirebaseUtil.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0E4C9D9BBBEBE61B408D4B41B4B76FEE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CAB41C5EE86BC46313F05E6C1C63FC3A /* Pods-AppStoreCloneTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6246,7 +6186,7 @@
 		};
 		BD25C77FBE5132D8566FFBC68CC899AA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAAB75491C34F43205BA66E8D5D47D4A /* Pods-AppStoreClone.debug.xcconfig */;
+			baseConfigurationReference = C8F5C5A11749C10C547619AAE5645BD7 /* Pods-AppStoreClone.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -6387,29 +6327,6 @@
 			};
 			name = Debug;
 		};
-		DF96055C171EB4BD67066F09122D1DE7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C34A364183496F5CC3D2A31E3376C01C /* Pods-AppStoreCloneTests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
 		E21717152A594E3FD9C2731822AF34F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D2F0799C0A46F440CEE9680ACDDD6E1C /* GoogleToolboxForMac.xcconfig */;
@@ -6457,29 +6374,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 			};
 			name = Release;
-		};
-		EC9B32307A430559D8B96AC81E14279B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32B1E15C1A7F777010DD0EBBBF427256 /* Pods-AppStoreCloneTests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
 		};
 		EE21C9049D4B491D3DE117FB5BAEA963 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -6555,7 +6449,7 @@
 		};
 		FC73CFF24042AD726A5535E52877A2A5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5832BC972C2561B0017537DD90CBD21B /* Pods-AppStoreClone.release.xcconfig */;
+			baseConfigurationReference = 40C5A9CE9402FCEEFA9E68F9A229A52A /* Pods-AppStoreClone.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -6626,15 +6520,6 @@
 			buildConfigurations = (
 				1C7D17A37D091C98D2F0DD886C3A9320 /* Debug */,
 				34FE9531DA9AF2820790339988D5FF41 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		412B04B3472261ACEC6EF5A2DC5E6F89 /* Build configuration list for PBXNativeTarget "Pods-AppStoreCloneTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EC9B32307A430559D8B96AC81E14279B /* Debug */,
-				DF96055C171EB4BD67066F09122D1DE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
