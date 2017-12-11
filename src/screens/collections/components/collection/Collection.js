@@ -134,7 +134,13 @@ export default class Collection extends PureComponent {
     }
 
     if (type === 'TOP_CATEGORIES') {
-      content = (<CategoriesList type={this.props.type} top={5} />);
+      content = (
+        <CategoriesList
+          navigator={this.props.navigator}
+          type={this.props.type}
+          top={5}
+        />
+      );
     }
 
     // Show heading?

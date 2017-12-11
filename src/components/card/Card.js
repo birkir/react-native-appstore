@@ -2,12 +2,12 @@ import React, { PureComponent } from 'react';
 import { StyleSheet, Animated, View, Text, Image, Dimensions, LayoutAnimation, TouchableWithoutFeedback } from 'react-native';
 import { autobind } from 'core-decorators';
 import Button from 'components/button';
-// import AppItemRow from 'components/app-item-row';
+import AppItemRow from 'components/app-item-row';
 import PropTypes from 'prop-types';
 
 // Transition helper method
 const transition = (property, toValue, useNativeDriver = true) =>
-  Animated.spring(property, { toValue, useNativeDriver, bounciness: 0 });
+  Animated.spring(property, { toValue, useNativeDriver });
 
 // Layout animation config for width/height
 const config = {
@@ -34,6 +34,7 @@ export default class Card extends PureComponent {
 
   static propTypes = {
     onOpenChange: PropTypes.func,
+    backgroundColor: PropTypes.string,
     imageUrl: PropTypes.string,
     legend: PropTypes.string,
     title: PropTypes.string,
@@ -41,13 +42,17 @@ export default class Card extends PureComponent {
     hero: PropTypes.bool,
     app: PropTypes.object,
     apps: PropTypes.arrayOf(PropTypes.object),
-    zIndex: PropTypes.number,
     children: PropTypes.node,
     light: PropTypes.bool,
+    top: PropTypes.number,
+    left: PropTypes.number,
+    onAppPress: PropTypes.func,
+    onAppPressIn: PropTypes.func,
   }
 
   static defaultProps = {
     onOpenChange: undefined,
+    backgroundColor: undefined,
     imageUrl: undefined,
     legend: undefined,
     hero: false,
@@ -55,9 +60,12 @@ export default class Card extends PureComponent {
     subtitle: undefined,
     app: undefined,
     apps: undefined,
-    zIndex: 0,
     children: undefined,
     light: false,
+    top: 20,
+    left: 0,
+    onAppPress() {},
+    onAppPressIn() {},
   }
 
   state = {
@@ -139,6 +147,16 @@ export default class Card extends PureComponent {
     this.props.onOpenChange(this.props, isOpen);
   }
 
+  @autobind
+  onAppPress() {
+    this.props.onAppPress(this.props);
+  }
+
+  @autobind
+  onAppPressIn() {
+    this.props.onAppPressIn(this.props);
+  }
+
   // Animation values
   cursorNative = new Animated.Value(0);
   borderRadius = new Animated.Value(16);
@@ -155,6 +173,7 @@ export default class Card extends PureComponent {
     } = this;
 
     const {
+      backgroundColor,
       imageUrl,
       legend,
       hero,
@@ -162,9 +181,10 @@ export default class Card extends PureComponent {
       subtitle,
       app,
       apps,
-      zIndex,
       children,
       light,
+      top,
+      left,
     } = this.props;
 
     const {
@@ -245,6 +265,19 @@ export default class Card extends PureComponent {
         }),
       },
 
+      content__offset: {
+        transform: [{
+          translateY: cursorNative.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, Math.max(0, top - 20)],
+          }),
+        }, {
+          translateX: cursorNative.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, left],
+          }),
+        }],
+      },
     };
 
     if (layout) {
@@ -259,7 +292,7 @@ export default class Card extends PureComponent {
 
     return (
       <View
-        style={[styles.root, { zIndex }]}
+        style={[styles.root]}
         ref={(ref) => { this.hostRef = ref; }}
       >
         <Animated.View
@@ -293,7 +326,7 @@ export default class Card extends PureComponent {
                 <Animated.Image
                   source={{ uri: imageUrl }}
                   resizeMode="cover"
-                  style={[styles.image, animated.image]}
+                  style={[styles.image, { backgroundColor }, animated.image]}
                   onLayout={this.onLayout}
                 />
                 <View
@@ -304,39 +337,47 @@ export default class Card extends PureComponent {
                   ]}
                 >
                   {hero ? (
-                    <View style={styles.hero}>
+                    <Animated.View style={[styles.hero, animated.content__offset]}>
                       <Image source={{ uri: app.imageUrl }} style={styles.hero__icon} />
                       <Text style={styles.hero__text}>
                         {String(title || '').toLocaleUpperCase()}
                       </Text>
-                    </View>
+                    </Animated.View>
                   ) : (
-                    <View>
+                    <Animated.View style={animated.content__offset}>
                       {legend && (
                         <Text style={[styles.legend, dark && styles.dark]}>
                           {String(legend || '').toLocaleUpperCase()}
                         </Text>
                       )}
                       {title && (
-                        <Text style={[styles.title, dark && styles.dark]}>
+                        <Text style={[styles.title, dark && styles.dark]} numberOfLines={2}>
                           {title}
                         </Text>
                       )}
-                    </View>
+                    </Animated.View>
                   )}
-                  {/* {apps ? (
+                  {(apps.length > 0) ? (
                     <View style={styles.apps}>
-                      {apps.map(appItem => (
+                      {apps.map(item => (
                         <AppItemRow
-                          key={Math.random()}
-                          compact
-                          {...appItem}
+                          {...item}
+                          key={item.id}
+                          id={item.id}
+                          imageUrl={item.iconUrl}
+                          action={{
+                            label: item.price ? `$${item.price}` : 'GET',
+                            subtitle: item.hasInAppPurchases ? 'In-App Purchases' : undefined,
+                          }}
+                          divider
+                          onPress={this.onAppPress}
+                          onPressIn={this.onAppPressIn}
                         />
                       ))}
                     </View>
                   ) : (
                     <View style={styles.flex} />
-                  )} */}
+                  )}
                   {app && (
                     <View style={styles.hero__app}>
                       <View style={styles.hero__appsummary}>
@@ -355,11 +396,10 @@ export default class Card extends PureComponent {
                       </View>
                       <Button
                         onPress={app.onActionPress}
-                        subtitle={app.actionSubtitle}
                         loading={app.isActionLoading}
                         align="right"
                       >
-                        {app.action}
+                        {app.price ? `$${app.price}` : 'GET'}
                       </Button>
                     </View>
                   )}
@@ -368,7 +408,7 @@ export default class Card extends PureComponent {
                     <Text style={styles.subtitle}>{subtitle}</Text>
                   )}
 
-                  {apps && (
+                  {(apps.length > 0) && (
                     <Animated.View
                       style={[styles.apps__cover, animated.apps__cover]}
                       pointerEvents="none"
@@ -403,7 +443,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
 
+  flex: {
+    flex: 1,
+  },
+
   host: {
+    position: 'absolute',
     height: CARD_COLLAPSED_HEIGHT,
     marginBottom: 30,
 
@@ -437,6 +482,10 @@ const styles = StyleSheet.create({
     height: 30,
 
     opacity: 0.6,
+  },
+
+  apps: {
+    marginTop: 20,
   },
 
   apps__cover: {

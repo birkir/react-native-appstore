@@ -1,7 +1,8 @@
 import gql from 'graphql-tag';
+import graphql from 'react-apollo/graphql';
 import AppFragment from '../fragments/AppFragment';
 
-export default gql`
+export const query = gql`
   query allStories(
     $first: Int!
     $after: String
@@ -13,10 +14,11 @@ export default gql`
     ) {
       id
       backgroundColor
-      displayMode
+      displayType
       imageUrl
       legend
       title
+      date
       app {
         ...AppFragment
       }
@@ -27,3 +29,11 @@ export default gql`
   }
   ${AppFragment}
 `;
+
+export default graphql(query, {
+  options: props => ({
+    variables: {
+      first: props.first || 10,
+    },
+  }),
+});

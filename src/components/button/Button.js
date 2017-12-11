@@ -25,6 +25,7 @@ export default class Button extends PureComponent {
     align: PropTypes.oneOf(['left', 'center', 'right']),
     width: PropTypes.number,
     circle: PropTypes.bool,
+    view: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -38,6 +39,7 @@ export default class Button extends PureComponent {
     align: 'center',
     width: WIDTH,
     circle: false,
+    view: false,
   };
 
   state = {
@@ -128,6 +130,7 @@ export default class Button extends PureComponent {
       align,
       width,
       circle,
+      view,
     } = this.props;
 
     const animated = {
@@ -229,15 +232,18 @@ export default class Button extends PureComponent {
               !this.state.loading && white && styles.background__white,
             ]}
           >
-            <Text
-              style={[
-                styles.content__text,
-                blue && styles.content__text__blue,
-                animated.text,
-              ]}
-            >
-              {children}
-            </Text>
+            {!view && (
+              <Text
+                style={[
+                  styles.content__text,
+                  blue && styles.content__text__blue,
+                  animated.text,
+                ]}
+              >
+                {children}
+              </Text>
+            )}
+            {view && children}
             {subtitle && (
               <Text
                 style={[
@@ -379,4 +385,6 @@ const styles = StyleSheet.create({
     left: 'auto',
     right: 80,
   },
+
+  // Dots
 });

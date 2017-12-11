@@ -55,7 +55,7 @@ export default class Header extends PureComponent {
             >
               {action.label}
             </Button>
-            <Button blue circle onPress={this.onSharePress}>
+            <Button blue circle view onPress={this.onSharePress}>
               <View style={styles.dots}>
                 <View style={styles.dot} />
                 <View style={styles.dot} />
@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
     height: 4,
     borderRadius: 2,
     backgroundColor: 'white',
-    marginHorizontal: 2,
+    marginHorizontal: 1,
   },
 });

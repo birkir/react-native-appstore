@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Animated, Image, View, Text, NativeModules, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, Animated, Image, View, Text, Dimensions, SafeAreaView, NativeModules, TouchableOpacity } from 'react-native';
 import { autobind } from 'core-decorators';
 import { inject } from 'mobx-react/native';
 import Heading from 'components/heading';
@@ -22,6 +22,9 @@ const DATA = {
     'spirit airline',
   ],
 };
+
+const { width, height } = Dimensions.get('window');
+const isIPhoneX = (width === 812 || height === 812);
 
 /**
  * Search screen
@@ -98,6 +101,7 @@ export default class Search extends Component {
         active: true,
         results: true,
       });
+      this.backdrop.setValue(0);
     }
 
     if (e.id === 'didAppear') {
@@ -162,89 +166,99 @@ export default class Search extends Component {
       }),
     };
 
+    // Small hack for top gutter
+    const paddingTop = !isIPhoneX && !active ? 20 : 0;
+
     return (
-      <View style={styles.host}>
-        {trending && (
-          <ScrollView style={styles.content}>
-            <Heading>Trending</Heading>
-            {DATA.trending.map((label, i, arr) => (
-              <ListItem
-                key={label}
-                label={label}
-                fontStyle={fontStyle}
-                underlayColor="white"
-                onPress={() => this.searchByQuery(label)}
-                divider={(i + 1) < arr.length}
-              />
-            ))}
-          </ScrollView>
-        )}
-
-        <View style={StyleSheet.absoluteFill} pointerEvents={!active ? 'none' : 'auto'}>
-          <TouchableOpacity
-            activeOpacity={1}
-            style={StyleSheet.absoluteFill}
-            onPress={this.onBackdropPress}
-            disabled={!active}
-          >
-            <Animated.View
-              style={[styles.backdrop, { opacity: this.backdrop }]}
-            />
-          </TouchableOpacity>
-        </View>
-
-        {active && query !== '' && (
-          <View style={[StyleSheet.absoluteFill, styles.results]}>
-            <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.content}>
-              {this.state.suggestions.map(suggestion => (
-                <TouchableOpacity
-                  style={styles.suggestion}
-                  key={suggestion.id}
-                  onPress={() => this.searchByQuery(get(suggestion, 'title'))}
-                >
-                  <Image
-                    style={styles.suggestion__icon}
-                    source={require('images/SearchIcon.png')}
-                    resizeMode="contain"
-                  />
-                  <Text style={styles.suggestion__text}>
-                    {this.renderHighlights(get(suggestion, '_highlightResult.title.value').toLowerCase())}
-                  </Text>
-                </TouchableOpacity>
+      <SafeAreaView style={styles.safe}>
+        <View style={[styles.host, { paddingTop }]}>
+          {trending && (
+            <ScrollView style={styles.content}>
+              <Heading>Trending</Heading>
+              {DATA.trending.map((label, i, arr) => (
+                <ListItem
+                  key={label}
+                  label={label}
+                  fontStyle={fontStyle}
+                  underlayColor="white"
+                  onPress={() => this.searchByQuery(label)}
+                  divider={(i + 1) < arr.length}
+                />
               ))}
             </ScrollView>
-          </View>
-        )}
+          )}
 
-        {active && results && (
-          <View style={[StyleSheet.absoluteFill, styles.results]}>
-            <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.content}>
-              <AppItemRow
-                screenshotUrl={`https://placeimg.com/335/215/any?${Math.random()}`}
-                imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
-                title="Spark Email"
-                subtitle="New exciting tournament game mode!"
-                action={{ label: 'FREE' }}
-                divider={false}
+          <View style={StyleSheet.absoluteFill} pointerEvents={!active ? 'none' : 'auto'}>
+            <TouchableOpacity
+              activeOpacity={1}
+              style={StyleSheet.absoluteFill}
+              onPress={this.onBackdropPress}
+              disabled={!active}
+            >
+              <Animated.View
+                style={[styles.backdrop, { opacity: this.backdrop }]}
               />
-              <View style={styles.spacer} />
-              <AppItemRow
-                screenshotUrl={`https://placeimg.com/335/215/any?${Math.random()}`}
-                imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
-                title="Spark Email"
-                subtitle="New exciting tournament game mode!"
-                action={{ label: 'FREE' }}
-                divider={false}
-              />
-            </ScrollView>
+            </TouchableOpacity>
           </View>
-        )}
-      </View>
+
+          {active && query !== '' && (
+            <View style={[StyleSheet.absoluteFill, styles.results]}>
+              <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.content}>
+                {this.state.suggestions.map(suggestion => (
+                  <TouchableOpacity
+                    style={styles.suggestion}
+                    key={suggestion.id}
+                    onPress={() => this.searchByQuery(get(suggestion, 'title'))}
+                  >
+                    <Image
+                      style={styles.suggestion__icon}
+                      source={require('images/SearchIcon.png')}
+                      resizeMode="contain"
+                    />
+                    <Text style={styles.suggestion__text}>
+                      {this.renderHighlights(get(suggestion, '_highlightResult.title.value').toLowerCase())}
+                    </Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          )}
+
+          {active && results && (
+            <View style={[StyleSheet.absoluteFill, styles.results]}>
+              <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.content}>
+                <AppItemRow
+                  screenshotUrl={`https://placeimg.com/335/215/any?${Math.random()}`}
+                  imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
+                  title="Spark Email"
+                  subtitle="New exciting tournament game mode!"
+                  action={{ label: 'FREE' }}
+                  divider={false}
+                />
+                <View style={styles.spacer} />
+                <AppItemRow
+                  screenshotUrl={`https://placeimg.com/335/215/any?${Math.random()}`}
+                  imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
+                  title="Spark Email"
+                  subtitle="New exciting tournament game mode!"
+                  action={{ label: 'FREE' }}
+                  divider={false}
+                />
+              </ScrollView>
+            </View>
+          )}
+        </View>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  safe: {
+    marginTop: isIPhoneX ? -12 : -30,
+    flex: 1,
+  },
+
   host: {
     flex: 1,
   },
@@ -277,10 +291,9 @@ const styles = StyleSheet.create({
   },
 
   results: {
-    top: 20,
     backgroundColor: '#FFFFFF',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: '#BCBBC1',
+    // borderTopWidth: StyleSheet.hairlineWidth,
+    // borderTopColor: '#BCBBC1',
   },
 
   spacer: {
