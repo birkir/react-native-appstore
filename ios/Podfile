@@ -15,6 +15,7 @@ target 'AppStoreClone' do
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'Core',
     'BatchedBridge',
+    'RCTActionSheet',
     'RCTText',
     'RCTNetwork',
     'RCTWebSocket',

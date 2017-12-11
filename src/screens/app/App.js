@@ -190,6 +190,14 @@ export default class App extends Component {
           />
           <StatsRow.Item title={`${app.age}+`} value="Age" />
         </StatsRow>
+
+        <Screenshots
+          navigator={this.props.navigator}
+          data={[{
+            title: 'iPhone',
+            screenshots: get(app, 'previews'),
+          }]}
+        />
       </View>
     );
   }
@@ -220,14 +228,6 @@ export default class App extends Component {
         onScroll={this.onScroll}
       >
         {this.renderPartial(app)}
-
-        <Screenshots
-          navigator={navigator}
-          data={[{
-            title: 'iPhone',
-            screenshots: get(app, 'previews'),
-          }]}
-        />
 
         <Description
           seller={get(app, 'seller')}

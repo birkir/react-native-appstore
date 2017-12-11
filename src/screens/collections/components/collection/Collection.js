@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
 import { View } from 'react-native';
-import { COLLECTION_SCREEN, pushAppScreen } from 'screens';
+import { COLLECTION_SCREEN, CATEGORIES_SCREEN, pushAppScreen } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
 import AppItemFeatured from 'components/app-item-featured';
 import AppItemLargeTile from 'components/app-item-large-tile';
 import Heading from 'components/heading';
-import CategoriesList from 'components/categories-list';
 import PropTypes from 'prop-types';
 import { autobind } from 'core-decorators';
+import CategoriesList from '../categories-list';
+import TopApps from '../top-apps';
 
 export default class Collection extends PureComponent {
 
@@ -49,7 +50,19 @@ export default class Collection extends PureComponent {
 
   @autobind
   onSeeAllPress() {
-    const { collection, navigator } = this.props;
+    const { collection, navigator, type } = this.props;
+
+    if (collection.type === 'TOP_CATEGORIES') {
+      navigator.push({
+        screen: CATEGORIES_SCREEN,
+        title: collection.title,
+        passProps: {
+          type,
+        },
+      });
+      return;
+    }
+
     navigator.push({
       screen: COLLECTION_SCREEN,
       title: collection.title,
@@ -123,14 +136,28 @@ export default class Collection extends PureComponent {
       </AppItemSlider>
     );
 
-    // TODO: Use a component `<TopApps type="APP|GAME" free size={16} />` here
     if (type === 'TOP_FREE') {
-      return null;
+      content = (
+        <TopApps
+          onPress={this.onAppPress}
+          onPressIn={this.onAppPressIn}
+          type={this.props.type}
+          free
+          size={16}
+        />
+      );
     }
 
-    // TODO: Use a component `<TopApps type="APP|GAME" paid size={16} />` here
     if (type === 'TOP_PAID') {
-      return null;
+      content = (
+        <TopApps
+          onPress={this.onAppPress}
+          onPressIn={this.onAppPressIn}
+          type={this.props.type}
+          paid
+          size={16}
+        />
+      );
     }
 
     if (type === 'TOP_CATEGORIES') {

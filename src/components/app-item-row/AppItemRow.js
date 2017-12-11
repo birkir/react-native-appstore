@@ -94,7 +94,7 @@ export default class AppItemRow extends PureComponent {
               style={[styles.image, compact && styles.image__compact]}
             />
             <View style={styles.content}>
-              {index && (
+              {index !== undefined && (
                 <View style={styles.index}>
                   <Text style={styles.index__text}>{index}</Text>
                 </View>

@@ -88,7 +88,7 @@ index 5508075..8c9eba3 100755
 +  // Search controller
 +  NSString *navBarSearch = self.navigatorStyle[@"navBarSearch"];
 +  BOOL navBarSearchBool = navBarSearch ? [navBarSearch boolValue] : NO;
-+  if (navBarSearchBool) {
++  if ([self.navigationItem respondsToSelector:@selector(setSearchController:)] && navBarSearchBool) {
 +    UISearchController *search;
 +    if (self.navigationItem.searchController == nil) {
 +      search = [[UISearchController alloc] initWithSearchResultsController:nil];
@@ -103,7 +103,7 @@ index 5508075..8c9eba3 100755
 +    } else {
 +      search = self.navigationItem.searchController;
 +    }
-+  } else {
++  } else if ([self.navigationItem respondsToSelector:@selector(setSearchController:)]) {
 +    [self.navigationItem setSearchController:nil];
 +  }
 +

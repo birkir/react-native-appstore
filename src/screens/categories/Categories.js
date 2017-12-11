@@ -42,7 +42,7 @@ export default class Categories extends Component {
 
   render() {
     const { data } = this.props;
-    const categories = get(data, 'allCategories', get(this.props, 'categories'));
+    const categories = get(data, 'allCategories', get(this.props, 'categories', []));
     return (
       <ScrollView style={styles.host}>
         {categories.map(this.renderCategory)}
@@ -54,5 +54,6 @@ export default class Categories extends Component {
 const styles = StyleSheet.create({
   host: {
     flex: 1,
+    paddingHorizontal: 20,
   },
 });

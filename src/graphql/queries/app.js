@@ -13,10 +13,8 @@ export const query = gql`
           ...AppFragment
         }
       }
-      age
       description
       type
-      previews
       categories {
         id
         title

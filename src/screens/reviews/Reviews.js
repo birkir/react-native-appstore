@@ -11,12 +11,16 @@ import { autobind } from 'core-decorators';
 export default class Reviews extends Component {
 
   static propTypes = {
+    appId: PropTypes.string,
+    reviewId: PropTypes.string,
     data: PropTypes.object,
     rating: PropTypes.number,
     votes: PropTypes.number,
   }
 
   static defaultProps = {
+    appId: undefined,
+    reviewId: undefined,
     data: undefined,
     rating: 5,
     votes: 16000,
@@ -46,7 +50,7 @@ export default class Reviews extends Component {
   }
 
   render() {
-    const { data, rating, votes } = this.props;
+    const { data, rating, votes, reviewId } = this.props;
     const review = get(data, 'Review', get(this.props, 'review'));
     const reviews = get(data, 'App.reviews', get(this.props, 'reviews', []));
 
@@ -56,6 +60,10 @@ export default class Reviews extends Component {
           <Review {...review} />
         </ScrollView>
       );
+    }
+
+    if (reviewId) {
+      return null;
     }
 
     return (

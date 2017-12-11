@@ -38,9 +38,9 @@ export default class CategoryRow extends PureComponent {
 const styles = StyleSheet.create({
   fontStyle: {
     fontFamily: 'SFProText-Regular',
-    fontSize: 17,
+    fontSize: 19,
     color: '#007AFF',
     letterSpacing: -0.41,
-    lineHeight: 22,
+    lineHeight: 24,
   },
 });

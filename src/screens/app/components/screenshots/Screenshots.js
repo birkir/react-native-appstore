@@ -69,6 +69,7 @@ export default class Screenshots extends PureComponent {
             activeSlideAlignment="start"
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
+            apparitionDelay={0}
           />
         </View>
         <Text style={styles.offering}>Offers iPhone App</Text>
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
 
   slider: {
     marginHorizontal: -20,
+    minHeight: 415,
   },
 
   screenshot: {
