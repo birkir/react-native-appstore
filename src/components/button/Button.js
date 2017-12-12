@@ -55,8 +55,27 @@ export default class Button extends PureComponent {
   }
 
   @autobind
+  onPress() {
+    if (this.state.loading) {
+      return;
+    }
+
+    // Mock loading state
+    this.setState({ loading: true }, () => {
+      this.loading(true);
+      setTimeout(() => {
+        this.setState({ loading: false }, () => this.loading(false));
+      }, 2500);
+    });
+
+    if (this.props.onPress) {
+      this.props.onPress();
+    }
+  }
+
+  @autobind
   onRotationEnd({ finished }) {
-    if (!this.props.loading || !finished) {
+    if (!this.state.loading || !finished) {
       return;
     }
     // Update iteration counter
@@ -204,7 +223,7 @@ export default class Button extends PureComponent {
     );
 
     return (
-      <TouchableWithoutFeedback onPress={this.props.onPress}>
+      <TouchableWithoutFeedback onPress={this.onPress}>
         <View style={[styles.host, { width }, circle && styles.host__circle]}>
           {this.state.loading && (
             <Animated.View style={[styles.container, animated.container]}>
