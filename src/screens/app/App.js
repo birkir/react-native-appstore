@@ -159,7 +159,7 @@ export default class App extends Component {
       passProps: {
         apps,
         appId: get(data, 'app.id'),
-        categoryIds: get(data, 'app.categories', []).map(c => c.id),
+        relatedCategoryIds: get(data, 'app.categories', []).map(c => c.id),
       },
     });
   }

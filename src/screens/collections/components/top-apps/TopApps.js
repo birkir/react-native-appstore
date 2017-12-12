@@ -40,7 +40,6 @@ export default class TopApps extends PureComponent {
   }
 
   render() {
-    console.log(this.props);
     const apps = get(this.props, 'data.apps', []);
     return (
       <AppItemSlider

@@ -86,8 +86,8 @@ const topApps = graphql(topAppsQuery, {
 
 const relatedCategoriesAppsQuery = gql`
   query allApps(
-    $id: ID!
-    $categories: [ID!]!
+    $id: ID
+    $categories: [ID!]
   ) {
     allApps(
       filter: {
