@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Animated, View, Text } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import { autobind } from 'core-decorators';
-import { APP_LIST_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN, SELLER_COLLECTIONS_SCREEN, pushAppScreen } from 'screens';
+import { LIST_SCREEN, REVIEWS_SCREEN, VERSIONS_SCREEN, SELLER_COLLECTIONS_SCREEN, pushAppScreen } from 'screens';
 import PropTypes from 'prop-types';
 import Heading from 'components/heading';
 import Divider from 'components/divider';
@@ -152,11 +152,14 @@ export default class App extends Component {
 
   @autobind
   onRelatedAppsPress({ apps }) {
-    this.props.navigator.push({
-      screen: APP_LIST_SCREEN,
+    const { navigator, data } = this.props;
+    navigator.push({
+      screen: LIST_SCREEN,
       title: 'You May Also Like',
       passProps: {
         apps,
+        appId: get(data, 'app.id'),
+        categoryIds: get(data, 'app.categories', []).map(c => c.id),
       },
     });
   }

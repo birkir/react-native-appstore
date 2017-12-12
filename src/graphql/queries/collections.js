@@ -4,7 +4,7 @@ import AppFragment from '../fragments/AppFragment';
 
 export const query = gql`
   query collections($appType: AppType) {
-    allCollections(
+    collections: allCollections(
       filter: {
         appType: $appType
       }

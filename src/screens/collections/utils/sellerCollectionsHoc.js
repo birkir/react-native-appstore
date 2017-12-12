@@ -29,7 +29,7 @@ const mapper = (props) => {
     ...props,
     data: {
       ...props.data,
-      allCollections: [latestRelease, appsAndGames],
+      collections: [latestRelease, appsAndGames],
     },
     title: get(props, 'data.Seller.name'),
   };

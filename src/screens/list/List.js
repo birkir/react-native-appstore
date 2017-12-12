@@ -3,19 +3,20 @@ import { StyleSheet, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
 import { pushAppScreen } from 'screens';
 import AppItemRowLarge from 'components/app-item-row-large';
-import collectionWithProps from 'graphql/queries/collection';
+import listWithProps from 'graphql/queries/list';
 import { autobind } from 'core-decorators';
 
-@collectionWithProps
-export default class Collection extends Component {
+@listWithProps
+export default class List extends Component {
 
   static propTypes = {
     navigator: PropTypes.object.isRequired,
     data: PropTypes.object.isRequired,
+    backTitle: PropTypes.string,
   }
 
   static defaultProps = {
-    // children: undefined,
+    backTitle: 'Back',
   }
 
   static navigatorStyle = {
@@ -26,26 +27,16 @@ export default class Collection extends Component {
   }
 
   @autobind
-  onPress(props) {
-    const { navigator, data } = this.props;
+  onPress(props, previewView) {
+    const { navigator, backTitle } = this.props;
     pushAppScreen({
       navigator,
-      backTitle: data.Collection.title,
+      backTitle,
       app: props,
-    });
-  }
-
-  @autobind
-  onPressIn(props, previewView) {
-    const { navigator, data } = this.props;
-    pushAppScreen({
-      navigator,
-      backTitle: data.Collection.title,
-      app: props,
+      // Optional (onPressIn)
       previewView,
     });
   }
-
 
   @autobind
   keyExtractor(item) {
@@ -65,17 +56,17 @@ export default class Collection extends Component {
           subtitle: item.hasInAppPurchases ? 'In-App Purchases' : undefined,
         }}
         onPress={this.onPress}
-        onPressIn={this.onPressIn}
+        onPressIn={this.onPress}
       />
     );
   }
 
   render() {
-    const { Collection: collection } = this.props.data;
+    const { apps = [] } = this.props.data || {};
     return (
       <FlatList
         style={styles.host}
-        data={collection.apps || []}
+        data={apps}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
       />

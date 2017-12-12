@@ -42,7 +42,7 @@ class Collections extends Component {
   render() {
     const {
       error,
-      allCollections = [],
+      collections = [],
     } = this.props.data;
 
     if (error) {
@@ -55,7 +55,7 @@ class Collections extends Component {
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
         data={[
-          ...allCollections.map(collection => (
+          ...collections.map(collection => (
             <Collection
               showAction
               key={collection.id}

@@ -1,41 +1,28 @@
 import React, { Component } from 'react';
-import { StyleSheet, ScrollView, Animated, Image, View, Text, Dimensions, SafeAreaView, NativeModules, TouchableOpacity } from 'react-native';
-import { autobind } from 'core-decorators';
+import { StyleSheet, ScrollView, Animated, View, Text, Dimensions, SafeAreaView, NativeModules, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { autobind, decorate } from 'core-decorators';
 import { inject } from 'mobx-react/native';
-import Heading from 'components/heading';
-import ListItem from 'components/list-item';
-import AppItemRow from 'components/app-item-row';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-
-const { RCCManager } = NativeModules;
-
-const DATA = {
-  trending: [
-    'tasty',
-    'friendo',
-    'battle royale',
-    'dunk shot',
-    'spotify music',
-    'secret santa generator',
-    'microsoft authenticator',
-    'spirit airline',
-  ],
-};
-
-const { width, height } = Dimensions.get('window');
-const isIPhoneX = (width === 812 || height === 812);
+import debounce from 'lodash/debounce';
+import Heading from 'components/heading';
+import AppItemRow from 'components/app-item-row';
+import suggestionsQuery from 'graphql/queries/suggestions';
+import searchQuery from 'graphql/queries/search';
+import Suggestion from './components/suggestion';
+import Trending from './components/trending';
+import DATA from './Search.data';
 
 /**
  * Search screen
  * @todo Split the view code into more defined components.
  */
-@inject('algolia')
+@inject('client')
 export default class Search extends Component {
 
   static propTypes = {
     navigator: PropTypes.object.isRequired,
-    algolia: PropTypes.object.isRequired,
+    client: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
@@ -51,56 +38,60 @@ export default class Search extends Component {
   }
 
   state = {
+    isActive: false,
+    isTrending: false,
+    isResults: false,
+    isEmpty: false,
+    shouldEnforceResults: false,
     query: '',
-    active: false,
-    trending: false,
-    results: false,
-    enforceResults: false,
     suggestions: [],
+    results: [],
   };
 
   componentDidMount() {
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+
+    // Hack to fix the previous hack.
+    if (__DEV__) {
+      setTimeout(() => this.setState({ isTrending: true }), 1000);
+    }
   }
 
   @autobind
   onNavigatorEvent(e) {
-    const { algolia } = this.props;
-    const { enforceResults } = this.state;
+    const { state } = this;
     if (e.type === 'SearchChanged') {
-      const { query, active } = e.payload;
+      const { query, active: isActive } = e.payload;
       // Dont do anything if active untill change of query
-      if (active && this.state.active && query === this.state.query) {
+      if (isActive && state.isActive && query === state.query) {
         return;
       }
       // Show or hide backdrop
-      if (active) {
+      if (isActive) {
         Animated.spring(this.backdrop, { toValue: 1 }).start();
-      } else if (this.state.query.length > 0) {
+      } else if (state.query.length > 0) {
         this.backdrop.setValue(0);
       } else {
         Animated.spring(this.backdrop, { toValue: 0 }).start();
       }
       // Update active-ness and search query
-      this.setState({ query, active, results: enforceResults });
+      this.setState({ query, isActive, isResults: state.shouldEnforceResults });
       // Reset enforce results flag
       // Sometimes this event is repeated one or two times, hence the timeout.
-      setTimeout(() => this.setState({ enforceResults: false }), 300);
+      setTimeout(() => this.setState({ shouldEnforceResults: false }), 300);
       // Search query
-      algolia.apps.search(query, (err, res) => {
-        if (err) return;
-        this.setState({
-          suggestions: res.hits,
-        });
-      });
+      this.suggestions(query);
     }
 
     if (e.type === 'SearchSubmit') {
       // Search button on keyboard was pressed
       this.setState({
-        active: true,
-        results: true,
+        isActive: true,
+        isResults: true,
+        isEmpty: false,
+        results: [],
       });
+      this.search(this.state.query);
       this.backdrop.setValue(0);
     }
 
@@ -108,7 +99,7 @@ export default class Search extends Component {
       // Hack to make ScrollView not interact with search
       // We want it to be always visible.
       this.setState({
-        trending: true,
+        isTrending: true,
       });
     }
   }
@@ -117,83 +108,156 @@ export default class Search extends Component {
   onBackdropPress() {
     // Set search in-active
     const { navigatorID } = this.props.navigator;
-    RCCManager.NavigationControllerIOS(navigatorID, 'setSearch', {
+    NativeModules.RCCManager.NavigationControllerIOS(navigatorID, 'setSearch', {
       active: false,
     });
   }
 
   @autobind
-  searchByQuery(query) {
+  onSuggestionPress(query) {
     // Enforce showing results after search is active
-    this.setState({ enforceResults: true });
+    this.setState({
+      shouldEnforceResults: true,
+      isEmpty: false,
+      results: [],
+    });
     // Set search query and active-ness
     const { navigatorID } = this.props.navigator;
-    RCCManager.NavigationControllerIOS(navigatorID, 'setSearch', {
+    NativeModules.RCCManager.NavigationControllerIOS(navigatorID, 'setSearch', {
       active: true,
       blur: true,
       query,
     });
+    // Search algolia
+    this.search(query);
+  }
+
+  /**
+   * Get suggestions for search query via custom resolver
+   */
+  @decorate(debounce, 750)
+  async suggestions(term) {
+    try {
+      const res = await this.props.client.query({
+        query: suggestionsQuery,
+        variables: {
+          term,
+        },
+      });
+      this.setState({
+        suggestions: get(res, 'data.searchSuggestions.suggestions', []),
+      });
+    } catch (err) {
+      console.error('Could not suggest', err);
+    }
+  }
+
+  /**
+   * Get search results for query via custom resolver
+   */
+  async search(term) {
+    try {
+      const res = await this.props.client.query({
+        query: searchQuery,
+        variables: {
+          term,
+        },
+      });
+      const results = get(res, 'data.search.results');
+      this.setState({
+        results,
+        isEmpty: results.length === 0,
+      });
+    } catch (err) {
+      console.error('Could not search', err);
+    }
   }
 
   // Animated value for backdrop opacity
   backdrop = new Animated.Value(0);
 
-  renderHighlights(str = '') {
-    const re = /<em>.*?<\/em>/g;
-    const highlights = str.match(re) || [];
-    return (str.split(re) || []).reduce((acc, word, i) => [
-      ...acc,
-      <Text key={`w${i + 0}`}>{word}</Text>,
-      highlights[i] && <Text style={styles.light} key={`h${i + 0}`}>{highlights[i].replace(/<\/?em>/g, '')}</Text>,
-    ], []);
+  /**
+   * Convert `Some<em>thing</em>` to `<Text>Some</Text><Light>thing</Light>`.
+   * @param {String} str Input string
+   */
+  @autobind
+  renderSuggestion(suggestion) {
+    return (
+      <Suggestion
+        key={suggestion}
+        suggestion={suggestion.toLocaleLowerCase()}
+        onPress={this.onSuggestionPress}
+      />
+    );
+  }
+
+  /**
+   * Render search result item
+   * @param {Object} item App item
+   */
+  renderSearchResult(item) {
+    return (
+      <View key={item.id}>
+        <AppItemRow
+          {...item}
+          screenshotUrl={item.iconUrl}
+          imageUrl={item.iconUrl}
+          title={item.title}
+          subtitle={item.subtitle}
+          action={{
+            label: item.price ? `$${item.price}` : 'GET',
+            subtitle: item.hasInAppPurchases ? 'In-App Purchases' : undefined,
+          }}
+          divider={false}
+        />
+        <View style={styles.spacer} />
+      </View>
+    );
   }
 
   render() {
     const {
-      active,
+      isActive,
+      isResults,
+      isTrending,
+      isEmpty,
       query,
-      trending,
+      suggestions,
       results,
     } = this.state;
 
-    const fontStyle = {
-      fontFamily: 'SFProText-Regular',
-      fontSize: 21,
-      letterSpacing: -0.4,
-      color: this.backdrop.interpolate({
-        inputRange: [0, 1],
-        outputRange: ['#007AFF', '#555555'],
-      }),
-    };
+    const color = this.backdrop.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['#007AFF', '#555555'],
+    });
 
     // Small hack for top gutter
-    const paddingTop = !isIPhoneX && !active ? 20 : 0;
+    const paddingTop = !isIPhoneX && !isActive ? 20 : 0;
 
     return (
       <SafeAreaView style={styles.safe}>
         <View style={[styles.host, { paddingTop }]}>
-          {trending && (
+          {isTrending && (
             <ScrollView style={styles.content}>
               <Heading>Trending</Heading>
               {DATA.trending.map((label, i, arr) => (
-                <ListItem
+                <Trending
                   key={label}
                   label={label}
-                  fontStyle={fontStyle}
-                  underlayColor="white"
-                  onPress={() => this.searchByQuery(label)}
+                  color={color}
+                  onPress={this.onSuggestionPress}
                   divider={(i + 1) < arr.length}
                 />
               ))}
             </ScrollView>
           )}
 
-          <View style={StyleSheet.absoluteFill} pointerEvents={!active ? 'none' : 'auto'}>
+          <View style={StyleSheet.absoluteFill} pointerEvents={!isActive ? 'none' : 'auto'}>
             <TouchableOpacity
               activeOpacity={1}
               style={StyleSheet.absoluteFill}
               onPress={this.onBackdropPress}
-              disabled={!active}
+              disabled={!isActive}
             >
               <Animated.View
                 style={[styles.backdrop, { opacity: this.backdrop }]}
@@ -201,50 +265,30 @@ export default class Search extends Component {
             </TouchableOpacity>
           </View>
 
-          {active && query !== '' && (
+          {isActive && query !== '' && (
             <View style={[StyleSheet.absoluteFill, styles.results]}>
               <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.content}>
-                {this.state.suggestions.map(suggestion => (
-                  <TouchableOpacity
-                    style={styles.suggestion}
-                    key={suggestion.id}
-                    onPress={() => this.searchByQuery(get(suggestion, 'title'))}
-                  >
-                    <Image
-                      style={styles.suggestion__icon}
-                      source={require('images/SearchIcon.png')}
-                      resizeMode="contain"
-                    />
-                    <Text style={styles.suggestion__text}>
-                      {this.renderHighlights(get(suggestion, '_highlightResult.title.value').toLowerCase())}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
+                {suggestions.map(this.renderSuggestion)}
               </ScrollView>
             </View>
           )}
 
-          {active && results && (
+          {isActive && isResults && (
             <View style={[StyleSheet.absoluteFill, styles.results]}>
               <ScrollView style={StyleSheet.absoluteFill} contentContainerStyle={styles.content}>
-                <AppItemRow
-                  screenshotUrl={`https://placeimg.com/335/215/any?${Math.random()}`}
-                  imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
-                  title="Spark Email"
-                  subtitle="New exciting tournament game mode!"
-                  action={{ label: 'FREE' }}
-                  divider={false}
-                />
-                <View style={styles.spacer} />
-                <AppItemRow
-                  screenshotUrl={`https://placeimg.com/335/215/any?${Math.random()}`}
-                  imageUrl={`https://placeimg.com/198/198/any?${Math.random()}`}
-                  title="Spark Email"
-                  subtitle="New exciting tournament game mode!"
-                  action={{ label: 'FREE' }}
-                  divider={false}
-                />
+                {results.map(this.renderSearchResult)}
               </ScrollView>
+              {results.length === 0 && !isEmpty && (
+                <View style={[StyleSheet.absoluteFill, styles.empty]}>
+                  <ActivityIndicator size="large" />
+                </View>
+              )}
+              {isEmpty && (
+                <View style={[StyleSheet.absoluteFill, styles.empty]}>
+                  <Text style={styles.empty__title}>No Results</Text>
+                  <Text style={styles.empty__subtitle}>for {'"'}{query}{'"'}</Text>
+                </View>
+              )}
             </View>
           )}
         </View>
@@ -253,6 +297,8 @@ export default class Search extends Component {
   }
 }
 
+const { width, height } = Dimensions.get('window');
+const isIPhoneX = (width === 812 || height === 812);
 const styles = StyleSheet.create({
   safe: {
     marginTop: isIPhoneX ? -12 : -30,
@@ -267,33 +313,27 @@ const styles = StyleSheet.create({
     padding: 18,
   },
 
-  light: {
-    color: '#7E7E80',
-  },
-
-  suggestion: {
-    flexDirection: 'row',
-    paddingVertical: 14,
-    alignItems: 'center',
-  },
-
-  suggestion__text: {
-    fontFamily: 'SFProText-Regular',
-    fontSize: 21,
-    letterSpacing: -0.4,
-  },
-
-  suggestion__icon: {
-    width: 16,
-    height: 16,
-    marginRight: 5,
-    marginTop: 1,
-  },
-
   results: {
     backgroundColor: '#FFFFFF',
-    // borderTopWidth: StyleSheet.hairlineWidth,
-    // borderTopColor: '#BCBBC1',
+  },
+
+  empty: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  empty__title: {
+    fontWeight: '700',
+    fontSize: 34,
+    color: 'black',
+    letterSpacing: -0.2,
+  },
+
+  empty__subtitle: {
+    fontFamily: 'SFProText-Regular',
+    fontSize: 17,
+    color: '#8A8A8F',
+    letterSpacing: -0.49,
   },
 
   spacer: {

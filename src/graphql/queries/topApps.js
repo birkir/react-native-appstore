@@ -1,4 +1,3 @@
-import { compose } from 'react-apollo';
 import graphql from 'react-apollo/graphql';
 import gql from 'graphql-tag';
 import AppFragment from '../fragments/AppFragment';
@@ -9,7 +8,7 @@ const topAppsQuery = gql`
     $after: String
     $filter: AppFilter
   ) {
-    allApps(
+    apps: allApps(
       orderBy: score_DESC
       first: $first
       after: $after
@@ -21,30 +20,20 @@ const topAppsQuery = gql`
   ${AppFragment}
 `;
 
-const paidApps = graphql(topAppsQuery, {
-  options: ({ type, categoryId }) => ({
+export default graphql(topAppsQuery, {
+  options: ({
+    size,
+    type,
+    top,
+    categoryIds = [],
+  }) => ({
     variables: {
+      first: size,
       filter: {
         type,
-        price_not: null,
-        ...(categoryId && ({ categories_some: { id: categoryId } })),
+        ...(top === 'PAID' ? { price_not: null } : { price: null }),
+        ...(categoryIds.length > 0 ? { categories_some: { id_in: categoryIds } } : {}),
       },
     },
   }),
-  skip: props => !props.paid,
 });
-
-const freeApps = graphql(topAppsQuery, {
-  options: ({ type, categoryId }) => ({
-    variables: {
-      filter: {
-        type,
-        price: null,
-        ...(categoryId && ({ categories_some: { id: categoryId } })),
-      },
-    },
-  }),
-  skip: props => !props.free,
-});
-
-export default compose(paidApps, freeApps);

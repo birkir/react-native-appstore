@@ -40,7 +40,8 @@ export default class TopApps extends PureComponent {
   }
 
   render() {
-    const apps = get(this.props.data, 'allApps', []);
+    console.log(this.props);
+    const apps = get(this.props, 'data.apps', []);
     return (
       <AppItemSlider
         itemsPerPage={3}

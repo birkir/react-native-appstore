@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { View } from 'react-native';
-import { COLLECTION_SCREEN, CATEGORIES_SCREEN, pushAppScreen } from 'screens';
+import { LIST_SCREEN, CATEGORIES_SCREEN, pushAppScreen } from 'screens';
 import AppItemRow from 'components/app-item-row';
 import AppItemSlider from 'components/app-item-slider';
 import AppItemFeatured from 'components/app-item-featured';
@@ -64,10 +64,12 @@ export default class Collection extends PureComponent {
     }
 
     navigator.push({
-      screen: COLLECTION_SCREEN,
+      screen: LIST_SCREEN,
       title: collection.title,
       passProps: {
-        collection,
+        collectionId: collection.id,
+        backTitle: collection.title,
+        apps: collection.apps,
       },
     });
   }
@@ -117,11 +119,16 @@ export default class Collection extends PureComponent {
 
   render() {
     // Get needed props from collection
-    const { collection, showAction } = this.props;
+    const {
+      collection,
+      showAction,
+      type,
+      navigator,
+    } = this.props;
     const {
       id,
       apps = [],
-      type,
+      type: collectionType,
       rows,
       title,
     } = collection;
@@ -130,48 +137,48 @@ export default class Collection extends PureComponent {
     let content = (
       <AppItemSlider
         itemsPerPage={rows}
-        condensed={type === 'LARGE_TILE'}
+        condensed={collectionType === 'LARGE_TILE'}
       >
         {apps.map(this.renderAppItem)}
       </AppItemSlider>
     );
 
-    if (type === 'TOP_FREE') {
+    if (collectionType === 'TOP_FREE') {
       content = (
         <TopApps
           onPress={this.onAppPress}
           onPressIn={this.onAppPressIn}
           type={this.props.type}
-          free
+          top="FREE"
           size={16}
         />
       );
     }
 
-    if (type === 'TOP_PAID') {
+    if (collectionType === 'TOP_PAID') {
       content = (
         <TopApps
           onPress={this.onAppPress}
           onPressIn={this.onAppPressIn}
-          type={this.props.type}
-          paid
+          type={type}
+          top="PAID"
           size={16}
         />
       );
     }
 
-    if (type === 'TOP_CATEGORIES') {
+    if (collectionType === 'TOP_CATEGORIES') {
       content = (
         <CategoriesList
-          navigator={this.props.navigator}
-          type={this.props.type}
+          navigator={navigator}
+          type={type}
           top={5}
         />
       );
     }
 
     // Show heading?
-    const isHeadingShown = (type !== 'FEATURED');
+    const isHeadingShown = (collectionType !== 'FEATURED');
 
     // Dont show empty collections
     if (apps.length === 0) {

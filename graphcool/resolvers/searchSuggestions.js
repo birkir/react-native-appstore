@@ -6,7 +6,7 @@ const apps = client.initIndex('apps');
 const search = query => new Promise((resolve, reject) => {
   apps.search(query, (err, res) => {
     if (err) reject(err);
-    resolve(res.hits.map(h => h.title));
+    resolve(res.hits.map(h => h._highlightResult.title.value)); // eslint-disable-line
   });
 });
 
