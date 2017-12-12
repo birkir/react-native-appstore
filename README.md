@@ -34,6 +34,24 @@ We use jest also for running unit tests with snapshots and enzyme for cases wher
 yarn test
 ```
 
+# Continuous Delivery
+
+The pipeline for continously deliver the app is actually two separate processes integrated seamlessly into one.
+
+Contributors are responsible for running tests locally before pushing to GitHub. This creates smoother experience for both the contributors and the maintainers.
+
+Tests are run automatically in a CI when a pull-request (PR) is created, the pull-request can only be merged when the tests do pass.
+
+Every commit on the `master` branch will do one of the following after tests have passed:
+
+### Native build (binary)
+Check if any changes were made to the `./ios` folder or if a commit message includes the tag `[BUILD]`. Do a full native  build, sign it and upload it to TestFlight. Upload debug symbols to Sentry.
+
+### CodePush build (assets)
+Build and pack OTA update via CodePush (if native build was not made). Upload sourcemaps to Sentry.
+
+The TestFlight version of the app is linked to staging code-push key and the AppStore version is linked to production code-push key. Manual promotion can be done after the TestFlight app has been approved for sale.
+
 # App Store clone in react-native
 
 This sample project was intended to demonstrate the possibilities with react-native.
