@@ -2,6 +2,6 @@
   "rootDir": "../",
   "setupTestFrameworkScriptFile" : "./e2e/init.js",
   "testMatch": [
-    "**/__e2e__/**/*.spec.js"
+    "**/*.spec.js"
   ]
 }

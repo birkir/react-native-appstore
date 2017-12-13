@@ -33,4 +33,4 @@ script:
   - npm run test
   - detox build --configuration ios.sim.release
   - detox test --configuration ios.sim.release --cleanup
-  - git status
+  - ./scripts/travis.sh
