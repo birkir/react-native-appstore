@@ -12,8 +12,7 @@ sh ./scripts/dotenv.sh
 (cd ios; pod install; cd -)
 
 # Setup environment
-if [ -z "$TRAVIS" ]; then
-
+if [ ! -z "$TRAVIS" ]; then
   # Generate ios/AppStoreClone/GoogleService-Info.plist
   if [ ! -z "$GEN_GOOGLESERVICE_INFO_PLIST" ]; then
     echo $GEN_GOOGLESERVICE_INFO_PLIST | base64 --decode > ios/AppStoreClone/GoogleService-Info.plist
