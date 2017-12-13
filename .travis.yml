@@ -22,7 +22,7 @@ before_install:
   - npm install -g detox-cli
   - brew tap wix/brew
   - brew install applesimutils --HEAD
-  - pod update
+  - (cd ios; pod update; cd -)
 
 install:
   - npm install
