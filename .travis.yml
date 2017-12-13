@@ -1,23 +1,32 @@
 language: objective-c
-osx_image: xcode8.3
+osx_image: xcode9.2
 
-env:
-  global:
-  - NODE_VERSION=stable
+cache:
+  ccache: true
+  bundler: true
+  cocoapods: true
+  directories:
+    - node_modules
+    - $HOME/Library/Caches/Homebrew/applesimutils--git
+    - HOME/.cocoapods/
+
+# env:
+#   global:
+#   - NODE_VERSION=stable
 
 before_install:
+  - brew install ccache
   - nvm install 8
   - node --version
   - npm install -g react-native-cli
   - npm install -g detox-cli
   - brew tap wix/brew
   - brew install applesimutils --HEAD
-  - gem install cocoapods -v '1.3.1'
-  - pod --version
+  - pod update
 
 install:
   - npm install
 
 script:
-- detox build --configuration ios.sim.release
-- detox test --configuration ios.sim.release --cleanup
+  - detox build --configuration ios.sim.release
+  - detox test --configuration ios.sim.release --cleanup
