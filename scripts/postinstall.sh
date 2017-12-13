@@ -9,6 +9,6 @@ touch ./ios/Config/GeneratedInfoPlistDotEnv.h
 sh ./scripts/dotenv.sh
 
 # Pod install
-if [ -z "$TRAVIS" ]; then
+# if [ -z "$TRAVIS" ]; then
   (cd ios; pod install; cd -)
-fi
+# fi
