@@ -3,10 +3,6 @@ describe('Today screen', () => {
 
   beforeEach(async () => {
     await device.reloadReactNative();
-
-    // Dismiss red screen of death
-    const dismissLabel = element(by.text('Dismiss (ESC)'));
-    if (dismissLabel) await dismissLabel.tap();
   });
 
   it('should have today screen host view', async () => {
