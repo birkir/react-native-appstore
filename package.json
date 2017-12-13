@@ -86,6 +86,12 @@
         "build": "xcodebuild -workspace ios/AppStoreClone.xcworkspace -scheme AppStoreClone -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "name": "iPhone 7 Plus"
+      },
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/AppStoreClone.app",
+        "build": "xcodebuild -workspace ios/AppStoreClone.xcworkspace -scheme AppStoreClone -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7 Plus"
       }
     }
   }
