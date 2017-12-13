@@ -50,7 +50,12 @@ export default class Reviews extends Component {
   }
 
   render() {
-    const { data, rating, votes, reviewId } = this.props;
+    const {
+      data,
+      rating,
+      votes,
+      reviewId,
+    } = this.props;
     const review = get(data, 'Review', get(this.props, 'review'));
     const reviews = get(data, 'App.reviews', get(this.props, 'reviews', []));
 

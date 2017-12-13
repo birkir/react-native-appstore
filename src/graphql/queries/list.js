@@ -2,8 +2,8 @@ import { compose } from 'react-apollo';
 import graphql from 'react-apollo/graphql';
 import gql from 'graphql-tag';
 import get from 'lodash/get';
-import last from 'lodash/last';
-import uniqBy from 'lodash/uniqBy';
+// import last from 'lodash/last';
+// import uniqBy from 'lodash/uniqBy';
 import AppFragment from '../fragments/AppFragment';
 
 // This GraphQL query container composes mulitple types of data.

@@ -7,8 +7,8 @@ cache:
   cocoapods: true
   directories:
     - node_modules
-    - $HOME/Library/Caches/Homebrew/applesimutils--git
-    - HOME/.cocoapods/
+    - $HOME/Library/Caches/Homebrew
+    - $HOME/.cocoapods
 
 # env:
 #   global:
@@ -18,15 +18,19 @@ before_install:
   - brew install ccache
   - nvm install 8
   - node --version
-  - npm install -g react-native-cli
-  - npm install -g detox-cli
-  - brew tap wix/brew
-  - brew install applesimutils --HEAD
-  - (cd ios; pod update; cd -)
 
 install:
   - npm install
 
 script:
-  - detox build --configuration ios.sim.release
+  - npm run lint
+  - npm run test
+
+  - (cd ios; pod install --repo-update; cd -)
+  - npm install -g react-native-cli
+  - npm install -g detox-cli
+  - brew tap wix/brew
+  - brew install applesimutils --HEAD
+  - detox build --configuration ios.sim.release --silent
   - detox test --configuration ios.sim.release --cleanup
+  - git status
