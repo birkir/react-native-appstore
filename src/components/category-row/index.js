@@ -1,1 +1,1 @@
-export default from './CategoryRow';
+export { default } from './CategoryRow';

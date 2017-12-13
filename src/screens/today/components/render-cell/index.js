@@ -1,1 +1,1 @@
-export default from './RenderCell';
+export { default } from './RenderCell';

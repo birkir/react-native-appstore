@@ -29,8 +29,9 @@ script:
   - (cd ios; pod install --repo-update; cd -)
   - npm install -g react-native-cli
   - npm install -g detox-cli
+  - gem install xcpretty
   - brew tap wix/brew
   - brew install applesimutils --HEAD
-  - detox build --configuration ios.sim.release --silent
+  - detox build --configuration ios.sim.release
   - detox test --configuration ios.sim.release --cleanup
   - git status

@@ -15,9 +15,10 @@ npm install -g detox-cli
 ### Run the tests
 
 ```bash
-yarn start
-detox build
-detox test
+npm start
+gem install xcpretty
+detox build --configuration ios.sim.release
+detox test --configuration ios.sim.release
 ```
 
 # Integration, Unit and Code Quality Testing
@@ -25,13 +26,13 @@ detox test
 Code is linted with eslint using airbnb's config and personal opinionated exceptions.
 
 ```bash
-yarn lint
+npm run lint
 ```
 
 We use jest also for running unit tests with snapshots and enzyme for cases where we want more control.
 
 ```bash
-yarn test
+npm run test
 ```
 
 # Continuous Delivery
