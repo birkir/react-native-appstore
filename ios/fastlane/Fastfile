@@ -29,7 +29,7 @@ platform :ios do
     push_to_git_remote
     gym(
       scheme: "AppStoreClone",
-      workspace: "ios/AppStoreClone.xcworkspace",
+      workspace: "./AppStoreClone.xcworkspace",
       output_directory: "ios/build",
       configuration: "Release",
       export_method: "app-store"
