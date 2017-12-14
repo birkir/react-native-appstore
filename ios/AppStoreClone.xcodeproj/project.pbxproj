@@ -442,7 +442,7 @@
 			baseConfigurationReference = FE61BF5983CD96722C7A84AC /* Pods-AppStoreClone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
 				INFOPLIST_FILE = AppStoreClone/Info.plist;
@@ -466,7 +466,7 @@
 			baseConfigurationReference = 23A735B6609BE13F1687DE79 /* Pods-AppStoreClone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5PD7JU2FJC;
 				INFOPLIST_FILE = AppStoreClone/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
