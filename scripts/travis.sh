@@ -21,6 +21,7 @@ if [[ "$TRAVIS_BRANCH" == "master" ]]; then
 fi
 
 if [[ "$TRAVIS_BUILD" == "1" ]]; then
+  echo "Build? YES"
   # match(
   #   type: "appstore",
   #   git_url: "git@github.com:ueno/ios-certs.git",
@@ -50,6 +51,7 @@ if [[ "$TRAVIS_BUILD" == "1" ]]; then
   # )
   # # Slack message
 else
+  echo "Build? No"
   # # Release codepush
   # code-push release-react AppStoreClone ios --outputDir build
   # # Upload sourcemaps to Sentry
