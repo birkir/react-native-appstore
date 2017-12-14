@@ -7,7 +7,7 @@ import Store, { StoreProvider } from 'store';
 
 // Initialize Sentry
 if (!__DEV__) {
-  Sentry.config(config.SENTRY_URL).install();
+  Sentry.config(config.SENTRY_DSN).install();
 }
 
 // Set Sentry CodePush metadata
