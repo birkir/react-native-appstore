@@ -22,39 +22,10 @@ fi
 
 if [[ "$TRAVIS_BUILD" == "1" ]]; then
   echo "Build? YES"
-  # match(
-  #   type: "appstore",
-  #   git_url: "git@github.com:ueno/ios-certs.git",
-  #   readonly: true
-  # )
-  # ensure_git_branch(branch: "master")
-  # git_stash
-  # path = "ios/AppStoreClone.xcodeproj"
-  # increment_build_number(xcodeproj: path)
-  # version = get_version_number(xcodeproj: path)
-  # build = get_build_number(xcodeproj: path)
-  # commit_version_bump(message: "Version #{version} (build #{build}) [skip ci]")
-  # add_git_tag(tag: "v#{version}-#{build}")
-  # push_to_git_remote
-  #
-  # gym(
-  #   scheme: "AppStoreClone",
-  #   workspace: "ios/AppStoreClone.xcworkspace",
-  #   output_directory: "ios/build",
-  #   configuration: "Release",
-  #   export_method: "app-store"
-  # )
-  # testflight(
-  #   app_identifier: "com.ueno.appstoreclone",
-  #   username: "ci@ueno.co",
-  #   skip_waiting_for_build_processing: true
-  # )
-  # # Slack message
+  (cd ios; fastlane travis; cd -)
 else
   echo "Build? No"
-  # # Release codepush
-  # code-push release-react AppStoreClone ios --outputDir build
-  # # Upload sourcemaps to Sentry
-  # sentry-cli react-native codepush AppStoreClone ios ./build
-  # # Slack message
+  code-push login --accessKey $CODE_PUSH_ACCESS_KEY
+  code-push release-react Ueno./AppStoreClone-iOS ios --outputDir build --plistFile ./ios/AppStoreClone/Info.plist --description "$TRAVIS_COMMIT_MESSAGE"
+  sentry-cli react-native codepush Ueno./AppStoreClone-iOS ios ./build --bundle-id $BUNDLE_ID
 fi

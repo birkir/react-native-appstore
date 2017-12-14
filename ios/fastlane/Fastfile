@@ -26,20 +26,20 @@ platform :ios do
       message: "Version #{version} (build #{build}) [skip ci]"
     )
     add_git_tag(tag: "v#{version}-#{build}")
-    # push_to_git_remote
-    # gym(
-    #   scheme: "AppStoreClone",
-    #   workspace: "ios/AppStoreClone.xcworkspace",
-    #   output_directory: "ios/build",
-    #   configuration: "Release",
-    #   export_method: "app-store"
-    # )
-    # testflight(
-    #   skip_waiting_for_build_processing: true
-    # )
-    # slack(
-    #   message: "Successfully uploaded #{version} (build #{build}) to TestFlight"
-    # )
+    push_to_git_remote
+    gym(
+      scheme: "AppStoreClone",
+      workspace: "ios/AppStoreClone.xcworkspace",
+      output_directory: "ios/build",
+      configuration: "Release",
+      export_method: "app-store"
+    )
+    testflight(
+      skip_waiting_for_build_processing: true
+    )
+    slack(
+      message: "Successfully uploaded #{version} (build #{build}) to TestFlight"
+    )
   end
 
   after_all do |lane|
