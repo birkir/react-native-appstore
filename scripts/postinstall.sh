@@ -3,14 +3,6 @@ git apply --directory=node_modules/react-native-navigation ./scripts/patches/rnn
 git apply -v --directory=node_modules/react-native-navigation ./scripts/patches/rnn-search.patch --whitespace=fix
 git apply -v --directory=node_modules/react-native-navigation ./scripts/patches/rnn-title-large.patch --whitespace=fix
 
-
-# Generate dotenv
-touch ./ios/Config/GeneratedInfoPlistDotEnv.h
-sh ./scripts/dotenv.sh
-
-# Pod install
-(cd ios; pod install; cd -)
-
 # Setup environment
 if [ ! -z "$TRAVIS" ]; then
   # Generate ios/AppStoreClone/GoogleService-Info.plist
@@ -28,3 +20,10 @@ if [ ! -z "$TRAVIS" ]; then
     echo "$KEY=$(printf '%s\n' "${!KEY}")" >> .env
   done
 fi
+
+# Generate dotenv
+touch ./ios/Config/GeneratedInfoPlistDotEnv.h
+sh ./scripts/dotenv.sh
+
+# Pod install
+(cd ios; pod install; cd -)
