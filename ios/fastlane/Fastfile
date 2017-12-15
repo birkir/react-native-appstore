@@ -13,9 +13,6 @@ platform :ios do
       type: "appstore",
       readonly: true
     )
-    ensure_git_branch(
-      branch: "master"
-    )
     path = "./AppStoreClone.xcodeproj"
     increment_build_number(xcodeproj: path)
     version = get_version_number(xcodeproj: path)
