@@ -275,7 +275,7 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 5PD7JU2FJC;
+						DevelopmentTeam = M734F5G6DK;
 						ProvisioningStyle = Manual;
 					};
 					E3AAD4501F573E3700B7831D = {
@@ -447,7 +447,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 4;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 5PD7JU2FJC;
+				DEVELOPMENT_TEAM = M734F5G6DK;
 				INFOPLIST_FILE = AppStoreClone/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${SRCROOT}/Config/GeneratedInfoPlistDotEnv.h";
@@ -458,10 +458,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ueno.appstoreclone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ueno.appstore;
 				PRODUCT_NAME = AppStoreClone;
-				PROVISIONING_PROFILE = "818683bf-249c-48f6-a500-e79212f92d08";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ueno.appstoreclone";
+				PROVISIONING_PROFILE = "7e292c45-f6c1-43a4-9e70-4a40137ce6ce";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ueno.appstore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -474,7 +474,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = 5PD7JU2FJC;
+				DEVELOPMENT_TEAM = M734F5G6DK;
 				INFOPLIST_FILE = AppStoreClone/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
 				INFOPLIST_PREFIX_HEADER = "${SRCROOT}/Config/GeneratedInfoPlistDotEnv.h";
@@ -485,10 +485,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ueno.appstoreclone;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ueno.appstore;
 				PRODUCT_NAME = AppStoreClone;
-				PROVISIONING_PROFILE = "818683bf-249c-48f6-a500-e79212f92d08";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ueno.appstoreclone";
+				PROVISIONING_PROFILE = "7e292c45-f6c1-43a4-9e70-4a40137ce6ce";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.ueno.appstore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
