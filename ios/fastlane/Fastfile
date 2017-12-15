@@ -9,8 +9,18 @@ platform :ios do
 
   desc "Continous Delivery build to TestFlight"
   lane :travis do
+    create_keychain(
+      name: "ios-build.keychain-db",
+      password: ENV["MATCH_PASSWORD"],
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600,
+      add_to_search_list: true
+    )
     match(
       type: "appstore",
+      keychain_name: "ios-build.keychain-db",
+      keychain_password: ENV["MATCH_PASSWORD"],
       readonly: true
     )
     path = "./AppStoreClone.xcodeproj"
