@@ -128,7 +128,7 @@ export default class Search extends Component {
       blur: true,
       query,
     });
-    // Search algolia
+    // Search
     this.search(query);
   }
 

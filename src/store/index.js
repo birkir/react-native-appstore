@@ -5,7 +5,6 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import algoliasearch from 'algoliasearch/reactnative';
 import config from 'config';
 import UI from './UI';
 
@@ -24,17 +23,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-// Algolia client
-const algolia = algoliasearch(config.ALGOLIA_APP_ID, config.ALGOLIA_API_KEY);
-
 export default class Store {
 
   ui = new UI();
-
-  algolia = {
-    client: algolia,
-    apps: algolia.initIndex('apps'),
-  };
 
   async setup() {
     return true;
@@ -64,7 +55,7 @@ export class StoreProvider extends PureComponent {
       children,
     } = this.props;
     return (
-      <Provider ui={store.ui} client={client} algolia={store.algolia}>
+      <Provider ui={store.ui} client={client}>
         <ApolloProvider client={client}>
           {children}
         </ApolloProvider>

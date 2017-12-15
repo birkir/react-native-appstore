@@ -109,6 +109,7 @@ static NSString* getBasePath()
 @synthesize addConsoleLogToReport = _addConsoleLogToReport;
 @synthesize printPreviousLog = _printPreviousLog;
 @synthesize maxReportCount = _maxReportCount;
+@synthesize uncaughtExceptionHandler = _uncaughtExceptionHandler;
 
 
 // ============================================================================
@@ -128,10 +129,15 @@ static NSString* getBasePath()
 
 - (id) init
 {
+    return [self initWithBasePath:getBasePath()];
+}
+
+- (id) initWithBasePath:(NSString *)basePath
+{
     if((self = [super init]))
     {
         self.bundleName = getBundleName();
-        self.basePath = getBasePath();
+        self.basePath = basePath;
         if(self.basePath == nil)
         {
             KSLOG_ERROR(@"Failed to initialize crash handler. Crash reporting disabled.");
@@ -571,7 +577,7 @@ SYNTHESIZE_CRASH_STATE_PROPERTY(BOOL, crashedLastLaunch)
 
 
 //! Project version number for KSCrashFramework.
-const double KSCrashFrameworkVersionNumber = 1.1512;
+const double KSCrashFrameworkVersionNumber = 1.1516;
 
 //! Project version string for KSCrashFramework.
-const unsigned char KSCrashFrameworkVersionString[] = "1.15.12";
+const unsigned char KSCrashFrameworkVersionString[] = "1.15.16";
