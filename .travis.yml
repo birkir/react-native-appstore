@@ -18,6 +18,7 @@ before_install:
   - brew install ccache
   - brew install getsentry/tools/sentry-cli
 #  - brew install applesimutils --HEAD
+  - gem install fastlane --no-rdoc --no-ri --no-document --quiet
 
 install:
   - npm install
