@@ -1,4 +1,5 @@
-[![Build status](https://build.appcenter.ms/v0.1/apps/0f5ad96f-a6ae-4b7b-989d-d3371e126f52/branches/master/badge)](https://appcenter.ms)
+![Build status](https://travis-ci.com/ueno-llc/react-native-appstore.svg?token=Xb6NQT3VcNMAAkvfu4os&branch=master)
+
 
 # E2E Testing
 
