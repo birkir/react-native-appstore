@@ -38,6 +38,7 @@ platform :ios do
       skip_waiting_for_build_processing: true
     )
     commit_version_bump(
+      force: true,
       xcodeproj: path,
       message: "Version #{version} (build #{build}) [travisbuild] [skip ci]"
     )
