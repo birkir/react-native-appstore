@@ -10,13 +10,13 @@ cache:
     - $HOME/.cocoapods
 
 before_install:
-  - brew install ccache
   - nvm install 8
   - node --version
   - npm install -g react-native-cli
-  - npm install -g sentry-cli
   - npm install -g detox-cli
   - brew tap wix/brew
+  - brew install ccache
+  - brew install getsentry/tools/sentry-cli
   - brew install applesimutils --HEAD
 
 install:
