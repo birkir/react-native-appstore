@@ -21,12 +21,6 @@ platform :ios do
     increment_build_number(xcodeproj: path)
     version = get_version_number(xcodeproj: path)
     build = get_build_number(xcodeproj: path)
-    commit_version_bump(
-      xcodeproj: path,
-      message: "Version #{version} (build #{build}) [skip ci]"
-    )
-    add_git_tag(tag: "v#{version}-#{build}")
-    push_to_git_remote
     gym(
       scheme: "AppStoreClone",
       workspace: "./AppStoreClone.xcworkspace",
@@ -37,6 +31,12 @@ platform :ios do
     testflight(
       skip_waiting_for_build_processing: true
     )
+    commit_version_bump(
+      xcodeproj: path,
+      message: "Version #{version} (build #{build}) [travisbuild] [skip ci]"
+    )
+    add_git_tag(tag: "v#{version}-#{build}")
+    push_to_git_remote
     slack(
       message: "Successfully uploaded #{version} (build #{build}) to TestFlight"
     )
