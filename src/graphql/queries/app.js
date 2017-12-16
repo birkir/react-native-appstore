@@ -9,7 +9,11 @@ export const query = gql`
       seller {
         id
         name
-        apps(filter: { id_not: $id }) {
+        apps(
+          filter: {
+            id_not: $id
+          }
+        ) {
           ...AppFragment
         }
       }
