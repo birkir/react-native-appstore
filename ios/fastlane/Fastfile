@@ -43,7 +43,7 @@ platform :ios do
       message: "Version #{version} (build #{build}) [travisbuild] [skip ci]"
     )
     add_git_tag(tag: "v#{version}-#{build}")
-    push_to_git_remote
+    push_to_git_remote(remote_branch:"master")
     slack(
       message: "Successfully uploaded #{version} (build #{build}) to TestFlight"
     )
