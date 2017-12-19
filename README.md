@@ -1,6 +1,6 @@
 ![Build status](https://travis-ci.com/ueno-llc/react-native-appstore.svg?token=Xb6NQT3VcNMAAkvfu4os&branch=master)
 
-![Today screen](https://media.giphy.com/media/xT0xeqCd7M7TJJI93i/giphy.gif) ![App list to detail view](https://media.giphy.com/media/3o6fJ4TfZOgw9dy5OM/giphy.gif) ![Screenshots](https://media.giphy.com/media/3o6fJdikzwcvl9VpE4/giphy.gif) ![Search](https://media.giphy.com/media/3o6fJe1CPV06DrKg7K/giphy.gif)
+![Today screen](https://media.giphy.com/media/xT0xeqCd7M7TJJI93i/giphy.gif)![App list to detail view](https://media.giphy.com/media/3o6fJ4TfZOgw9dy5OM/giphy.gif)![Screenshots](https://media.giphy.com/media/3o6fJdikzwcvl9VpE4/giphy.gif)![Search](https://media.giphy.com/media/3o6fJe1CPV06DrKg7K/giphy.gif)
 
 # E2E Testing
 
