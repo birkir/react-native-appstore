@@ -9,6 +9,8 @@ if [[ "$TRAVIS_BRANCH" == "master" ]]; then
   TRIGGER_IOS=$(git rev-list $LAST_VERSION..$TRAVIS_COMMIT | xargs -L1 git diff-tree --no-commit-id --name-only -r | grep "^ios")
   TRIGGER_BUILD="$(git rev-list $LAST_VERSION..$TRAVIS_COMMIT | xargs -L1 git rev-list --format=%B --max-count=1 | grep "\[skip ci\]")"
 
+  echo "Last version release? $LAST_VERSION"
+
   if [[ "$TRIGGER_IOS" != "" ]]; then
     echo "Why? iOS folder did change in the past:"
     echo "$TRIGGER_IOS"
