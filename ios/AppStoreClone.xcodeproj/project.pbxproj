@@ -453,7 +453,7 @@
 				CODE_SIGN_ENTITLEMENTS = AppStoreClone/AppStoreClone.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = M734F5G6DK;
 				INFOPLIST_FILE = AppStoreClone/Info.plist;
@@ -482,7 +482,7 @@
 				CODE_SIGN_ENTITLEMENTS = AppStoreClone/AppStoreClone.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = M734F5G6DK;
 				INFOPLIST_FILE = AppStoreClone/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = "-traditional";
