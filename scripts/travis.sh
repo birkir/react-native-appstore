@@ -5,9 +5,9 @@ TRAVIS_BUILD=0
 if [[ "$TRAVIS_BRANCH" == "master" ]]; then
 
   # Foreach commit
-  LAST_VERSION=$(git log -g --grep='\[travisbuild\]' -1 | grep -o -E -e "[0-9a-f]{40}")
+  LAST_VERSION=$(git log --grep='\[travisbuild\]' -1 | grep -o -E -e "[0-9a-f]{40}")
   TRIGGER_IOS=$(git rev-list $LAST_VERSION..$TRAVIS_COMMIT | xargs -L1 git diff-tree --no-commit-id --name-only -r | grep "^ios")
-  TRIGGER_BUILD="$(git rev-list $LAST_VERSION..$TRAVIS_COMMIT | xargs -L1 git rev-list --format=%B --max-count=1 | grep "\[skip ci\]")"
+  TRIGGER_BUILD="$(git rev-list $LAST_VERSION..$TRAVIS_COMMIT | xargs -L1 git rev-list --format=%B --max-count=1 | grep "\[BUILD\]")"
 
   echo "Last version release? $LAST_VERSION"
 
