@@ -37,13 +37,18 @@ platform :ios do
     testflight(
       skip_waiting_for_build_processing: true
     )
+    git_pull
     commit_version_bump(
       force: true,
       xcodeproj: path,
       message: "Version #{version} (build #{build}) [travisbuild] [skip ci]"
     )
     add_git_tag(tag: "v#{version}-#{build}")
-    push_to_git_remote(remote_branch:"master")
+    push_to_git_remote(
+      remote_branch:"master",
+      tags: true,
+      force: true
+    )
     slack(
       message: "Successfully uploaded #{version} (build #{build}) to TestFlight"
     )
