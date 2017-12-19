@@ -50,11 +50,6 @@ export default class Search extends Component {
 
   componentDidMount() {
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
-
-    // Hack to fix the previous hack.
-    if (__DEV__) {
-      setTimeout(() => this.setState({ isTrending: true }), 1000);
-    }
   }
 
   @autobind
