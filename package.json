@@ -24,7 +24,7 @@
     "date-fns": "1.29.0",
     "graphql": "0.11.7",
     "graphql-tag": "2.6.0",
-    "lodash": "4.17.4",
+    "lodash": "4.17.11",
     "mobx": "3.4.1",
     "mobx-persist": "0.4.1",
     "mobx-react": "4.3.5",
